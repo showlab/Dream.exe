@@ -8,7 +8,10 @@
 
 # Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?
 
-**Rui Zhao**<sup>1,\*</sup>, **Kaiming Yang**<sup>1,\*</sup>, **Jifeng Zhu**<sup>1,†</sup>, **Siyang Chen**<sup>1,†</sup>, **Ziqi Wang**<sup>1</sup>, **Weijia Wu**<sup>1</sup>, **Kevin Qinghong Lin**<sup>2</sup>, **Heng Wang**<sup>3</sup>, **Mike Zheng Shou**<sup>1,‡</sup>
+<p align="center">
+<strong>Rui&nbsp;Zhao</strong><sup>1,*</sup> &nbsp; <strong>Kaiming&nbsp;Yang</strong><sup>1,*</sup> &nbsp; <strong>Jifeng&nbsp;Zhu</strong><sup>1,†</sup> &nbsp; <strong>Siyang&nbsp;Chen</strong><sup>1,†</sup> &nbsp; <strong>Ziqi&nbsp;Wang</strong><sup>1</sup><br>
+<strong>Weijia&nbsp;Wu</strong><sup>1</sup> &nbsp; <strong>Kevin&nbsp;Qinghong&nbsp;Lin</strong><sup>2</sup> &nbsp; <strong>Heng&nbsp;Wang</strong><sup>3</sup> &nbsp; <strong>Mike&nbsp;Zheng&nbsp;Shou</strong><sup>1,‡</sup>
+</p>
 
 <sup>1</sup>Show Lab, National University of Singapore &nbsp; <sup>2</sup>University of Oxford &nbsp; <sup>3</sup>Tencent
 
