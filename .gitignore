@@ -37,3 +37,6 @@ external/
 # Caller-owned run/workspace variants are local; the portable default is public.
 configs/run-*.json
 configs/workspace-*.json
+
+# Local documentation review checks are not part of the public test suite.
+/tests/test_readme_navigation.py
