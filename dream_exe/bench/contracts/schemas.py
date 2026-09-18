@@ -1088,7 +1088,7 @@ def _digest_map(value: Any, label: str, keys: set[str], *, nullable: bool = Fals
         _digest(digest, f"{label}.{name}", nullable=nullable)
 
 
-def _validate_result_request(doc: Mapping[str, Any]) -> None:
+def _validate_result_request(doc: Mapping[str, Any], *, legacy: bool = False) -> None:
     root = _exact(
         doc,
         {
@@ -1108,11 +1108,12 @@ def _validate_result_request(doc: Mapping[str, Any]) -> None:
             "implementation_sha256",
             "initialization",
             "provenance_status",
-        },
+        } - ({"execution_spec_sha256", "implementation_sha256"} if legacy else set())
+        | ({"run_sha256"} if legacy else set()),
         "result request",
     )
     for name in (
-        "execution_spec_sha256",
+        "run_sha256" if legacy else "execution_spec_sha256",
         "case_sha256",
         "init_sha256",
         "reference_sha256",
@@ -1133,8 +1134,11 @@ def _validate_result_request(doc: Mapping[str, Any]) -> None:
     _validate_input_identity(root["input"], "result request.input", require_digest=True)
     _digest(root["resolved_config_sha256"], "result request.resolved_config_sha256", nullable=True)
     _digest(root["runtime_config_sha256"], "result request.runtime_config_sha256", nullable=True)
-    _digest(root["implementation_sha256"], "result request.implementation_sha256")
+    if not legacy:
+        _digest(root["implementation_sha256"], "result request.implementation_sha256")
     provenance = _enum(root["provenance_status"], {"complete", "reconstructed", "unknown"}, "result request.provenance_status")
+    if legacy and provenance == "complete":
+        raise ValueError("legacy result request cannot claim complete implementation provenance")
     if provenance == "complete" and (root["resolved_config_sha256"] is None or root["runtime_config_sha256"] is None):
         raise ValueError("complete result request requires resolved and runtime config digests")
     initialization = _exact(
@@ -1148,6 +1152,17 @@ def _validate_result_request(doc: Mapping[str, Any]) -> None:
         raise ValueError("receipt initialization requires receipt_sha256")
     if mode == "frozen" and receipt is not None:
         raise ValueError("frozen initialization forbids receipt_sha256")
+
+
+def validate_legacy_result_request(doc: Mapping[str, Any]) -> None:
+    """Validate historical read-only evidence, never a current write schema.
+
+    A historical run digest does not identify the execution implementation.
+    Missing execution and implementation identities remain missing.
+    """
+    if doc.get("format") != RESULT_REQUEST_SCHEMA:
+        raise ValueError("unexpected legacy result request format")
+    _validate_result_request(doc, legacy=True)
 
 
 def _validate_resolved_config(doc: Mapping[str, Any]) -> None:

@@ -20,6 +20,8 @@ from ..contracts.schemas import (
     input_identity_key,
     load_and_validate,
     load_json_strict,
+    validate_document,
+    validate_legacy_result_request,
 )
 
 
@@ -53,6 +55,30 @@ class ResultRepository:
             return discover_run_roots(self.root)[run_id]
         except KeyError as error:
             raise FileNotFoundError(f"published run not found: {run_id}") from error
+
+    def load_request(self, bundle: str | Path) -> dict[str, Any]:
+        """Read unchanged request evidence; legacy records are not resume identities."""
+        root = Path(bundle).expanduser().resolve()
+        root.relative_to(self.root)
+        request = load_json_strict(_contained_file(root, "request.json"))
+        if "run_sha256" in request:
+            validate_legacy_result_request(request)
+        else:
+            validate_document(request, expected_schema=RESULT_REQUEST_SCHEMA)
+        return request
+
+    def request_provenance(self, bundle: str | Path) -> dict[str, Any]:
+        """Describe recorded identities without manufacturing missing provenance."""
+        request = self.load_request(bundle)
+        legacy = "run_sha256" in request
+        return {
+            "request_schema": "legacy" if legacy else "current",
+            "provenance_status": request["provenance_status"],
+            "implementation_status": "unknown" if legacy else "recorded",
+            "implementation_sha256": request.get("implementation_sha256"),
+            "execution_spec_sha256": request.get("execution_spec_sha256"),
+            "run_sha256": request.get("run_sha256"),
+        }
 
     def iter_bundle_paths(self, run_id: str):
         cases = self.root / "experiments"
@@ -109,14 +135,13 @@ class ResultRepository:
                 raise ValueError(f"resolved config input identity mismatch: {root}")
         elif (root / "resolved_config.json").exists():
             raise ValueError(f"unbound resolved config exists: {root}")
-        request = load_and_validate(
-            root / "request.json",
-            expected_schema=RESULT_REQUEST_SCHEMA,
-        )
+        request = self.load_request(root)
         if canonical_sha256(request) != result["request_sha256"]:
             raise ValueError(f"request digest mismatch: {root}")
         if request["resolved_config_sha256"] != result["resolved_config_sha256"]:
             raise ValueError(f"request/result config identity conflict: {root}")
+        if "run_sha256" in request and result["provenance_status"] == "complete":
+            raise ValueError(f"legacy request cannot establish complete result provenance: {root}")
         artifact_records = {
             artifact["path"]: artifact for artifact in result["artifacts"]
         }
