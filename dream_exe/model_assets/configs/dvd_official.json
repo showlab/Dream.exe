@@ -1,0 +1,34 @@
+{
+  "calibration": {
+    "background_nearfield_quantile": 0.5,
+    "calib_region": "roi∧valid",
+    "calibration_solver": "robust_affine",
+    "if_calibrate_depth": true,
+    "invalidate_mode": "nan",
+    "multi_roi_strategy": "blend",
+    "points_radius_px": 3,
+    "require_calibration_for_nonmetric": true,
+    "roi_dilate_px": 8
+  },
+  "dvd": {
+    "allow_download": false,
+    "channel_reduce": "mean",
+    "ckpt_root": "DVD/official",
+    "invert_disparity_to_depth": true,
+    "min_disparity": 0.0001,
+    "model_config_path": "DVD/official/model_config.yaml",
+    "overlap": 9,
+    "resize_height": 480,
+    "resize_width": 640,
+    "scale_only_alignment": false,
+    "window_size": 81
+  },
+  "model_family": "upstream_official_dvd",
+  "model_name": "dvd",
+  "model_provenance": {
+    "checkpoint_identity": "FayeHongfeiZhang/DVD@769534dec2d77f8da3667719568fbe57fe69cd9b/model.safetensors",
+    "config_identity": "EnVision-Research/DVD@5501c8bbf5983554f5bc8d3747a26e0d0c49d4ee/ckpt/model_config.yaml",
+    "kind": "upstream_official",
+    "preset": "dvd_official"
+  }
+}

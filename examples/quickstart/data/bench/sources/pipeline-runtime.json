@@ -1,0 +1,24 @@
+{
+  "bindings": [
+    {"kind": "sources", "name": "grounding_dino", "required": true, "sha256": null},
+    {"kind": "sources", "name": "cotracker", "required": true, "sha256": null},
+    {"kind": "sources", "name": "dvd", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "grounding_dino", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "bert_base_uncased", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "sam2", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "cotracker", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "dvd_assets", "required": true, "sha256": null},
+    {"kind": "checkpoints", "name": "foundationpose", "required": false, "sha256": null}
+  ],
+  "files": [],
+  "format": "dream-exe.source",
+  "identity": {"name": "Dream.exe pipeline runtime bindings", "revision": "", "sha256": null},
+  "kind": "runtime",
+  "provenance_status": "complete",
+  "requirements": [
+    "Resolve provider paths through workspace.json; bench configuration contains no machine paths.",
+    "Static DVD depth presets are packaged with the Dream.exe code."
+  ],
+  "rights": {"license": "Apache-2.0", "redistributable": true, "status": "known"},
+  "source_id": "pipeline-runtime"
+}

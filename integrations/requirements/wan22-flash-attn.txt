@@ -1,0 +1,3 @@
+# Reviewed Linux x86_64 / Python 3.10 / Torch 2.7 / CUDA 12 wheel.
+# Select another official wheel when any ABI component differs.
+flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl

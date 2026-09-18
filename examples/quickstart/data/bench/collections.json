@@ -1,0 +1,11 @@
+{
+  "format": "dream-exe.collection",
+  "collection_id": "quickstart",
+  "description": "Self-contained one-case quickstart for the released Dream.exe pipeline.",
+  "cases": [
+    {
+      "uid": "rc_cheesybread_ep000001",
+      "case_sha256": "2604873da41f775c010718af90447f4a4dedccfee3495ab7b6812133d6d984ab"
+    }
+  ]
+}

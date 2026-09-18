@@ -1,0 +1,94 @@
+{
+  "format": "dream-exe.case",
+  "instruction": "Pick up the wedge of cheese and place it on the slice of bread to prepare a simple cheese on bread dish.",
+  "stages": [
+    {
+      "gripper_plan": {
+        "num_close": 1,
+        "num_open": 1
+      },
+      "interaction_mode": "rigid_object_transfer",
+      "manipulated_objects": [
+        {
+          "entity_type": "unknown",
+          "fixture_name": "",
+          "instance_name": "cheese_main",
+          "matched_joint_name": "",
+          "name": "cheese",
+          "part_name": "",
+          "role": "manipulated",
+          "runtime_match": {
+            "source": "existing_instance_name",
+            "status": "matched_instance"
+          },
+          "selector_mode": "open_vocab",
+          "selector_text": "cheese",
+          "simulation_mask_available": false
+        }
+      ],
+      "notes": "",
+      "stage_id": "s1",
+      "target_objects": [],
+      "task_type": "pick_place"
+    }
+  ],
+  "task": {
+    "gripper_init": "open",
+    "gripper_plan": {
+      "num_close": 1,
+      "num_open": 1
+    },
+    "interaction_count": 1,
+    "interaction_modes": [
+      "rigid_object_transfer"
+    ],
+    "level": "level2",
+    "multi_object_interaction": false,
+    "notes": "Initial working RoboCasa single-object pick-place sample with a manually tuned right camera view.",
+    "runtime_stage_order": {
+      "mode": "annotated"
+    },
+    "stages": [
+      {
+        "gripper_plan": {
+          "num_close": 1,
+          "num_open": 1
+        },
+        "interaction_mode": "rigid_object_transfer",
+        "manipulated_objects": [
+          {
+            "entity_type": "unknown",
+            "fixture_name": "",
+            "instance_name": "cheese_main",
+            "matched_joint_name": "",
+            "name": "cheese",
+            "part_name": "",
+            "role": "manipulated",
+            "runtime_match": {
+              "source": "existing_instance_name",
+              "status": "matched_instance"
+            },
+            "selector_mode": "open_vocab",
+            "selector_text": "cheese",
+            "simulation_mask_available": false
+          }
+        ],
+        "notes": "",
+        "stage_id": "s1",
+        "target_objects": [],
+        "task_type": "pick_place"
+      }
+    ],
+    "task_types": [
+      "pick_place"
+    ]
+  },
+  "uid": "rc_cheesybread_ep000001",
+  "evaluation": {
+    "vlm": {
+      "view": "third-person",
+      "robot_subject": "robotic grippers",
+      "manipulated_object": "cheese"
+    }
+  }
+}

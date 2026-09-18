@@ -1,0 +1,7 @@
+examples/quickstart/data/**/*.gz filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.npy filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.npz filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.obj filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.png filter=lfs diff=lfs merge=lfs -text
+examples/quickstart/data/**/*.stl filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,20 @@
+The provided image presents sequential frames, arranged in a grid, from a {view} perspective AI-generated task video about {description}
+Does this video comply with common-sense expectations for human-level interactions?
+
+# A. Anomaly Checks:
+1) Physical grounding violation: any part of the robot appears floating, or intersecting/penetrating other geometry.
+2) Spontaneous object appearance: any object or robotic agent that suddenly appears between frames without a plausible cause. Pay special attention to the top two frames, where such anomalies often occur early in the sequence.
+3) Non-contact attachment / false grasp: If the video involves a grasping interaction, carefully check whether the object remains attached to or moves with the robotic gripper/hand without clear physical contact, closure.
+If either anomaly is present, treat it as a major violation and assign a low score (1–2).
+
+# B. Human-Level Common-Sense Consistency:
+Evaluate whether this video complies with common-sense expectations for human-level interactions?
+Rate the video on a scale from 1 to 5, where 5 means fully consistent with human common sense and 1 means major violations.
+
+### Special Notes:
+1) Be very cautious when assigning scores of 4 or 5: these scores should only be used when clearly correct, and free of errors. Do not give 4 or 5 lightly.
+2) Use step-by-step reasoning internally to make your selection.
+3) Your output must be a valid JSON object with two fields:
+- "reason": a brief justification for the given score
+- "score": an integer between 1 and 5
+Return exactly: {json_example}

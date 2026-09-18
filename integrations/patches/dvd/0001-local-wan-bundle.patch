@@ -1,0 +1,34 @@
+diff --git a/examples/wanvideo/model_training/WanTrainingModule.py b/examples/wanvideo/model_training/WanTrainingModule.py
+index 857865f75d1492211976b9eed68f71b8bd44d84b..cce99681c51ae93ce15f48abea5b928567b348f9 100644
+--- a/examples/wanvideo/model_training/WanTrainingModule.py
++++ b/examples/wanvideo/model_training/WanTrainingModule.py
+@@ -33,7 +33,9 @@ class WanTrainingModule(DiffusionTrainingModule):
+         lora_target_modules='q,k,v,o,ffn.0,ffn.2',
+         use_gradient_checkpointing=True,
+         use_gradient_checkpointing_offload=False,
+-
++        tokenizer_path=None,
++        local_model_path="./models",
++        skip_download=False,
+     ):
+         super().__init__()
+ 
+@@ -52,10 +54,18 @@ class WanTrainingModule(DiffusionTrainingModule):
+                 for i in model_id_with_origin_paths
+             ]
+             
++        tokenizer_config = None
++        if tokenizer_path is not None:
++            tokenizer_config = ModelConfig(path=tokenizer_path)
+         self.pipe = WanVideoPipeline.from_pretrained(
+             torch_dtype=torch.bfloat16,
+             device="cpu",
+             model_configs=model_configs,
++            tokenizer_config=tokenizer_config or ModelConfig(
++                model_id="Wan-AI/Wan2.1-T2V-1.3B", origin_file_pattern="google/*"
++            ),
++            local_model_path=local_model_path,
++            skip_download=skip_download,
+         )
+ 
+         # DiT related

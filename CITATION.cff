@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: >-
+  If you use Dream.exe in your research, please cite the paper below.
+type: software
+title: Dream.exe
+version: 0.1.0
+authors:
+  - given-names: Rui
+    family-names: Zhao
+  - given-names: Kaiming
+    family-names: Yang
+  - given-names: Jifeng
+    family-names: Zhu
+  - given-names: Siyang
+    family-names: Chen
+  - given-names: Ziqi
+    family-names: Wang
+  - given-names: Weijia
+    family-names: Wu
+  - given-names: Kevin Qinghong
+    family-names: Lin
+  - given-names: Heng
+    family-names: Wang
+  - given-names: Mike Zheng
+    family-names: Shou
+repository-code: https://github.com/showlab/Dream.exe
+url: https://arxiv.org/abs/2606.04811
+preferred-citation:
+  type: article
+  title: >-
+    Dream.exe: Can Video Generation Models Dream Executable Robot
+    Manipulation?
+  authors:
+    - given-names: Rui
+      family-names: Zhao
+    - given-names: Kaiming
+      family-names: Yang
+    - given-names: Jifeng
+      family-names: Zhu
+    - given-names: Siyang
+      family-names: Chen
+    - given-names: Ziqi
+      family-names: Wang
+    - given-names: Weijia
+      family-names: Wu
+    - given-names: Kevin Qinghong
+      family-names: Lin
+    - given-names: Heng
+      family-names: Wang
+    - given-names: Mike Zheng
+      family-names: Shou
+  year: 2026
+  url: https://arxiv.org/abs/2606.04811

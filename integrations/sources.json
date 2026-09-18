@@ -1,0 +1,42 @@
+{
+  "format": "dream-exe.external-sources",
+  "sources": {
+    "cotracker": {
+      "destination": "CoTracker",
+      "repository": "https://github.com/facebookresearch/co-tracker.git",
+      "revision": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d"
+    },
+    "dvd": {
+      "destination": "DVD",
+      "repository": "https://github.com/EnVision-Research/DVD.git",
+      "revision": "5501c8bbf5983554f5bc8d3747a26e0d0c49d4ee",
+      "patch_manifest": "integrations/patches/dvd/manifest.json"
+    },
+    "grounding_dino": {
+      "build": "grounding_dino_cuda",
+      "destination": "GroundingDINO",
+      "repository": "https://github.com/IDEA-Research/GroundingDINO.git",
+      "revision": "856dde20aee659246248e20734ef9ba5214f5e44",
+      "patch_manifest": "integrations/patches/grounding_dino/manifest.json"
+    },
+    "robocasa": {
+      "destination": "RoboCasa",
+      "repository": "https://github.com/robocasa/robocasa.git",
+      "revision": "9a3a78680443734786c9784ab661413edb87067b",
+      "patch_manifest": "integrations/patches/robocasa/manifest.json",
+      "untracked_data_roots": [
+        "robocasa/models/assets"
+      ]
+    },
+    "vda": {
+      "destination": "Video-Depth-Anything",
+      "repository": "https://github.com/DepthAnything/Video-Depth-Anything.git",
+      "revision": "4f5ae23172ba60fd7bc11ef671cca678842c7072"
+    },
+    "wan22": {
+      "destination": "Wan2.2",
+      "repository": "https://github.com/Wan-Video/Wan2.2.git",
+      "revision": "42bf4cfaa384bc21833865abc2f9e6c0e67233dc"
+    }
+  }
+}

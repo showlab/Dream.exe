@@ -1,0 +1,479 @@
+{
+  "format": "dream-exe.dvd-asset-attestation-manifest",
+  "presets": {
+    "dvd_official": {
+      "checkpoint_sha256": "3034ba241bfea65346cddda4a5228457d295ffcb42e422e4b95b1551e587f10d",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "dvd_lora_shared": {
+      "checkpoint_sha256": "6bff0fdb1bc4b3abf782d37e70983b7373677421582978e77cef0248cfc5c663",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    }
+  },
+  "single_task_by_uid": {
+    "rc_breadandcheese_ep000001": {
+      "checkpoint_sha256": "1b7f7bb305913748328287a419993136eb386be2b36cae0d56516125f89bc30e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000017": {
+      "checkpoint_sha256": "211376a6da912d45ca7b1a34e3204d4ac7d2015a83525740494d78d45a7044cf",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000018": {
+      "checkpoint_sha256": "9ce64cb2a667a34b9f406165618badaa2781dd1939b2fc665caa678d88018697",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000020": {
+      "checkpoint_sha256": "f8abbdeb4fd932fb25960caf2d88fd3e68bbf5e6978f247ec5a9aecfe562b3e8",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000038": {
+      "checkpoint_sha256": "01513badccd3521367f9b491382e3b3d67d96ed1687f23242e4e635aac2678b1",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000001": {
+      "checkpoint_sha256": "9e7c6c3d3975136f884426ea98a6441509a2fcf38e5192d80cad79d665442f97",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000002": {
+      "checkpoint_sha256": "8fc554008f9808371bb932f71809042c98f9cd062115322211a8beea679ad61f",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000003": {
+      "checkpoint_sha256": "f0a515435205e15d1a90d22cab08bf833e6186878388f754a2eb3d39635d6ff3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000004": {
+      "checkpoint_sha256": "8f18ca8014cc67aca49f9adce6129652cb889ea37cc04bcf71cad72189d94712",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000009": {
+      "checkpoint_sha256": "c34b0a60ee04bb29d77efee37fa67b37a2e9c6b0e9557dbdbf53e164fccb21f5",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000016": {
+      "checkpoint_sha256": "f1d561ddfc744b8e4ca554fec3d3be0ab4e89b6734010a9f63a1b7f0c3760d40",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000017": {
+      "checkpoint_sha256": "ef6befd6cf7a9c1d7aa1a0b19ab2f1574d70f0ad055712940be6ffea448d9dd8",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000020": {
+      "checkpoint_sha256": "278f8f1f669ae0f4aaaf3148541ecc68d5815bab4406e7f2fa95f7231f8a26c7",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_cheesybread_ep000039": {
+      "checkpoint_sha256": "113a152a284e3817b13471d34cc4a86b608c62bcfafc3752ba199ec85075b418",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closedrawer_ep000002": {
+      "checkpoint_sha256": "1224062c279548feb6183cc5f6f8d7f76fc39500b55ebfbc330857d60140508d",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closedrawer_ep000004": {
+      "checkpoint_sha256": "64d8999df64513dd46ec90dd18b02865baf59a537da23907008b5fa1f2d825e3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closedrawer_ep000044": {
+      "checkpoint_sha256": "2ec867389fdb8c8533a2dd1734bdd0cc8c9d1b9e562a8ce72a78e68b3d2587fa",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closedrawer_ep000049": {
+      "checkpoint_sha256": "8ddfcdcc5daebeb22967298816fcee2b45d4ca06e48b096f40b0d89775b912e3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closefridgedrawer_ep000009": {
+      "checkpoint_sha256": "ec956f72b2061e2c88e9d150f205153085c291d4a2ba390e6c9ab007a93e80ac",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closemicrowave_ep000002": {
+      "checkpoint_sha256": "b328b9cd7df7575d2b485d2c1fd1d3a931e21419b89891bd9caa8c2ac93de6bb",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000000": {
+      "checkpoint_sha256": "9791bf6dc6a1482e430ea03d029662f18dd8ab5d05228efecf3d1bf435a7d96a",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000005": {
+      "checkpoint_sha256": "e119d57ca0b5b0d871f98e7481beb026be729aad5c9b532185dfdee206cfc89c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000008": {
+      "checkpoint_sha256": "20e10da101e680005844cfdeba24c763286229ce800adbd027d2b070f4a4e849",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000046": {
+      "checkpoint_sha256": "266f0a8ed8d71156e17c3e99fced8fd4eb26d2c303d83a3f314369c1aae8c895",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000047": {
+      "checkpoint_sha256": "9278239cb84bdb4ddd92dcc6da025579b89259484fef79d1287f4935a5d046d9",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000002": {
+      "checkpoint_sha256": "cc9bb9a7fb6bcd9085b6b89882fa5e1ad0002460224bfab7c8c13293822cecc1",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000012": {
+      "checkpoint_sha256": "cc6e3c0f5d6925d491c97c597f6eeacb0678ceb5d8c8da302e612918b8691d1f",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000014": {
+      "checkpoint_sha256": "1779308c43546e26cf897e08ff0acd7589bc49f0276ff81744be394945f178f6",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000015": {
+      "checkpoint_sha256": "8ad5726cca3aec53df6de762af5acb46e31670908a17ebd912e83aba7800f48c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000016": {
+      "checkpoint_sha256": "b1429bbdcd14c5f8a2d8a0d3d7e108cef5e75169059ae8da1ceb84ecb976a38b",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000019": {
+      "checkpoint_sha256": "9f362f0b9bf7885351cdbcd05fee4e92a556fdb7f91f546732f945bf1c28031e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000020": {
+      "checkpoint_sha256": "7b2d54c77d59bb66716959108c84efdd714dada8acdf554b91f1480c2e09707b",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000021": {
+      "checkpoint_sha256": "7b4f011fb9c6c3cdbfec673cd26eadd1a22574c90f9e8217408e0371cd70ba26",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000022": {
+      "checkpoint_sha256": "538c314470ce63c1adf67bd48f6bb914e2d22b3a580cdd01cf5f820e03d1c906",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000023": {
+      "checkpoint_sha256": "88c74c634a8f04886e945a108d2bada0ccc6047ed2afb87691de2c1a6870d1db",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000025": {
+      "checkpoint_sha256": "1edefafd36e3a4051dd6f7b8df3d4780352ac36ae2af929475df26c14c88d6b4",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000026": {
+      "checkpoint_sha256": "2c4270d2a131a9e8863ed6e98f87efc6874be578249f9e6d57fbf37e9177c981",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closestandmixerhead_ep000038": {
+      "checkpoint_sha256": "9ab0c3a442b46de16b7ceeed64d4fc67e9258dbaaada89f2e51d354f23d2c895",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000000": {
+      "checkpoint_sha256": "476fbb545d1bb5cba4d9087e6b3be894807a4eb4263d674959fb29c9ff454f29",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000008": {
+      "checkpoint_sha256": "8feef7d70488f28bcb39ebcb7d4538e1a06f250fd8db3c03ec1c9d688c442374",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000012": {
+      "checkpoint_sha256": "47e40cb3bbcc2a3ab645dfd0ed64edc8c00c3db83c1436a3fe666ca10cb97db3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000020": {
+      "checkpoint_sha256": "6ba5734254e3cdc8fa414a4015305fdec22f2ac64bfa6217fa1c147de5101220",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000036": {
+      "checkpoint_sha256": "b483cef9d4bce86783750c616078e8c2f3ad01f8932e61ee58480fba290fafb3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000045": {
+      "checkpoint_sha256": "0f308d20f6301e06b2d58d3a298068aa730471a386e6eb1a61165ac6036743ae",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000047": {
+      "checkpoint_sha256": "a3ab462dde1697b3bc3d15a7a549af027ba23028c1d42179f84c7a2ba1ba93f3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000050": {
+      "checkpoint_sha256": "29b2f565a9416204c02ec831cc0630f663189e6be9aebbb44181b11c3edf2e7e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_coffeeservemug_ep000053": {
+      "checkpoint_sha256": "53330131897b7e46c6a21bd064cf01522a84e554abdcd758a463f11500c56665",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_makeicedcoffee_ep000008": {
+      "checkpoint_sha256": "91ee7f9c08ab589415eef201d5519e4099ea7e538b3c960b93d771bf6572654e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000014": {
+      "checkpoint_sha256": "19d7604866a67a31c1b6d5d7ac1b741cf28b94c51d63256bc516f7de551d2086",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000017": {
+      "checkpoint_sha256": "d5316694e7b3cbdbfeeb001f91579a3cf9160d28951b71e1bea0fdba9cc96543",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000020": {
+      "checkpoint_sha256": "567bbc6fea885b8bacba1f548b1e55b5077e78e5434f96300f39b928a642c4d2",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000031": {
+      "checkpoint_sha256": "1ccfe06f8016e0b4ace461c0f41ff357b2e50dfdadf81b04326729d2cb532928",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000043": {
+      "checkpoint_sha256": "91e38a8d2e0e8c2b4feabaabd2e132dcd0a6c6fbf1777e3e45ad6444612a4b86",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000049": {
+      "checkpoint_sha256": "01ed4221152b98e40bf588e5f4df15c7f28b1907c87257884c32470335b18e9c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000055": {
+      "checkpoint_sha256": "e6886fc7b780ebaee24c103c7baddaaf6b8ad23e925f7bfe6022815d56bec4c3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000069": {
+      "checkpoint_sha256": "62b400a2efd559da3e1cbd143eb36ae856136b93428fa23f74b75f672bea36e4",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000074": {
+      "checkpoint_sha256": "26c67268270d16a6fbedc7cf7851f7c4c9aa5b4f68f9c0babb75b42f29f0e137",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openstandmixerhead_ep000003": {
+      "checkpoint_sha256": "bdfc6a0e20d52e5b688d3861961fbb02a12619d812a3703c982efa96a12e51ec",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openstandmixerhead_ep000004": {
+      "checkpoint_sha256": "659784dc734c791539ae1135896aa4463cf387d86489a61d844fa39dc14ee600",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000003": {
+      "checkpoint_sha256": "82b5fb7078e8c09a40598ad31067dcb9070fd65ee3ffbc9b1d5343f87d2a4c76",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000016": {
+      "checkpoint_sha256": "760f959d406d68cc4068819c365a2b19cdca024587ae3db4eeee7229d1c275f1",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000023": {
+      "checkpoint_sha256": "35ff97d09c1f7c706b483695021406aff7d4a04d4089de738ba3453d25f432c1",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000031": {
+      "checkpoint_sha256": "6a147317bfd2a5a996b20ba4eb679774a2d5606ef8960e0985971488e5c1b8cf",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000037": {
+      "checkpoint_sha256": "80660f696167549397c731a4b6162fc8ac049defe1b7808c608aba06d1e74976",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000054": {
+      "checkpoint_sha256": "feb08b80aa23e8b3382687dff1b1101c4507d514275f266831a22a700fd8aea7",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000055": {
+      "checkpoint_sha256": "f604924460c4fe25804a7e6d9659268e8fdcfbff235b38d1480e9fbad119c769",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000065": {
+      "checkpoint_sha256": "2f3e48826bead2a4026a02d56e9733a1d57a98b1896803bd0edd2fbe5c38732d",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000078": {
+      "checkpoint_sha256": "5dfc9f26b80fa4174e3f759c87bf830d8cceb6ce9aaaa39586efda5b09462e68",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000080": {
+      "checkpoint_sha256": "4d170e6ce91f19958c12e7a5566bb9ffb70463138ecba394b5ee691190ea94b3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_packdessert_ep000081": {
+      "checkpoint_sha256": "985893469afd2a130ba1fd302fb654c49d5542654f373f55a771c44ed3d923c0",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_pickplacecountertoblender_ep000017": {
+      "checkpoint_sha256": "eca638946dc565e9154451dc72a356da735007297cd6a2c3964b3b132b9f6049",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slideovenrack_ep000003": {
+      "checkpoint_sha256": "d86856f36f3cc9cb2568403aea66663ca30eeb46647369c56c376154300dca03",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slideovenrack_ep000005": {
+      "checkpoint_sha256": "487421acbfe574d65337dde5a9d95182ae9fe2f36d1bd08998a56fb4d67a061e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slideovenrack_ep000006": {
+      "checkpoint_sha256": "9bcbe5b8cbc69cdbcfa370eb58f4ee3a7eb29be0140fc98ac16b08d66d96d399",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slideovenrack_ep000026": {
+      "checkpoint_sha256": "e382d05f5212722847608cee58761e7f85a834099186c40821a0f5340013ec42",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000000": {
+      "checkpoint_sha256": "730eea624995d2f936a0a3e3cc29b3c75f5ebbd8cc597285635803d1a2f847ae",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000002": {
+      "checkpoint_sha256": "c7f161919a31e180e39342ab78cec9bbc5c417e50845ffb638c13dc4ea9e1bb9",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000003": {
+      "checkpoint_sha256": "bd70455ee2009a78088e1c623dc9b0ebfb4be2bc00b4cb209258cfac0daaadce",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000004": {
+      "checkpoint_sha256": "23e71c3c2cb4e1c7d61aca770939d7ab54dd3681738402860d87a0812d79f5a2",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000005": {
+      "checkpoint_sha256": "1bc44ba3067ac3fc2c4d878866d711f8b5c4490649a2052cf9daab58ccf8f8fd",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000009": {
+      "checkpoint_sha256": "a657d29a62ed70b6b4f5a2d1d14d765447116f39365c99bd1568c1de132d219e",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000026": {
+      "checkpoint_sha256": "bd67ca46111bda222c55d405c22360958d3ac51340508a8d886ab06ccfbedb35",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000033": {
+      "checkpoint_sha256": "cc86a4646c42df3e8d863cdb1cbef54a69288942fa21f971a9c74b3a52bd48fb",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000041": {
+      "checkpoint_sha256": "179efdb60708520409e08e462b053d8c421a359355e141ad3742bca155e2651f",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000043": {
+      "checkpoint_sha256": "4968c03be3b3bd972565595329cfcd3389402e4aa44b10c704b4d3fb83dab9c3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000046": {
+      "checkpoint_sha256": "7e34f016657d35caf0347a8124a7c08a49fbb6d3927c5f1116d4da832c00f450",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slidetoasterovenrack_ep000052": {
+      "checkpoint_sha256": "106083b93da403d1aa3533307ee4bf6ff797cd46e7a686b1facd06b6b3e76a32",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnontoaster_ep000002": {
+      "checkpoint_sha256": "cfd7dd49022d3c0edd1d001b6185ef4c986eb5b893bd3f196de9b7124d3e37f3",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000000": {
+      "checkpoint_sha256": "b69d011428d3cada883f05e2474840ffdbe53feacf6ef1dfecfb5e269812a2b8",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000002": {
+      "checkpoint_sha256": "69454030385d0477b05cf76b1ae0f8bdfc1876d1b69f74183c114efaeea0529b",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000004": {
+      "checkpoint_sha256": "bced86f670811835f7587489c46c6f99351814a7d2fa51a475ad0da6f78381af",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000006": {
+      "checkpoint_sha256": "ad9cc295ff45d850a53fced0fd0c5d8ebbb5f2abff2f75ecae99e3e62bda2748",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000010": {
+      "checkpoint_sha256": "54163f9a4eac1709e026bfc113d76c633630b40c3a1191021391a2e8b54c6b0c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000011": {
+      "checkpoint_sha256": "7cfde927c4f40d880a15999685758d1b725576dffb1322aef5317cad1ec07fe9",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000013": {
+      "checkpoint_sha256": "f9c718680b2a41c5b8e1c6fe3e95a2e98e751cc23149344c6ffa98ba93f72022",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000017": {
+      "checkpoint_sha256": "d00b520ff8374c4cc671b25f020d5ad06250ad7cb4bd28a63724151062f72403",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000021": {
+      "checkpoint_sha256": "743f7eeab3f18b0d08a2c21b8ee57caa066cafc1b213a32992a71cd351da70d6",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_turnsinkspout_ep000024": {
+      "checkpoint_sha256": "66e941553f618941fdf92641e516d867baacfd142b9e6e64b0eee4d20795963a",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000026": {
+      "checkpoint_sha256": "52a6689663a8dbc6d48b1e5a0e6867a4d48ae25a366194ee1010fd23bae47862",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000004": {
+      "checkpoint_sha256": "2b237c61adfeb047cdcfedb89ec7dcaf505e40fed082369d532aa28e96f9d6de",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_openblenderlid_ep000002": {
+      "checkpoint_sha256": "acb7f5e64b81c4255d53f1e47f7ba1747a8d31e69b72a9a3639fdf49a076440a",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000048": {
+      "checkpoint_sha256": "c2ea37017987700bd9b3e1e566ae2155a241b61e4350761899eeeaf2dfe8425a",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadandcheese_ep000059": {
+      "checkpoint_sha256": "d7aca16a97ed726304548af76275ce317eba632fb96a73c9e6909b14041cd4f0",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000006": {
+      "checkpoint_sha256": "e14108149e878824190c336bb93975729648b515630103bc1f637f4191012d39",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000010": {
+      "checkpoint_sha256": "402bc617a827b70a185efeb14d8fae4658e40fa5fb9a0e0d8d4bc2429cfc9390",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000011": {
+      "checkpoint_sha256": "ee440d1feee2a8c1fdaf5f9b2e25ebe87ca6dfa6ed0b84b0a1c4e50338954679",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000018": {
+      "checkpoint_sha256": "260019943bc2cc047583b1d2fe913d335d85aa8549abe8bf31ebe39969497f0d",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000019": {
+      "checkpoint_sha256": "cab017c565de422eaeda51ab03aeb9b6e9c3f716421371565b270675c52f02bb",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_breadsetupslicing_ep000025": {
+      "checkpoint_sha256": "758a72e4c263cf31eaf4577bb0c49e1fd82f629b41eb5931c765aac8cd13c4e8",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closefridgedrawer_ep000023": {
+      "checkpoint_sha256": "a40e996338da5422d0cf8dc3308f8b12f6571515ab583de492e0be8c73b1a182",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closefridgedrawer_ep000055": {
+      "checkpoint_sha256": "55cd63ab19c6a2395ec242ee0249073c3e86936f1b7be7b92f703bc81b0dc5b2",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closefridgedrawer_ep000101": {
+      "checkpoint_sha256": "f9fc94d15a7c5e7bd9a10820d501b5fea8863bd12aa6d0084f92206061d85b1c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closefridgedrawer_ep000105": {
+      "checkpoint_sha256": "47f42309f40bdd3ac3390aacbb71071cb8b1b33f9f4c8e43b1a59529ec1bba39",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000049": {
+      "checkpoint_sha256": "01ef8f7178230902c6fd631a754dbe200d2ae533e1a6a9763c2bdb8ea5e2c23b",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_closeoven_ep000051": {
+      "checkpoint_sha256": "49a48736a8aa6073585d1cec179677e7e484887e6562acdb29853132fdd561ed",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    },
+    "rc_slideovenrack_ep000058": {
+      "checkpoint_sha256": "e92d5e49d4d172f3d235cbb207c71c8a1100d4d947e64c38ef951fc99c85cb1c",
+      "model_config_sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+    }
+  }
+}

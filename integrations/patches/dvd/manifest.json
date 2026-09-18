@@ -1,0 +1,16 @@
+{
+  "format": "dream_exe.provider_patch",
+  "provider": "EnVision-Research/DVD",
+  "upstream_repository": "https://github.com/EnVision-Research/DVD.git",
+  "upstream_commit": "5501c8bbf5983554f5bc8d3747a26e0d0c49d4ee",
+  "patches": [
+    {
+      "path": "0001-local-wan-bundle.patch",
+      "sha256": "d3a5990d96a1146e218453b792ea56628aeacab26953f042d0c1109b62e21487",
+      "targets": [
+        "examples/wanvideo/model_training/WanTrainingModule.py"
+      ],
+      "purpose": "Allow explicit local Wan model and tokenizer assets with downloads disabled."
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "format": "dream-exe.model-asset-manifest",
+  "name": "core-public-assets-v1",
+  "description": "Pinned public checkpoints and configs required by the default Dream.exe evaluation pipeline. Project-owned DVD LoRA checkpoints are distributed separately.",
+  "packages": [
+    {
+      "id": "grounding-dino-swin-t",
+      "source": {
+        "type": "url",
+        "locator": "https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth"
+      },
+      "destination": "grounding_dino",
+      "license": {
+        "id": "grounding-dino-apache-2.0",
+        "notice": "GroundingDINO source and its published checkpoint are provided by the upstream project under Apache-2.0; review upstream terms before redistribution.",
+        "acceptance_required": false
+      },
+      "artifacts": [
+        {
+          "path": "groundingdino_swint_ogc.pth",
+          "size_bytes": 693997677,
+          "sha256": "3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799"
+        }
+      ]
+    },
+    {
+      "id": "bert-base-uncased",
+      "source": {
+        "type": "huggingface",
+        "locator": "google-bert/bert-base-uncased@86b5e0934494bd15c9632b12f734a8a67f723594"
+      },
+      "destination": "bert-base-uncased",
+      "license": {
+        "id": "bert-base-uncased-apache-2.0",
+        "notice": "The BERT model and tokenizer files are provided under Apache-2.0; review the pinned upstream model card before redistribution.",
+        "acceptance_required": false
+      },
+      "artifacts": [
+        {
+          "path": "config.json",
+          "size_bytes": 570,
+          "sha256": "7160e1553ad2ca51d8c1cb066be533db31826e12d173824c1bb0cb1a4f187d20"
+        },
+        {
+          "path": "model.safetensors",
+          "size_bytes": 440449768,
+          "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3"
+        },
+        {
+          "path": "tokenizer.json",
+          "size_bytes": 466062,
+          "sha256": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size_bytes": 48,
+          "sha256": "a025160ef0431f1a392f6f050c1310f4c5d9fb6f275932dbccba73c4d214bf10"
+        },
+        {
+          "path": "vocab.txt",
+          "size_bytes": 231508,
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        }
+      ]
+    },
+    {
+      "id": "sam2.1-hiera-large",
+      "source": {
+        "type": "url",
+        "locator": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt"
+      },
+      "destination": "sam2",
+      "license": {
+        "id": "sam2-apache-2.0",
+        "notice": "SAM 2 source and checkpoints are provided by the upstream project under Apache-2.0; review upstream terms before redistribution.",
+        "acceptance_required": false
+      },
+      "artifacts": [
+        {
+          "path": "sam2.1_hiera_large.pt",
+          "size_bytes": 898083611,
+          "sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318"
+        }
+      ]
+    },
+    {
+      "id": "cotracker3-offline",
+      "source": {
+        "type": "huggingface",
+        "locator": "facebook/cotracker3@bf55ea50d4390e1820a267f131cd6587240fb2c5"
+      },
+      "destination": "cotracker",
+      "license": {
+        "id": "cotracker-cc-by-nc-4.0",
+        "notice": "The CoTracker source and checkpoint are CC BY-NC 4.0 and restricted to non-commercial use; review the pinned upstream terms before acquisition.",
+        "acceptance_required": true
+      },
+      "artifacts": [
+        {
+          "path": "scaled_offline.pth",
+          "size_bytes": 101890938,
+          "sha256": "2670d4562ed69326dda775a26e54883925cd11b6fc9b24cb7aa9f8078bce7834"
+        }
+      ]
+    },
+    {
+      "id": "dvd-base-checkpoint",
+      "source": {
+        "type": "huggingface",
+        "locator": "FayeHongfeiZhang/DVD@769534dec2d77f8da3667719568fbe57fe69cd9b"
+      },
+      "destination": "DVD/official",
+      "license": {
+        "id": "dvd-cc-by-nc-4.0",
+        "notice": "The DVD checkpoint model card declares CC BY-NC 4.0; review the pinned upstream terms before acquisition.",
+        "acceptance_required": true
+      },
+      "artifacts": [
+        {
+          "path": "model.safetensors",
+          "size_bytes": 4491827302,
+          "sha256": "3034ba241bfea65346cddda4a5228457d295ffcb42e422e4b95b1551e587f10d"
+        }
+      ]
+    },
+    {
+      "id": "dvd-base-config",
+      "source": {
+        "type": "url",
+        "locator": "https://raw.githubusercontent.com/EnVision-Research/DVD/5501c8bbf5983554f5bc8d3747a26e0d0c49d4ee/ckpt/model_config.yaml"
+      },
+      "destination": "DVD/official",
+      "license": {
+        "id": "dvd-source-apache-2.0",
+        "notice": "The pinned DVD source configuration is provided by the upstream project under Apache-2.0.",
+        "acceptance_required": false
+      },
+      "artifacts": [
+        {
+          "path": "model_config.yaml",
+          "size_bytes": 237,
+          "sha256": "affd87f7d98fd3bc7837577f39cba0e72ced490786436528d0a7aabb0f8d30d4"
+        }
+      ]
+    },
+    {
+      "id": "wan2.1-dvd-runtime",
+      "source": {
+        "type": "huggingface",
+        "locator": "Wan-AI/Wan2.1-T2V-1.3B@37ec512624d61f7aa208f7ea8140a131f93afc9a"
+      },
+      "destination": "Wan-AI/Wan2.1-T2V-1.3B",
+      "license": {
+        "id": "wan2.1-apache-2.0",
+        "notice": "Wan2.1 and the selected runtime files are provided under Apache-2.0; review the pinned upstream model card before redistribution.",
+        "acceptance_required": false
+      },
+      "artifacts": [
+        {
+          "path": "diffusion_pytorch_model.safetensors",
+          "size_bytes": 5676070424,
+          "sha256": "96b6b242ca1c2f24e9d02cd6596066fab6d310e2d7538f33ae267cb18d957e8f"
+        },
+        {
+          "path": "Wan2.1_VAE.pth",
+          "size_bytes": 507609880,
+          "sha256": "38071ab59bd94681c686fa51d75a1968f64e470262043be31f7a094e442fd981"
+        },
+        {
+          "path": "google/umt5-xxl/special_tokens_map.json",
+          "size_bytes": 6623,
+          "sha256": "7b8a9f5040adb67b5805abdfd42c1f8d0f3d0e711f10726580eb3789cd0ad61d"
+        },
+        {
+          "path": "google/umt5-xxl/spiece.model",
+          "size_bytes": 4548313,
+          "sha256": "e3909a67b780650b35cf529ac782ad2b6b26e6d1f849d3fbb6a872905f452458"
+        },
+        {
+          "path": "google/umt5-xxl/tokenizer.json",
+          "size_bytes": 16837417,
+          "sha256": "6e197b4d3dbd71da14b4eb255f4fa91c9c1f2068b20a2de2472967ca3d22602b"
+        },
+        {
+          "path": "google/umt5-xxl/tokenizer_config.json",
+          "size_bytes": 61728,
+          "sha256": "ed9a3a8b0faa71a70a32847e0435fe036e6e112d4df4edb7bb48a921e344dc05"
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

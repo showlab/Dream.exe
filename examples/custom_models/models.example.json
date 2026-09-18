@@ -1,0 +1,131 @@
+{
+  "format": "dream-exe.models",
+  "categories": {
+    "video_gen": {
+      "example_local_video": {
+        "kind": "video_generation",
+        "backend": "factory",
+        "factory": "./video_generation_backend.py:ExampleLocalVideoBackend",
+        "kwargs": {},
+        "options": {
+          "size": "1280*704",
+          "frame_num": 121,
+          "sample_steps": 40,
+          "guidance_scale": 5.0
+        },
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_local_video",
+          "contract_version": "image_to_video_backend"
+        }
+      },
+      "example_polling_video": {
+        "kind": "video_generation",
+        "backend": "factory",
+        "factory": "./video_generation_backend.py:ExamplePollingVideoBackend",
+        "kwargs": {
+          "api_key_env": "EXAMPLE_VIDEO_API_KEY",
+          "timeout_seconds": 900,
+          "poll_interval_seconds": 2,
+          "max_transport_attempts": 3
+        },
+        "options": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_polling_video",
+          "contract_version": "image_to_video_backend"
+        }
+      }
+    },
+    "exec": {
+      "example_detector": {
+        "kind": "region_detector",
+        "backend": "factory",
+        "factory": "./region_backends.py:ExampleRegionDetector",
+        "kwargs": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_detector",
+          "algorithm_id": "example_text_detection",
+          "contract_version": "region_detector"
+        }
+      },
+      "example_segmenter": {
+        "kind": "region_segmenter",
+        "backend": "factory",
+        "factory": "./region_backends.py:ExampleRegionSegmenter",
+        "kwargs": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_segmenter",
+          "algorithm_id": "example_box_segmentation",
+          "contract_version": "region_segmenter"
+        }
+      },
+      "example_tracker": {
+        "kind": "tracking",
+        "backend": "factory",
+        "factory": "./tracking_backend.py:ExampleTrackingBackend",
+        "kwargs": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_tracker",
+          "contract_version": "tracking_backend"
+        }
+      },
+      "example_depth": {
+        "kind": "depth",
+        "backend": "factory",
+        "factory": "./depth_backend.py:ExampleDepthBackend",
+        "kwargs": {},
+        "options": {
+          "fp32": false,
+          "input_size": 512
+        },
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_depth",
+          "contract_version": "depth_estimator"
+        }
+      },
+      "example_pose": {
+        "kind": "pose",
+        "backend": "factory",
+        "factory": "./pose_backend.py:ExamplePoseBackend",
+        "kwargs": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_pose",
+          "contract_version": "pose_backend"
+        }
+      }
+    },
+    "eval": {
+      "example_openai_vlm": {
+        "kind": "vlm",
+        "backend": "openai-compatible",
+        "options": {
+          "model": "replace-with-provider-model-name",
+          "base_url": "https://api.example.com/v1",
+          "api_key_env": "EXAMPLE_VLM_API_KEY",
+          "max_tokens": 8000,
+          "seed": 2026,
+          "token_limit_parameter": "max_completion_tokens"
+        }
+      },
+      "example_custom_vlm": {
+        "kind": "vlm",
+        "backend": "factory",
+        "factory": "./vlm_backend.py:ExampleVLMBackend",
+        "kwargs": {
+          "model_name": "replace-with-model-name"
+        },
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "example_vlm",
+          "contract_version": "vlm_backend"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "format": "dream_exe.provider_patch",
+  "provider": "grounding_dino",
+  "upstream_repository": "https://github.com/IDEA-Research/GroundingDINO.git",
+  "upstream_commit": "856dde20aee659246248e20734ef9ba5214f5e44",
+  "patches": [
+    {
+      "path": "0001-torch-2.7-scalar-type.patch",
+      "sha256": "089f3959b19fbfd5d7058fe47d7cef6e4b2321fc5e4b92d847c17e29120b8102",
+      "targets": [
+        "groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.cu"
+      ],
+      "purpose": "Compile the pinned CUDA extension against PyTorch 2.7.1."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+    "fps": 15,
+    "camera_name": "robot0_agentview_right",
+    "frame_size": [
+        512,
+        512
+    ],
+    "num_frames": 288,
+    "near": 0.022818175865294714,
+    "far": 1140.9087390744783
+}

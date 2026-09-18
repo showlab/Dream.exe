@@ -1,0 +1,19 @@
+include CITATION.cff
+include INSTALL.md
+include LICENSE
+include NOTICE
+include THIRD_PARTY.md
+prune configs
+include configs/README.md
+include configs/credentials.template.json
+include configs/workspace.json
+recursive-include docs *.md
+recursive-include examples *.json *.md *.py
+recursive-include integrations *.json *.md *.patch *.py *.sh *.txt
+
+prune examples/quickstart/data
+prune tests
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store

@@ -1,0 +1,1 @@
+{"format":"dream-exe.protocol","stage":"video2traj","values":{"pose":{"backend":"foundationpose","config_path":""},"region":{"targets":{"eef":{"simulation":{"instance_name":"gripper0_right_right_gripper"}}}}}}

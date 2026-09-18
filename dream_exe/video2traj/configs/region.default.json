@@ -1,0 +1,27 @@
+{
+  "targets": {
+    "eef": {
+      "selector": "simulation"
+    },
+    "obj": {
+      "selector": "simulation"
+    }
+  },
+  "region": {
+    "combine_mode": "intersect",
+    "mask_erosion_kernel_size": 11,
+    "save_debug": true
+  },
+  "grounding_dino": {
+    "box_threshold": 0.4,
+    "text_threshold": 0.3,
+    "use_local_repo": true,
+    "local_config_path": "./external/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py",
+    "local_checkpoint_path": "./checkpoints/grounding_dino/groundingdino_swint_ogc.pth",
+    "local_text_encoder_path": "./checkpoints/bert-base-uncased"
+  },
+  "sam2": {
+    "config_name": "configs/sam2.1/sam2.1_hiera_l.yaml",
+    "checkpoint_path": "./checkpoints/sam2/sam2.1_hiera_large.pt"
+  }
+}

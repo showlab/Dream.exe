@@ -1,0 +1,19 @@
+{
+  "format": "dream-exe.bench",
+  "bench_id": "dream-exe-quickstart",
+  "created_at": "2026-08-22",
+  "collections": [
+    "quickstart"
+  ],
+  "sources": [
+    "pipeline-runtime",
+    "sim-runtime"
+  ],
+  "protocol_stages": [
+    "generation",
+    "video2traj",
+    "action",
+    "execution",
+    "evaluation"
+  ]
+}
