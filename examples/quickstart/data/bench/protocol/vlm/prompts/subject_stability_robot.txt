@@ -1,0 +1,17 @@
+The provided image shows two sequential frames from an AI-generated video about robot doing a task.
+The left frame is the correct reference image, while the right frame is the AI-generated video frame.
+Focus on how '{robot_subject}' appears in both frames, and evaluate the consistency of '{robot_subject}' between the reference and the generated frame.
+
+Note:
+1) Pay special attention to distinguishing between robotic gripper and robotic hand (if visible). Robotic gripper usually has a small number of rigid gripping jaws or prongs, while a robotic hand has multiple articulated fingers and more complex structures.
+2) Changes in orientation or position are acceptable and should not affect the consistency rating.
+3) Important: Do NOT assign option A or B lightly.
+
+Question:
+A: '{robot_subject}' in the right frame is clear and consistent with the left image.
+B: '{robot_subject}' in the right frame is mostly consistent with the left image, with minor visual issues.
+C: '{robot_subject}' in the right frame shows noticeable inconsistencies compared with the left image, such as changes in shape or structure.
+D: '{robot_subject}' in the right frame is highly inconsistent with the left image or transforms into another type of '{robot_subject}'.
+E: {terminal_option}
+The options A to E represent increasing levels of inconsistency. Select the most suitable option.
+Return exactly: {json_example}

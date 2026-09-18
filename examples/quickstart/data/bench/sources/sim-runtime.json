@@ -1,0 +1,2183 @@
+{
+  "bindings": [
+    {
+      "kind": "sources",
+      "name": "robocasa",
+      "required": true,
+      "sha256": "4ba10467fa5f5e8cc3665d780b22faf165ad47c4e476f3da5f47b3ecf1d9152c"
+    }
+  ],
+  "files": [
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/licenses/robocasa-LICENSE",
+      "sha256": "5da18670b3f00c59847b1ded9c28dee59940d963b1e03b528b0108d9c5a09885",
+      "size": 1418,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/licenses/robocasa-assets-README.md",
+      "sha256": "185aa995ec73b00df4ca4f87ae387372c60e200cadcc6dc3632a8127e0f70b5d",
+      "size": 5743,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/licenses/robosuite-AUTHORS",
+      "sha256": "f976ae6ad68fea99981c933bb63e4ac33cc5b49495c10c507aacd8a8bfbfacb1",
+      "size": 1224,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/licenses/robosuite-LICENSE",
+      "sha256": "177978cbece0a4c454c2aaec5b3f145b39270814874c43109da9e829c39d9cba",
+      "size": 1474,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/accessories/light_switches/white_wide_switch/visuals/image0.png",
+      "sha256": "416a6915327596cb13e616e7a54db6a8ead4748f322dde62c91e0330872639b0",
+      "size": 586509,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/accessories/light_switches/white_wide_switch/visuals/light_switch_0.obj",
+      "sha256": "4d70456fadfeb438560803ccaef7991500a3cac141c6bc69ff2f3faf6a9b0e04",
+      "size": 426200,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/accessories/light_switches/white_wide_switch/visuals/material_0.png",
+      "sha256": "416a6915327596cb13e616e7a54db6a8ead4748f322dde62c91e0330872639b0",
+      "size": 586509,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/cabinets/cabinet_panels/CabinetDoorPanel024/visuals/CabinetDoorPanel024.obj",
+      "sha256": "a27b76f647a855034ddcabcfc59c1e01f00eed1b75005cd2872a0e9092bbc33a",
+      "size": 127545,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Body001.obj",
+      "sha256": "5596c098b1b1d09bee7504f15145de0effcf28ac0850a1f5ede9338f9fec3527",
+      "size": 1600972,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Button001.obj",
+      "sha256": "4bd1ce7da362cfd456476d71374b317182fcc005fec8e63d6efc9802b3983df7",
+      "size": 10869,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Button002.obj",
+      "sha256": "1f5d0652b8548c061a85c9c583a8bae2cec328abc49aeeeb56f7b87d94b55869",
+      "size": 10965,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Button003.obj",
+      "sha256": "61ccaef586ee813579fbb69b54586ea2c44c05d075a4900468bff2a534e9f1cd",
+      "size": 10920,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Container001_Clear.obj",
+      "sha256": "b77e0bdf9ac155de608cf7c8164247369ce358aea59b951f37715d40609799f8",
+      "size": 326749,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Lever001.obj",
+      "sha256": "3f972f11c72fe1729ae12e2c70e3a0019e907dfe110aa02b40797c92a92c9046",
+      "size": 75824,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Lid001.obj",
+      "sha256": "92b6c3ffa7519e42f012a6531b5d219581dc42dc3db64885789a3f2c51f257ad",
+      "size": 355209,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Lid002.obj",
+      "sha256": "a225f8c09991bcbcc0781f93c9d4df838fd2156f51e0dd2f4344598d306e7373",
+      "size": 37709,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/Lid003.obj",
+      "sha256": "c1b39c2b81cb0cd1f0da6b8bbf72d41b528dc18419fd58faa54b6574e872f367",
+      "size": 189493,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/coffee_machines/CoffeeMachine091/visuals/T_BC001.png",
+      "sha256": "978316cefb840e976809d9184aa92c4d795366bf184b5717dba6f0c5e92123f9",
+      "size": 350717,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/Body001.obj",
+      "sha256": "9f1eda4e950457a3174aac19ae394fa23866ad9e164efa1431887769bad8b2ad",
+      "size": 351089,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/T_BC001.png",
+      "sha256": "626a5dbe6d45e937f695117d1ca2543795ee688a364b31130ec2e72fded8d1ec",
+      "size": 273034,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/button_lock.obj",
+      "sha256": "5c20a052f4df3ca2358921966b01c5abc3393579a1ed4a59dcd4cafaa5ad8010",
+      "size": 5406,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/button_power.obj",
+      "sha256": "b70fbb491ebd48d685445e9e201e9ef646bd682b02f0a80c3a73a3b690bf9bcd",
+      "size": 5447,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/door.obj",
+      "sha256": "e14e8e92e0859201341370e024c56bae685f8fe42d0badf6716e00700091f56b",
+      "size": 200561,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/rack0.obj",
+      "sha256": "ef1f5a0b185d4e7e965218b4223931dc86619fe2133f42413ef185a72f0bfa86",
+      "size": 776782,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/dishwashers/Dishwasher038/visuals/rack1.obj",
+      "sha256": "a12c73b742ab57322ff9745011d25b38029d512f29426374cdf02e797b4ad104",
+      "size": 933132,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/Body001.obj",
+      "sha256": "0cb003da6b869641c06f1db48040f6f45da1e00f1793f3e69c185200af2bcd8d",
+      "size": 442809,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/Body001_Clear.obj",
+      "sha256": "aac7c982c9c9a1ddb086adb5457bada3220f29b16ed19f4424917428c2a8f336",
+      "size": 25957,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/T_BC001.png",
+      "sha256": "818bbbba0f8451041068563df636736be96d00f596a0e8c01f29eabd61e570fe",
+      "size": 72145,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/freezer0.obj",
+      "sha256": "fe3eb081e8063d723b0732cf38ba19153fcc6a3c5370182501808d273842c8d1",
+      "size": 85133,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/freezer1.obj",
+      "sha256": "bd28f2e0102432f9ffd662db4de8cf2aed1b676643c673bbaf77ff793f66a86f",
+      "size": 85232,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/fridge_drawer0.obj",
+      "sha256": "baa83ea34ec7e8a0ba6a3a675f07206407f2c01955160411bec9009b63fc4fca",
+      "size": 33873,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/fridge_left_door.obj",
+      "sha256": "ac028ffb67834b1202832a9f9db635cd3b64e76ea1b798645aa6a2dda3d427ac",
+      "size": 475834,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/fridges/Refrigerator079/visuals/fridge_right_door.obj",
+      "sha256": "8be710eb234e5a26d322f406b32017f1c2ee5d78c664458265d03532cfa4ed7f",
+      "size": 503550,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/handles/CabinetHandle002/visuals/CabinetHandle002.obj",
+      "sha256": "9d7279de4bbc967887b2c201f37fd92200b3971f4294a9a3fb21106a0c4e8f69",
+      "size": 64053,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Body001.obj",
+      "sha256": "0edb0caddfa7f238e11269b43a50b8b74a4d4451d804a4ae2c817f677d1ba67e",
+      "size": 66295,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Button001.obj",
+      "sha256": "6572e9668aaf055fdb92f13c8fc1dbccdede1191df74a65ed5b22e1adcb49969",
+      "size": 13656,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Button002.obj",
+      "sha256": "6689b63914093cfdbe0d00ed5360d37cabcb3cc72537da0cabbadcc38912fec0",
+      "size": 13631,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Button003.obj",
+      "sha256": "f436d690ec5635d39748c6667a45ead0df559f5483609f5e0228245106771775",
+      "size": 13631,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Button004.obj",
+      "sha256": "5c519629a7557994398754798e39ae3570bd8bccf094fdddded9beb304702878",
+      "size": 13604,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/Button005.obj",
+      "sha256": "208c61487d2d6d28db880e24b96ed497c9b788f802462f818a56ca28bd13d092",
+      "size": 13604,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/hoods/RangeHood021/visuals/T_BC001.png",
+      "sha256": "be059673bc17451d541740b2d817d719509a069894fe72db53aa239faae6958e",
+      "size": 69237,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/microwaves/Microwave081/visuals/Body001.obj",
+      "sha256": "53d2f4b0418c98995748551955d950eaa68f35f493c3994f4a8d8f36e69e22c1",
+      "size": 1268411,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/microwaves/Microwave081/visuals/Disc001.obj",
+      "sha256": "038b9530f4239a241beae1cfbd2f319da0467a309a486d3dd5d646d6b73a8bf1",
+      "size": 236857,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/microwaves/Microwave081/visuals/T_BC001.png",
+      "sha256": "d5e95bb6e711c17009ad6c31a48b6061482b473f1943d71bec579cee252a9f10",
+      "size": 74592,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/microwaves/Microwave081/visuals/door.obj",
+      "sha256": "9c7f12932233e79d2685c6380c5468b7141220cdf284332befb1b594b0e8939a",
+      "size": 367622,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/microwaves/Microwave081/visuals/door_Clear.obj",
+      "sha256": "1c70d6011b2766b67bdd21c6e345c3320f86dda24be071ea6b6d5dacdeddc10d",
+      "size": 90780,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/sinks/Sink008/visuals/Body001.obj",
+      "sha256": "f8a134582971d59e913f56bde1e14508860341e9726105fbf90638afec533b2b",
+      "size": 1625810,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/sinks/Sink008/visuals/T_BC001.png",
+      "sha256": "18c164c601b271ab70d399ee7833deb3c4877371a149a3e3a1bd78283850ecf3",
+      "size": 58671,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/sinks/Sink008/visuals/handle.obj",
+      "sha256": "75a1e91c98cfd8a71238e303569b15ee37dc55f5f3477d2721e2a33c8d8cacea",
+      "size": 237757,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/sinks/Sink008/visuals/spout.obj",
+      "sha256": "e647008c48b3f19e98fcc3697d06a39c6fe574788feb0d8c366156bc28a6e74a",
+      "size": 213631,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/Body001.obj",
+      "sha256": "68a20b89ef66d5602fc628137d19ddd20e9af731432d29eab98fa8507ea52727",
+      "size": 1518290,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/T_BC001.png",
+      "sha256": "b68005b06413c7b787ab1a8ed236b9f81c9382de0dbab295ae3acc77428a6ab0",
+      "size": 369332,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/door.obj",
+      "sha256": "2a3d17a74a7cae7f3afc992c031e7563699136c17565e743a694a1184b722f0b",
+      "size": 136394,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/door_Clear.obj",
+      "sha256": "ec6cbae654795bae9e03f95ce246be155a451b68876bc06c2caa0262f4391071",
+      "size": 1139,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_front_center.obj",
+      "sha256": "75fad41712af2978e114303ae7d50d20980e6e725ce9f286ea22feebad974b9f",
+      "size": 22182,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_front_left.obj",
+      "sha256": "dfee3edfd6f7c957257649f43602175375b7a7afa1966dc5876779dd8cd65d84",
+      "size": 22335,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_front_right.obj",
+      "sha256": "c5633d03f7f5d20ed47e05dcc6d52bc0e7a815675f54ed5cd93f12a6f876a750",
+      "size": 22145,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_rear_center.obj",
+      "sha256": "c6b69a22c75ccf4e1620d1cac32734d5c9a9fc25f079227a8c37aeae81745acc",
+      "size": 22181,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_rear_left.obj",
+      "sha256": "56048369deddcc8c7c2cb1c428eb5711226e170890f223d0d54fc4c14e0efa7f",
+      "size": 22334,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_rear_right.obj",
+      "sha256": "4ce83ac30db1b05ddd600145c074ab9ecc8ef79925bcafcf7614d1bf02faa942",
+      "size": 22144,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_temp.obj",
+      "sha256": "10b5f0ddf3daf8b82c8f739cf6ae0f95489661fab6f32f26387411f213b47e70",
+      "size": 22436,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/knob_time.obj",
+      "sha256": "354915164038c3d9e41a88d1b1665ab378d85aa830ef9fdfe6b3efb1efb0dd24",
+      "size": 22376,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/stoves/Stove060/visuals/rack0.obj",
+      "sha256": "4529062cd3620ce0b5cf426877586d59bb34ebc20aecd5a115022b85d7007b34",
+      "size": 32982,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/Body001.obj",
+      "sha256": "ac1fd1acc6d0ec7b2db937052847c303cdb1e19a8fbe59e03f2d0c7fb3072a59",
+      "size": 797378,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/T_BC001.png",
+      "sha256": "440494255e3239f66222b46f3cc1bb7f0158ca87de3010c91e10e2f912b6016c",
+      "size": 195660,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/door.obj",
+      "sha256": "aa507d7e7b576dcbbc3e170c7aceaee0ac888d399634d917f2458129b1932192",
+      "size": 726249,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/knob_temp.obj",
+      "sha256": "74ff2f7678ec838e64b6fd9c2168305fcb98e96069e18dfb4ad6bde7b1e78f69",
+      "size": 134400,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/knob_time.obj",
+      "sha256": "fb68c53a6e4208012e39bb62ebf8d8f74b4d957b6df0be2de9e0699309330766",
+      "size": 135225,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/rack0.obj",
+      "sha256": "327e7293be8193a91393ddd852f0ab308b0c4d2518cb6c61ae229b01b3eb0d68",
+      "size": 160741,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/rack1.obj",
+      "sha256": "b7b266ac6455887529bf62af2b79182509a27c054bc8566551567907f16c196f",
+      "size": 160039,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toaster_ovens/ToasterOven059/visuals/window.obj",
+      "sha256": "4510990fe4d2d991c03291f477d5a8a73a22ac203aeed09ff6b734db361cab2c",
+      "size": 10150,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toasters/Toaster019/visuals/Body001.obj",
+      "sha256": "71e4572c892e56cfbdfa619dc731c5f66349236ac702b4e65aee123b29f4d643",
+      "size": 2479055,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toasters/Toaster019/visuals/T_BC001.png",
+      "sha256": "119f9c3e0b15a014cba0c8d497970c8f966d1625eaf872a7c03a2421a1b2c9f5",
+      "size": 230448,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toasters/Toaster019/visuals/button_cancel.obj",
+      "sha256": "0cf029d05a47dd3bb343353ad2761fbcecd5af9cf53412e746cdcc35d9ba830e",
+      "size": 10326,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toasters/Toaster019/visuals/knob_doneness.obj",
+      "sha256": "d1cd35cc1749d2ef48daf979e0b3198a2d97c4df31650b31405d17b746459900",
+      "size": 122316,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/fixtures/toasters/Toaster019/visuals/lever.obj",
+      "sha256": "10f392017c59b7d248c98b94c7afef041dd71f1d6969d58cc18e26aa263de2bf",
+      "size": 171042,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/generative_textures/cabinet/tex082.png",
+      "sha256": "de2a624e1a8db6a3c5f339cd9ff4229d47c57f885cdeffb5066ae2309f5946ab",
+      "size": 21264,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/generative_textures/counter/tex007.png",
+      "sha256": "003abdb59e53df057dfa25c4204b73c16ceac89266da54bbd51ff88475e1bdb6",
+      "size": 2042266,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/generative_textures/floor/tex020.png",
+      "sha256": "db0f6c9abbc542b6a3c3b53c080e61f74020ac17182653c7d69f8fe382bc73a4",
+      "size": 2067946,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/generative_textures/wall/tex063.png",
+      "sha256": "769443ddba5aaed5bbe3e059d6f997856b22c4cf4c41b409a60a11e4104c3601",
+      "size": 2501868,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_0.obj",
+      "sha256": "be2926202a2e1a625bab476cab43e2756a50a817d32a192cef4936201c7d50b5",
+      "size": 47263,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_1.obj",
+      "sha256": "e7b14a0ff1545df05960033309a682637c07359a9cec06e9cbae41f7b3047149",
+      "size": 29657,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_10.obj",
+      "sha256": "2d86f76841c265ba8bbf8de8fd955661496106748fd8f1b8dacb823eb2e5fcb6",
+      "size": 14941,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_11.obj",
+      "sha256": "b8f2c5a5fb91c20cf5c76015e3089923a46d85cb1620dae4ba33aac582055291",
+      "size": 2857,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_12.obj",
+      "sha256": "df4720a759e34c7dac69a3e0f307e2d985caac0d1e10fc0baf14f78cddb05b13",
+      "size": 6339,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_13.obj",
+      "sha256": "fdc93bd3d7388b9390822d19ae9e3b427fc27ebc8381999ed10ff3588b7ccf37",
+      "size": 16908,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_14.obj",
+      "sha256": "62ef828b8045667018d6b144021e456c221e64bd96a305f3254b9ae239097ab3",
+      "size": 14224,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_15.obj",
+      "sha256": "8f14102ca9fcadf733c99ce8bdb74d25c758e059c2f4c2c5cb46278940236999",
+      "size": 26218,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_2.obj",
+      "sha256": "8998a06f2a30dc31147a3f0dfa7a2456ae009f4e90830c7c0ac02eaef4321b05",
+      "size": 29286,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_3.obj",
+      "sha256": "bfefc572ba046971e69ed8657b664c2bbf47bcdf6c8a1286aa47aa2482961367",
+      "size": 87789,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_4.obj",
+      "sha256": "155ac6fe07a7076671fb3dd4e5a9a2632c0067443eb283b518db1433d74e9e5e",
+      "size": 12494,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_5.obj",
+      "sha256": "61f23dd7e3a44c917e82b7bca827b23d981e7b32cf6a2db0394828816dc1cb6a",
+      "size": 39490,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_6.obj",
+      "sha256": "c18b776bc998279d28fc6c88dfb4510e4b41ab93189a1a6849605e30a87e6ece",
+      "size": 5342,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_7.obj",
+      "sha256": "6f0df7bcab38a5f12495bfe0358c65b9bc71a46ab866862f5437ce2913f954b5",
+      "size": 5524,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_8.obj",
+      "sha256": "1f1edee2b2d55dfd1fb7033e29722b89e729c4c7818f2260cf7797920b05be85",
+      "size": 45662,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/collision/collision_mesh_collision_9.obj",
+      "sha256": "8bf361ce429cbfd2e27a5151fc90eff2bcb26aa76fc8b831bd44746153debaf1",
+      "size": 6371,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/visual/PaperTowelHolder010.obj",
+      "sha256": "9cefd0c08a362ade2fdb0881d11f459900bffe1649c8b572f6857e8d27df467a",
+      "size": 675097,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/visual/Prop.obj",
+      "sha256": "dc15fd9cfb156456ed790f6c773ba02a4aa28f8d7499b95a2fc5a910f845ea90",
+      "size": 106479,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/paper_towel_holder/PaperTowelHolder010/visual/T_BC001.png",
+      "sha256": "975a083759e15237d53fa96c7afcdb13f7bf1342faea54cbfec8a86e7c93b61a",
+      "size": 156193,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_0.obj",
+      "sha256": "179193ce9228e0bcfcfcef321940ff6980bb3d6f12fbb71dc77a4f7c0c87528a",
+      "size": 16954,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_1.obj",
+      "sha256": "b417fd77a52288251de3c80689dff94167cdc71e2830eca110b5287c9976bf46",
+      "size": 11126,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_10.obj",
+      "sha256": "2ae77d21644620b13d6dd5c1e9399c2e4c965044469e90fba860f843a86a9b37",
+      "size": 3411,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_11.obj",
+      "sha256": "e6f9a998433d9d38dfe1fb8789660516b5fc29d2328b7323876a49d877e3dd75",
+      "size": 8456,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_12.obj",
+      "sha256": "ae46728a47939aef97ff73f1c34cf4dd5d0d5e2113a1eb668c8aca759a848835",
+      "size": 5646,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_13.obj",
+      "sha256": "37db90461c5d7ac96fbece7a5c6bbff3961a7387bf02a1982fd077e32730cf22",
+      "size": 5996,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_14.obj",
+      "sha256": "5d075b55a8073af06f61a10767d5df41e839c90b6943ac3e9f5b588a62f452c9",
+      "size": 5430,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_15.obj",
+      "sha256": "8fdc41a3c5f08f270e4b080caac50399b9a4ffb3cb0d68bd82f71df54e654cf1",
+      "size": 7364,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_2.obj",
+      "sha256": "e65071adb5f5677bb2e83cad5856924ad82f8e69202862b714ccf31e1a626732",
+      "size": 4225,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_3.obj",
+      "sha256": "d0bf4e9605450914c6512da39e5e53a820d4f9c303fa3104ebf1536e29665a92",
+      "size": 12316,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_4.obj",
+      "sha256": "0b9f4588fceb058a8fbec4cd6aff73e6ce4564c7948f0b6d08d5de598e6fb473",
+      "size": 14571,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_5.obj",
+      "sha256": "b116a559cd181e7de06d20f26b177659b5def4d2a9e461a0b530241576aa2b71",
+      "size": 197730,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_6.obj",
+      "sha256": "ef47cdd6de3ca46eca9c163934b840569f9f08a07d3f3b6e70dba4457fa6e4a0",
+      "size": 10346,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_7.obj",
+      "sha256": "d5065322480ede3914b76a191482f27fa4f7104dd2e91e0cc40f816d1b5c8bf6",
+      "size": 11208,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_8.obj",
+      "sha256": "24d624b533abe0771956d96714e3bd0b2f530fe34e2a97308b007d75bf787aea",
+      "size": 7926,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/collision/collision_mesh_collision_9.obj",
+      "sha256": "791f7fafc62ac5c4b6c96cae69885b444079278a6d91056b933d27476256fd6f",
+      "size": 6417,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/visual/Plant011.obj",
+      "sha256": "aff33f0eeee2f1369f5a1ad1146f53d5006bb7cf4d0e65f4654adc44f35c40ae",
+      "size": 614135,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/plant/Plant011/visual/T_BC001.png",
+      "sha256": "2bc709525c5b16895ead0d33284a7d58e3e5b0209867985a43d1d98134273c11",
+      "size": 439161,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_0.obj",
+      "sha256": "a27b7ea5d4a6cecb3c4e3e01e33ea99eab626983024d49506efcb00d33bcba36",
+      "size": 9810,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_1.obj",
+      "sha256": "59a91fa6531862472e90f0b3dce9d139e0da573a9acc3dc4376cc5414e0b0a96",
+      "size": 1341,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_10.obj",
+      "sha256": "b942ffbd4be469bd7c2bcf894acb25bab55507db130d6b0a3a9a1499ef9a2df8",
+      "size": 1203,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_11.obj",
+      "sha256": "4ce7731be02cbfff473ec213f27399dfab84ff2a19fed5ad3f1c5bc334394553",
+      "size": 4522,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_12.obj",
+      "sha256": "7c7563d6368afd8a27bbe1b5ad67bf0a9e344a85bb0513d37ee70fbaac0a28d8",
+      "size": 2183,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_13.obj",
+      "sha256": "3e17e6bf61df561f4c1c4108250fcc4da1a5f9a32c80fbb69329732d868ed51c",
+      "size": 4334,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_14.obj",
+      "sha256": "6797f74cf1e04f405070a0e2b8d1c5c51c2298feffa5e2b5cc8e4e4fe65f6d14",
+      "size": 4826,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_15.obj",
+      "sha256": "ee7894cbfc7a65a37f26ae9ed8ddc28a468b18852ce6b834a9e4d3061e02ca36",
+      "size": 3006,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_2.obj",
+      "sha256": "99dc6b0122557da43a5d9653e5e4f839534f2f2b4f9205bf3bb5455113163623",
+      "size": 5670,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_3.obj",
+      "sha256": "c6a1db6d5c5b5555e5241c091e7fb9fa7f83e7a5c21df25c41c843ac2ae8474a",
+      "size": 8046,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_4.obj",
+      "sha256": "44abb3ea2cefc1ccebc701f5ecba1ccf9b087e831ee264f527a63a7c480902e3",
+      "size": 5999,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_5.obj",
+      "sha256": "f499794e4d20f96961dcc99589b7ca6c54e2ac24e5da81c829eced2ceba2400a",
+      "size": 5364,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_6.obj",
+      "sha256": "1239afe502f4e274129587b422af3ac8f505feba36511fd53fc8f3aa1e470807",
+      "size": 6321,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_7.obj",
+      "sha256": "8963e92de648d5d98f21ab8b9f87512a57d3560a0437b06f1739b918baf84435",
+      "size": 1435,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_8.obj",
+      "sha256": "31d2336f775c40034535c430f1c0de48cb060e56c7de0b0730468044d14508ce",
+      "size": 30890,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/collision/collision_mesh_collision_9.obj",
+      "sha256": "b65d004e71feb50adb9d10978337c5d3c8e354994510685cd7d510b4628d3f9f",
+      "size": 32025,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/visual/Stool021.obj",
+      "sha256": "ac5c5b52fcef1a8807996d99c0040fe52107ca33a4e04efb25c366ee0ad969cc",
+      "size": 267870,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/visual/T_BC001.png",
+      "sha256": "1753d90ced8aae0bdd0ee0157eb03407b01ed7fed1ce486428e156de1b05eba4",
+      "size": 418634,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/lightwheel/stool/Stool021/visual/prop.obj",
+      "sha256": "065ae44698e0ca95e9925be34570145525f3273e2b05ea33cf4e0957e9f494b9",
+      "size": 386815,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_0.obj",
+      "sha256": "7eb63e9d98fece7043921d2e8c8ac3eb0af3e062121ab5a9f608f97d84437230",
+      "size": 31918,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_1.obj",
+      "sha256": "91494b5b88df104088d1f53edf21bd8e1cc590abab947ab187a249fdd0aa898f",
+      "size": 24372,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_10.obj",
+      "sha256": "44fab00c2428b52dbf16c398d111984310fe270432223868996235bbf54aade1",
+      "size": 10716,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_11.obj",
+      "sha256": "6d61c5bab7618653d173a2c8fb0c7a673a6e88420293dcefc26db91a5042d7db",
+      "size": 23803,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_12.obj",
+      "sha256": "86e79be671b7e8cf0db0fda1cf9e72cff6099a46c235e7c317fae94f0ad486b7",
+      "size": 4195,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_13.obj",
+      "sha256": "8494ef2b5fe12f744db37d4f707d5ebd27f3768b9a99de23e5f93471b19d3d64",
+      "size": 2870,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_14.obj",
+      "sha256": "f4a38a8db833171b1af932733793e5752547ddd3bc70a6b2d47076804cce4799",
+      "size": 13179,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_15.obj",
+      "sha256": "8355f9db2d8eec93657d210aecc5c43a392b8b976e7f1f0fae0ebc20ba9c7a55",
+      "size": 4729,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_2.obj",
+      "sha256": "ebb32d34aa3f61cb005f930ce9b6883db9d9e9c960a349af707c33712fd10301",
+      "size": 31622,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_3.obj",
+      "sha256": "747da5bb64344cc7fbb0aa571f8fe7047226400e830645179452477a9798a2c4",
+      "size": 30629,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_4.obj",
+      "sha256": "2fca8c8f3c254e5ebf8aad6d2f42cce3d1dbfe501d550bc21b0722192c81e158",
+      "size": 23114,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_5.obj",
+      "sha256": "39fde8b2dc554f9fdb084a39acb158894cfa9bda79394407300917820c0ecf7b",
+      "size": 5022,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_6.obj",
+      "sha256": "6bed6fe7c50d77128f8ad853ff7bc01f756098d24a4748386d720927ecf54e24",
+      "size": 14923,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_7.obj",
+      "sha256": "1c6fde4afc30a5295450ba46776fbed225ee74bed3163601324a52e654e1409a",
+      "size": 2037,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_8.obj",
+      "sha256": "68128b0049a9015d85faa6387524a6de835924eb7a98729d77114fe31499309a",
+      "size": 29302,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/collision/collision_mesh_collision_9.obj",
+      "sha256": "0af08cd3d35c3b1d74a4c7e679c4ecf97de66601c012ba269e1c821b400f63c3",
+      "size": 22411,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/model.xml",
+      "sha256": "936c3732dd5f58311bd901708f0967408688f916d4c1d751ab9ed9359076f3da",
+      "size": 5728,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/visual/image0.png",
+      "sha256": "a761ffa61fcfaa9ab3d5432f43a72e000a0ed612ebe5ecfba40065f341fc5e96",
+      "size": 1105714,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/bread/bread_13/visual/model_normalized_0.obj",
+      "sha256": "382a3e8abc19f5c1d90df4ca0802e9e7f0b981e12ec3e2706c5f2ac495214d96",
+      "size": 7931770,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_0.obj",
+      "sha256": "601bfff3fa274d858fb0051b9d954bb49f9b6700e8da162aafe4c224a0dc6a7f",
+      "size": 636,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_1.obj",
+      "sha256": "569baf1ccd6d785aad65ddd18e1085ad10e55ff9c51310bbbee69b1655dc0582",
+      "size": 1956,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_10.obj",
+      "sha256": "0521d3c7b33b0761b103bae61733a2f980e0defe1174869006fe0b2b7a8a63b7",
+      "size": 651,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_11.obj",
+      "sha256": "1453dae78a3364b05d10f9751671beaff040426d73fc1f4bf38709c1d5a66306",
+      "size": 817,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_12.obj",
+      "sha256": "2b20573f0dfca231a5da21203e1ce989f6d8842757bd5839212f954c223906f3",
+      "size": 531,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_13.obj",
+      "sha256": "a43f80c9e94be1879f25d17f340884d3b6e6884532282d3d5eaa7285a4e1e677",
+      "size": 427,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_14.obj",
+      "sha256": "fc02de51aa68d3d838c291e0125908015dfc1ff66cd88293ff597a19451cf3a1",
+      "size": 660,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_15.obj",
+      "sha256": "425a6e54c6783f649a3c63a2567d1c7c8d419329141f2fb6a6dc116fcb30b1ef",
+      "size": 538,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_16.obj",
+      "sha256": "0b71c43065ac7be1519d6e3a900df8bab7896438b9e3ab0198b5200a69dd979a",
+      "size": 521,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_17.obj",
+      "sha256": "8e6aa6d434d04796f7afd507810557ab04819a9576a11d04fb6e7dedccd1a740",
+      "size": 812,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_18.obj",
+      "sha256": "64f4370c7abb3d9d129e988b98774c5a97f2012a0d939bfc48a047d06cad2255",
+      "size": 419,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_19.obj",
+      "sha256": "b3dbb02c366c3e55dc9fa231160d9e1c7cebbf38b427ebe46bd3bc65df57132d",
+      "size": 415,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_2.obj",
+      "sha256": "e6b00391ed5c677c1ec4e9e06ed6b9f5873c8205f90081a6c0d524abcbe23f16",
+      "size": 820,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_20.obj",
+      "sha256": "9bb8d597b8420d7edc352ab24e8a223b7c477f1af78210e92689538f670ea8a2",
+      "size": 830,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_21.obj",
+      "sha256": "5d23404b53496b5d3e9475d97787f4d0551c9985cba8bcb670420aa47aad092a",
+      "size": 419,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_22.obj",
+      "sha256": "2816be2d1454bd9a4bf406451bbc9b3f659806d866ce55072e555dbe8d176b05",
+      "size": 431,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_23.obj",
+      "sha256": "f30359281f57880e3620749d62b2a429f105ce7863e0eec8149087d95dfdb409",
+      "size": 431,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_24.obj",
+      "sha256": "22b86a8fb205a0e7af97b7cb1f29a245b9540d7375c7446c9863bf5f0e2f3c38",
+      "size": 432,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_25.obj",
+      "sha256": "af4b99fc985c9537de2359b793e0c540666deb0357ee8e3cf0f3e98b52890adc",
+      "size": 427,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_26.obj",
+      "sha256": "d400ad73ddb7510d6e40dbf5c4cb3e1707a5690f50f7a83ccf4e38b3f5a5513e",
+      "size": 481,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_27.obj",
+      "sha256": "14932a2fc75a79477e26a2ac95115294f67db9cbf76ca3628c82e10f5c198851",
+      "size": 427,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_28.obj",
+      "sha256": "93b8e4278baad72a06701024241cb11a4eff8fbc9fcd2fe818191bf77bee8e32",
+      "size": 536,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_29.obj",
+      "sha256": "a8c693155722213ee801e82d31daba64975c1291280567694d2b7857cee98d97",
+      "size": 423,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_3.obj",
+      "sha256": "908cd884b20da1ebac8d5582ae8e2b1e5b61cbd4f4ecf5bacfbcce0ff6ca8d23",
+      "size": 575,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_30.obj",
+      "sha256": "5533714ec359b5d0af241be325ddee5abcd85cc1f3060e8c21808e019ee792f3",
+      "size": 415,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_31.obj",
+      "sha256": "96f90d05358411bac6d311948ca2acdcc745da9e1ca6c88ab7b7a5beb3143269",
+      "size": 427,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_4.obj",
+      "sha256": "352f917c48200e16b9896a820dba8eb816b34aa2640ebe8f852d1215bfe42758",
+      "size": 1604,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_5.obj",
+      "sha256": "8dcb60850f308f1932d5b2e5b6d889a056aa79df51bf35b44ac4b46628895d4f",
+      "size": 415,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_6.obj",
+      "sha256": "488e5c240b534c98b76610c23e10be499a46503211eb4be9cb86663674186094",
+      "size": 364,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_7.obj",
+      "sha256": "01313671b65b1ab16c331005e4b7de46123738b34126c11d096175e275f99271",
+      "size": 657,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_8.obj",
+      "sha256": "ca065ebf10322c1635cab950f92061dfdb7ae4a21fcd3931d70ef001092a410b",
+      "size": 524,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/collision/model_normalized_collision_9.obj",
+      "sha256": "3f65b99013cfdb9233f12f6ed4d73ca7f1ac6aa4b6a1e0bcce744c9a1cba62f6",
+      "size": 602,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/model.xml",
+      "sha256": "3218a412c6241586386ad0f710f60d12f0a8451dacf0db776fc6ee9974527e43",
+      "size": 15257,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cheese/cheese_3/visual/model_normalized_0.obj",
+      "sha256": "cfafd8ebe1d3f800349730b1fd005259e108aaa759b86fff44eddd59dd4f449c",
+      "size": 1020049,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cutting_board/cutting_board_13/model.xml",
+      "sha256": "ceb669ca721ac03a2694282bcb185b2ff7975168985091621ee4948bb1e44c9a",
+      "size": 1395,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cutting_board/cutting_board_13/visual/image0.png",
+      "sha256": "c96bc1c3d1c90c45594688650a2ae4a34d1955a042204cd5cb017876f292b3be",
+      "size": 957431,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/cutting_board/cutting_board_13/visual/model_normalized_0.obj",
+      "sha256": "2150cc57da9bb1fe6bf97d033689b7aa7942793b98e3d7f03bb7cd69d3ac439b",
+      "size": 650943,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/sponge/sponge_1/model.xml",
+      "sha256": "28e84202dd8e95eb423fcb0a039fe44e814f00f6951291fece7f2ae28cda1533",
+      "size": 1178,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/sponge/sponge_1/visual/image0.png",
+      "sha256": "f8a19b8be54bf13383622ed2cc8088f8a86a998e33a9f07f6483978417cfeded",
+      "size": 142657,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/objects/objaverse/sponge/sponge_1/visual/model_normalized_0.obj",
+      "sha256": "6da30fbd7e14d3036f5c0640fd69fd0509ff1268e349c1374cdc3851b8724e78",
+      "size": 6935,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/textures/ceramic.png",
+      "sha256": "3785e9b76ddd76362f39ca84c2b13aee870b07e3d39c7223fefd6af5fe47e0aa",
+      "size": 14961,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/textures/flat/light_gray.png",
+      "sha256": "ca6de55ddc7a3187825454839e477d783ace86ec964ebc8db84d7e425f955638",
+      "size": 79680,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robocasa/models/assets/textures/metals/bright_metal.png",
+      "sha256": "e67c23a272f98890b485c5e2ae2ef1088080067954c676cb70170252ab931bf4",
+      "size": 1998226,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_0.obj",
+      "sha256": "b31c63f34d8847ceac5b9446b1ea25daa1f8a438020618f27e96bef43cbb0825",
+      "size": 358115,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_1.obj",
+      "sha256": "a57c0a6bf403ba7386b138f6a3d95067a23932e0058251657dca57700ca334cb",
+      "size": 16360,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_2.obj",
+      "sha256": "ef44c9c1fed9885244242f6905e4d25693c9f4449b4a3c81b1d10ba3cf8d0489",
+      "size": 371135,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_3.obj",
+      "sha256": "799fd68bd6d1d0bee728820e8c11f4cecdf6573319c8915c97fc4795e51d7e9d",
+      "size": 468258,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_4.obj",
+      "sha256": "92ba4e636386aa4769078124e9fc00cb13ef2e81393ec34d673ddfc85bbb23fd",
+      "size": 353480,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_5.obj",
+      "sha256": "0aeb9a25ad2824f512981bdd1fa9a59075e4dd1c959c4ef1d6b581ae4763ce84",
+      "size": 8269034,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_6.obj",
+      "sha256": "6d490ee8d122110d8b2b3cfb08a8dfdb063fc9595d69c28036e498de008d0742",
+      "size": 1416222,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/bases/meshes/omron_mobile_base/omron_7.obj",
+      "sha256": "81ef5db57b2c91956aeb4719c28130387c4e3aa77f42f610c7feec842d651c9e",
+      "size": 4142533,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/grippers/meshes/panda_gripper/finger.stl",
+      "sha256": "2d07a740392f3b9b0816f65d64fff9927d3d57c897870fc4b6ff9c56fff3a0c8",
+      "size": 1684,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/grippers/meshes/panda_gripper/finger_longer.stl",
+      "sha256": "8857e33ee59c3a395c3036a11e4f1731c88c203c821bb03ca97737a2d04cba27",
+      "size": 2884,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/grippers/meshes/panda_gripper/finger_vis.stl",
+      "sha256": "e49613148a74f1ba9b5793813078e5becf15833e0296073dc1c523508be35ae4",
+      "size": 31284,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/grippers/meshes/panda_gripper/hand.stl",
+      "sha256": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+      "size": 10084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/grippers/meshes/panda_gripper/hand_vis.stl",
+      "sha256": "fdeb1a924b8d0f1f997f47d6d8af102c7290a1d5144145efdc39501dc13f0fa1",
+      "size": 353984,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link0.stl",
+      "sha256": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+      "size": 10084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link1.stl",
+      "sha256": "d24e332dffccf260b91d05dde17c5998bb9559d37da8608a8ee5213d9661f603",
+      "size": 625884,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link2.stl",
+      "sha256": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+      "size": 15084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link3.stl",
+      "sha256": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+      "size": 15084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link4.stl",
+      "sha256": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+      "size": 15084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link5.stl",
+      "sha256": "dd17e688c7870e722283525879643d53a74c0024d328b0e14b034b54c8b6c31a",
+      "size": 15084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link6.stl",
+      "sha256": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+      "size": 10084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/meshes/link7.stl",
+      "sha256": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+      "size": 10084,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_0.obj",
+      "sha256": "ff032aa0aa3514c0820f8c07a676892fe5a7a85977ed3e4818d8ee8080cd8a2c",
+      "size": 358725,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_1.obj",
+      "sha256": "d033464e59f40a3096d2d6cf7853afb5bdb258bf19accefa24fa040ea73763e2",
+      "size": 122052,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_10.obj",
+      "sha256": "5d879fddef79581242c8d28bc4dea19759712f5d83820b9a7c8bf519035d52d3",
+      "size": 407944,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_11.obj",
+      "sha256": "1f47131b0f4a638b64065fa9d7fa0f6d196c7aa56ba717ce9d127d36a67338a5",
+      "size": 24799,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_2.obj",
+      "sha256": "5f8782b8a222da3981d0c0108930fb8dadf44639a16bd85bc89cd7401ee5a766",
+      "size": 731627,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_3.obj",
+      "sha256": "3fc91c0cd10c4aef9a493699fa83457c225d0854b28d55ccb0b47fe38f412f28",
+      "size": 58037,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_4.obj",
+      "sha256": "f23819a788f7ce26965e540cef7a9bf5970ed99da3c1b875a91b0e544511e39d",
+      "size": 256094,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_5.obj",
+      "sha256": "e8e5ff98258aaca852979fd62a39d929c1d726d9e6fa19f1acc030553cdf2ed3",
+      "size": 21416,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_6.obj",
+      "sha256": "41be78cbdc6b0d401efe4fa630fe6924ee3312e294403aa35a4e18a70f99139e",
+      "size": 4495,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_7.obj",
+      "sha256": "75e3a2661f6366bb6c665282cd77f18b0da09ec1eaa8df29617fccf279970f6f",
+      "size": 34000,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_8.obj",
+      "sha256": "d751e2ad68ca735b0c3b0f8f11f7364026fe64166ebf4aab69446d4465c6129d",
+      "size": 3621712,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_9.obj",
+      "sha256": "19817601101caeea79826ffe057ad0481b97f60e80870ee768fe32b6855ab9d2",
+      "size": 125294,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link1_vis/link1_vis.obj",
+      "sha256": "7e6cffc2656cac8c8faa9b43e41cba312b35519c9cc4c5bddd7159f14df50f2d",
+      "size": 3676668,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link2_vis/link2_vis.obj",
+      "sha256": "42ada2805819bd9364e567e23b4c1b71b91d9ac02525598d823c14bf8d25dabd",
+      "size": 3713545,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_0.obj",
+      "sha256": "6a1f18e21663f2acea23752dcb79b2a8e8ae96ab286dd9d90de1d61c0dd87c0b",
+      "size": 3499294,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_1.obj",
+      "sha256": "73ad9e69c96283cc865424a64e38b53b7cd4385a0ff9834cae91a258ab92cb97",
+      "size": 81340,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_2.obj",
+      "sha256": "9cd5a95e3599005bfc76e3700f1e3b3051efe07665b0ae6efbce75860a89e7f9",
+      "size": 98021,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_3.obj",
+      "sha256": "01f69ca50a96cceb1bc1a0fcb4de9a7fe2b5b11d1d2e2a5c445723acef7eb483",
+      "size": 571618,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_0.obj",
+      "sha256": "76f42fd26edf4a6b78b055d3b48c4df59cebb93ffc36fc6e6e6c8d441dbec3c9",
+      "size": 99644,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_1.obj",
+      "sha256": "85907c1c058ea1133cd6cf5a23535a1b77257b4852c753e08cbf87f79c4003c2",
+      "size": 3608854,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_2.obj",
+      "sha256": "a019f7f862b782af509f649050ef45354ff73642742dea7525d8e1369a07fd94",
+      "size": 566926,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_3.obj",
+      "sha256": "b0fcc4417a0680860ee11af60df227ecc328b4b1c66908b9872dedfa8620d992",
+      "size": 80397,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_0.obj",
+      "sha256": "e30aa36ca950b2b57ba695423ee30da5da662b1a70b72d1533c5cd435b88355d",
+      "size": 907061,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_1.obj",
+      "sha256": "1d4089d9f2d26ef677ff42b27a2cb4ba9691a8fcd19ac665ac5203b23d22b876",
+      "size": 45788,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_2.obj",
+      "sha256": "c095257424ff95526d2ebab4f396833a2d77227e0d2b3bb899a0019d19c38c49",
+      "size": 4535777,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_0.obj",
+      "sha256": "ca3ca6f238a0ed1138bfd5d11982f610d96dfc98d2d663646f07fc4c2a3ea7b0",
+      "size": 181786,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_1.obj",
+      "sha256": "a96dc760e3b8b0f6ab4e098248e4019e67ec9fcf404c6ab944e216dfc752e590",
+      "size": 23299,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_10.obj",
+      "sha256": "915c2eedef0d04869814126a96da1ff70d1fc89fc65ac80021084b00cad5d757",
+      "size": 462054,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_11.obj",
+      "sha256": "6edb35baa656d0b647541ab9de4706c4d471ec831e732955f9f4d347f4bc02fb",
+      "size": 30999,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_12.obj",
+      "sha256": "5af3b6bdecc4de424eb0217627bf0f6185f126dbb0bc1a7fe39253f0a26f2907",
+      "size": 4214,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_13.obj",
+      "sha256": "21dfaf6cb5f27a8593be82cee6ca3023e3829d5f2be5e30af54b5955ea87a554",
+      "size": 4327,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_14.obj",
+      "sha256": "8aa89ae8b85fb54400771754d25d6813dfb41299821bc984f37498ac0d9cba14",
+      "size": 533553,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_15.obj",
+      "sha256": "a9c3bcfb59c80b0e9f67c62775ea7564f1f11f55faf94b971c7fa2ee436e91bc",
+      "size": 819438,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_16.obj",
+      "sha256": "0e76221e7c530dde22117afc57d95d48ddf30a5e586e3bd99ba6777a30b50e58",
+      "size": 4284801,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_2.obj",
+      "sha256": "bef85a944a58e7032a765cbb10445ac44450fe047f3fefe501e3a3ac90dd6caf",
+      "size": 10246,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_3.obj",
+      "sha256": "a8f1f77b3978a16fcc8b4dd00af50431d1bca26576ef92f73d90d984dd188211",
+      "size": 15976,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_4.obj",
+      "sha256": "0cf60228d09854089185c5bf9f23004603b3aef874b61b2b8dad7bdcc29178e1",
+      "size": 18377,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_5.obj",
+      "sha256": "dfdcbfb610c052e2a4830fbc26a53ec99c0658ec3664a179c5471ff42d6a60de",
+      "size": 15690,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_6.obj",
+      "sha256": "b13bafd7d8cee84a07e5a0667da8d1e1d9467112415332f23ef79c582421f8ce",
+      "size": 16884,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_7.obj",
+      "sha256": "52d8f9cac4326716f46fad9aa1314491d377b1b36a374258a97aae196b006e51",
+      "size": 2464,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_8.obj",
+      "sha256": "5e586f0aaa641cdae0d372bd2fb689600cf13fc629a52ba4ad6076bfa7b0834f",
+      "size": 6323,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_9.obj",
+      "sha256": "3a3caf4c3596ff2661d559ee291a9ac7f66a6d943ebfcc417f229de72962d0dc",
+      "size": 16367,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_0.obj",
+      "sha256": "4a43571b6feb5dbb0b6f5b3d0a06f51f356371d27a10fc580c985107db16f2ac",
+      "size": 1831721,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_1.obj",
+      "sha256": "0fefd18ce20e90dac5ce7d181e676e6cf7504cca1f050c4d05c098169b417116",
+      "size": 162840,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_2.obj",
+      "sha256": "44ae15f4a83bd36f4de3cce78e3f592c8a070ca1fd4539be3b1c58e21d8d8671",
+      "size": 280928,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_3.obj",
+      "sha256": "08c6308530928ae7234edd1297039aff02b0d84d8bbfec8d01c5ab104fc4209b",
+      "size": 164977,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_4.obj",
+      "sha256": "53e0bffb56a0fe9ebab0f43dc997512287ab14d8f9b2d77f1baf7f0c96367f59",
+      "size": 114146,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_5.obj",
+      "sha256": "1fd161fb00e729732950770f20fb6e75c5a5ca1620bceac9d550c54f322d469d",
+      "size": 304295,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_6.obj",
+      "sha256": "cd4f2b39adfd4857f922f3104fdd4cef01390265a5f2582c73d97f39dbc1755b",
+      "size": 133885,
+      "storage": "embedded"
+    },
+    {
+      "binding_kind": null,
+      "binding_name": null,
+      "path": "simulator-assets/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_7.obj",
+      "sha256": "f4f9e3c8532df4d1588e1c2ff82fae10facfb30a52329b7f595ee37d7bad6229",
+      "size": 1058189,
+      "storage": "embedded"
+    }
+  ],
+  "format": "dream-exe.source",
+  "identity": {
+    "name": "RoboCasa frozen-scene runtime and embedded asset closure",
+    "revision": "RoboCasa 9a3a78680443734786c9784ab661413edb87067b; robosuite 1.5.2; MuJoCo 3.3.1",
+    "sha256": null
+  },
+  "kind": "runtime",
+  "provenance_status": "complete",
+  "requirements": [
+    "Install Dream-Exe with [sim,robocasa-runtime].",
+    "Acquire and verify the pinned RoboCasa source with python integrations/setup.py robocasa.",
+    "The full RoboCasa episode dataset is not required; frozen XML, state, task metadata, camera and exact referenced assets are in this bench."
+  ],
+  "rights": {
+    "license": "RoboCasa assets CC BY 4.0; RoboCasa code MIT; robosuite MIT",
+    "redistributable": true,
+    "status": "known"
+  },
+  "source_id": "sim-runtime"
+}

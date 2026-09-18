@@ -1,0 +1,77 @@
+{
+  "format": "dream-exe.workspace",
+  "roots": {
+    "bench": "data/bench",
+    "published_results": "data/results",
+    "outputs": "../../.dream-exe/quickstart/outputs",
+    "work": "../../.dream-exe/quickstart/work",
+    "archive": "../../.dream-exe/quickstart/archive",
+    "external": "../../external",
+    "checkpoints": "../../checkpoints"
+  },
+  "bindings": {
+    "datasets": {},
+    "sources": {
+      "robocasa": {
+        "path": "../../external/RoboCasa-runtime",
+        "setup_path": "../../external/RoboCasa",
+        "manifest": "../../integrations/sources.json"
+      },
+      "grounding_dino": {
+        "path": "../../external/GroundingDINO",
+        "setup_path": "../../external/GroundingDINO",
+        "manifest": "../../integrations/sources.json"
+      },
+      "cotracker": {
+        "path": "../../external/CoTracker",
+        "setup_path": "../../external/CoTracker",
+        "manifest": "../../integrations/sources.json"
+      },
+      "dvd": {
+        "path": "../../external/DVD",
+        "setup_path": "../../external/DVD",
+        "manifest": "../../integrations/sources.json"
+      },
+      "vda": {
+        "path": "../../external/Video-Depth-Anything",
+        "setup_path": "../../external/Video-Depth-Anything",
+        "manifest": "../../integrations/sources.json"
+      },
+      "wan22": {
+        "path": "../../external/Wan2.2",
+        "setup_path": "../../external/Wan2.2",
+        "manifest": "../../integrations/sources.json"
+      }
+    },
+    "checkpoints": {
+      "grounding_dino": {
+        "path": "../../checkpoints/grounding_dino/groundingdino_swint_ogc.pth",
+        "manifest": null
+      },
+      "bert_base_uncased": {
+        "path": "../../checkpoints/bert-base-uncased",
+        "manifest": null
+      },
+      "sam2": {
+        "path": "../../checkpoints/sam2/sam2.1_hiera_large.pt",
+        "manifest": null
+      },
+      "cotracker": {
+        "path": "../../checkpoints/cotracker/scaled_offline.pth",
+        "manifest": null
+      },
+      "dvd_assets": {
+        "path": "../../checkpoints",
+        "manifest": "../../dream_exe/model_assets/configs/dvd.json"
+      },
+      "foundationpose": {
+        "path": "../../checkpoints/foundationpose",
+        "manifest": null
+      },
+      "wan22": {
+        "path": "../../checkpoints/Wan-AI/Wan2.2-TI2V-5B",
+        "manifest": null
+      }
+    }
+  }
+}

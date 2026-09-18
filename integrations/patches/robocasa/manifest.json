@@ -1,0 +1,41 @@
+{
+  "format": "dream_exe.provider_patch",
+  "provider": "robocasa",
+  "upstream_repository": "https://github.com/robocasa/robocasa.git",
+  "upstream_commit": "9a3a78680443734786c9784ab661413edb87067b",
+  "post_patch_tracked_tree_sha256": "9b4ce8479c6cc3fed9dda604a3437abefe484edeb860e7bcb06ad4b132585855",
+  "patches": [
+    {
+      "path": "0001-task-success-semantics.patch",
+      "sha256": "eeaa9c307f688ffb83ac277e2940e37d385cbdeac885385400424ef17f15f452",
+      "targets": [
+        "robocasa/environments/kitchen/atomic/kitchen_blender.py",
+        "robocasa/environments/kitchen/atomic/kitchen_coffee.py",
+        "robocasa/environments/kitchen/atomic/kitchen_doors.py",
+        "robocasa/environments/kitchen/atomic/kitchen_drawer.py",
+        "robocasa/environments/kitchen/atomic/kitchen_oven.py",
+        "robocasa/environments/kitchen/atomic/kitchen_pick_place.py",
+        "robocasa/environments/kitchen/atomic/kitchen_sink.py",
+        "robocasa/environments/kitchen/atomic/kitchen_stand_mixer.py",
+        "robocasa/environments/kitchen/atomic/kitchen_toaster.py",
+        "robocasa/environments/kitchen/atomic/kitchen_toaster_oven.py",
+        "robocasa/environments/kitchen/composite/chopping_food/bread_setup_slicing.py",
+        "robocasa/environments/kitchen/composite/sauteing_vegetables/place_vegetables_evenly.py",
+        "robocasa/environments/kitchen/composite/snack_preparation/bread_and_cheese.py"
+      ],
+      "purpose": "Preserve the current benchmark task-success and partial-success component semantics."
+    },
+    {
+      "path": "0002-runtime-compatibility.patch",
+      "sha256": "df19d3439232f0538c248917fc8e56c9f24a0fbc83a948cfd1d6c1a327aa2b40",
+      "targets": [
+        "robocasa/__init__.py",
+        "robocasa/environments/kitchen/kitchen.py",
+        "robocasa/models/fixtures/cabinet_panels.py",
+        "robocasa/models/fixtures/oven.py",
+        "robocasa/utils/lerobot_utils.py"
+      ],
+      "purpose": "Preserve the current pinned simulator-stack and serialized-asset-path compatibility behavior."
+    }
+  ]
+}

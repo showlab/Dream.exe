@@ -1,0 +1,117 @@
+name: Public CI
+
+"on":
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.10"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install video test system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Install base, test, and lint dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . "pytest>=8,<9" "ruff>=0.14,<1" "opencv-python-headless==4.11.0.86"
+      - name: Compile public runtime
+        run: python -m compileall -q dream_exe examples/custom_models integrations/setup.py
+      - name: Check public source
+        run: python -m ruff check dream_exe examples/custom_models integrations/setup.py
+      - name: Check explicit setup scripts and asset manifest
+        run: |
+          bash -n integrations/setup_dependencies.sh integrations/download_checkpoints.sh
+          bash integrations/setup_dependencies.sh --help
+          bash integrations/download_checkpoints.sh --help
+          bash integrations/setup_dependencies.sh --dry-run
+          bash integrations/download_checkpoints.sh --dry-run --accept-noncommercial-licenses
+          python -m pytest -q tests
+      - name: Check command entry points
+        run: |
+          python -m dream_exe --help
+          python -m dream_exe.cli --help
+          dream-exe --help
+          python integrations/setup.py --help
+          dream-exe verify-model-assets --help
+          dream-exe acquire-model-assets --help
+          dream-exe models list --kind tracking
+          dream-exe models check --models-config examples/custom_models/models.example.json --model example_tracker
+          python -m dream_exe.video2traj --help
+
+  distribution:
+    name: Distribution boundary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "build>=1,<2"
+      - name: Build wheel and source distribution
+        run: |
+          python -m build
+      - name: Inspect archive boundaries
+        run: |
+          wheel="$(python -c \
+            'from pathlib import Path; import sys; paths=sorted(Path("dist").glob("*.whl")); len(paths) == 1 or sys.exit(f"expected exactly one wheel, found {len(paths)}"); print(paths[0])')"
+          sdist="$(python -c \
+            'from pathlib import Path; import sys; paths=sorted(Path("dist").glob("*.tar.gz")); len(paths) == 1 or sys.exit(f"expected exactly one sdist, found {len(paths)}"); print(paths[0])')"
+          python -c 'import sys, zipfile; p=sys.argv[1]; names=zipfile.ZipFile(p).namelist(); forbidden=("tests/", "public_tests/", "scripts/", "tools/", "external/", "examples/model_cohort/", "dream_exe/_compat/"); hits=[n for n in names if any(x in n for x in forbidden)]; hits and sys.exit("forbidden wheel entries: " + repr(hits[:20]))' "$wheel"
+          python -c 'import sys, zipfile; names=zipfile.ZipFile(sys.argv[1]).namelist(); required=("dream_exe/model_assets/configs/core.json", "integrations/setup_dependencies.sh", "integrations/download_checkpoints.sh"); missing=[x for x in required if not any(n.endswith(x) for n in names)]; missing and sys.exit("missing wheel entries: " + repr(missing))' "$wheel"
+          python -c 'import sys, tarfile; p=sys.argv[1]; names=tarfile.open(p).getnames(); forbidden=("/tests/", "/public_tests/", "/scripts/", "/tools/", "/external/", "/examples/model_cohort/", "/dream_exe/_compat/"); hits=[n for n in names if any(x in n for x in forbidden)]; hits and sys.exit("forbidden sdist entries: " + repr(hits[:20]))' "$sdist"
+          python -c 'import sys, tarfile; names=tarfile.open(sys.argv[1]).getnames(); required=("dream_exe/model_assets/configs/core.json", "integrations/setup_dependencies.sh", "integrations/download_checkpoints.sh"); missing=[x for x in required if not any(n.endswith(x) for n in names)]; missing and sys.exit("missing sdist entries: " + repr(missing))' "$sdist"
+      - name: Test installed wheel outside checkout
+        run: |
+          wheel="$(python -c \
+            'from pathlib import Path; import sys; paths=sorted(Path("dist").glob("*.whl")); len(paths) == 1 or sys.exit(f"expected exactly one wheel, found {len(paths)}"); print(paths[0])')"
+          python -m venv "${RUNNER_TEMP}/wheel-env"
+          "${RUNNER_TEMP}/wheel-env/bin/python" -m pip install "$wheel"
+          mkdir -p "${RUNNER_TEMP}/wheel-consumer"
+          cd "${RUNNER_TEMP}/wheel-consumer"
+          "${RUNNER_TEMP}/wheel-env/bin/python" -I -m dream_exe --help
+          "${RUNNER_TEMP}/wheel-env/bin/python" -I -m dream_exe.cli --help
+          "${RUNNER_TEMP}/wheel-env/bin/dream-exe" --help
+          "${RUNNER_TEMP}/wheel-env/bin/dream-exe" models list --kind tracking
+          "${RUNNER_TEMP}/wheel-env/bin/python" -I -m dream_exe.video2traj --help
+          "${RUNNER_TEMP}/wheel-env/bin/python" -I -c 'from dream_exe.evaluation.vlm import BaseVLMBackend; from dream_exe.generation import BaseImageToVideoBackend, PollingImageToVideoBackend; from dream_exe.model_assets.models import current_core_model_manifest; from dream_exe.models import load_model_catalog; from dream_exe.video2traj.depth import BaseDepthBackend; from dream_exe.video2traj.pose import BasePoseBackend; from dream_exe.video2traj.region import BaseRegionDetector, BaseRegionSegmenter; from dream_exe.video2traj.tracking import BaseTrackingPredictionBackend; assert len(current_core_model_manifest()["packages"]) == 7'
+      - name: Test standalone source distribution
+        run: |
+          sdist="$(python -c \
+            'from pathlib import Path; import sys; paths=sorted(Path("dist").glob("*.tar.gz")); len(paths) == 1 or sys.exit(f"expected exactly one sdist, found {len(paths)}"); print(paths[0])')"
+          mkdir -p "${RUNNER_TEMP}/sdist"
+          tar -xzf "$sdist" -C "${RUNNER_TEMP}/sdist"
+          source_root="$(find "${RUNNER_TEMP}/sdist" -mindepth 1 -maxdepth 1 -type d -print -quit)"
+          python -m venv "${RUNNER_TEMP}/sdist-env"
+          "${RUNNER_TEMP}/sdist-env/bin/python" -m pip install "${source_root}"
+          cd "${RUNNER_TEMP}"
+          "${RUNNER_TEMP}/sdist-env/bin/python" -I -m dream_exe --help
+          "${RUNNER_TEMP}/sdist-env/bin/dream-exe" --help
+          "${RUNNER_TEMP}/sdist-env/bin/dream-exe" models list --kind depth
+          "${RUNNER_TEMP}/sdist-env/bin/python" -I -m dream_exe.video2traj --help

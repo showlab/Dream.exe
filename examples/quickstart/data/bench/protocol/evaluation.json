@@ -1,0 +1,69 @@
+{
+  "format": "dream-exe.protocol",
+  "stage": "evaluation",
+  "values": {
+    "vlm": {
+      "task_prompt_suffixes": {
+        "standard": "(Static surveillance camera. No camera movement. One continuous shot. The robot arm moves to manipulate the target object.)",
+        "enhanced": ""
+      },
+      "rubrics": {
+        "subject_stability": {
+          "prompt_files": {
+            "robot_subject": "vlm/prompts/subject_stability_robot.txt",
+            "manipulated_object": "vlm/prompts/subject_stability_object.txt"
+          },
+          "sampling": {
+            "frame_fractions": [0.0, 0.75],
+            "grid": [1, 2]
+          },
+          "score_range": [1, 15]
+        },
+        "physical_plausibility": {
+          "prompt_file": "vlm/prompts/physical_plausibility.txt",
+          "sampling": {
+            "uniform_frames": 6,
+            "grid": [3, 2]
+          },
+          "score_range": [1, 5]
+        },
+        "task_adherence": {
+          "prompt_file": "vlm/prompts/task_adherence.txt",
+          "sampling": {
+            "uniform_frames": 6,
+            "grid": [3, 2]
+          },
+          "score_range": [1, 5]
+        }
+      },
+      "judges": [
+        {
+          "id": "gemini-3-pro",
+          "provider": "openai-compatible",
+          "model": "gemini-3-pro",
+          "base_url_env": "DREAM_EXE_GEMINI_BASE_URL",
+          "api_key_env": "DREAM_EXE_GEMINI_API_KEY"
+        },
+        {
+          "id": "qwen3-vl-plus",
+          "provider": "openai-compatible",
+          "model": "qwen3-vl-plus",
+          "base_url_env": "DREAM_EXE_QWEN_BASE_URL",
+          "api_key_env": "DREAM_EXE_QWEN_API_KEY"
+        }
+      ],
+      "aggregation": {
+        "method": "mean",
+        "required_judges": ["gemini-3-pro", "qwen3-vl-plus"]
+      }
+    },
+    "trajectory": {
+      "groups": ["EEF vis", "EEF tcp", "OBJ"],
+      "metrics": ["HSD", "DYN", "NDTW"]
+    },
+    "execution": {
+      "executability_metrics": ["E-SR", "nDTW", "Pos95", "Rot95", "Smth"],
+      "task_metrics": ["SR-B", "SR-P", "Rel", "Place", "Art", "Core"]
+    }
+  }
+}

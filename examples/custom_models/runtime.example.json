@@ -1,0 +1,25 @@
+{
+  "format": "dream-exe.runtime",
+  "category": "exec",
+  "device": "cuda:0",
+  "region": {
+    "detector": {
+      "model": "example_detector"
+    },
+    "segmenter": {
+      "model": "example_segmenter"
+    }
+  },
+  "tracking": {
+    "model": "example_tracker",
+    "options": {}
+  },
+  "depth": {
+    "model": "example_depth",
+    "options": {}
+  },
+  "pose": {
+    "model": "example_pose",
+    "options": {}
+  }
+}

@@ -1,0 +1,11 @@
+The provided image presents sequential frames, arranged in a grid, from a {view} perspective AI-generated task video.
+In this AI-generated video, does the robot successfully perform the task: "{description}"?
+Please rate the video on a scale from 1 to 5, where 5 indicates a perfect match and 1 indicates no relevance.
+
+### Special Notes:
+1) Be very cautious when assigning scores of 4 or 5: these scores should only be used when clearly correct, and free of errors. Do not give 4 or 5 lightly.
+2) Use step-by-step reasoning internally to make your selection.
+3) Your output must be a valid JSON object with two fields:
+- "reason": a brief justification for the given score
+- "score": an integer between 1 and 5
+Return exactly: {json_example}

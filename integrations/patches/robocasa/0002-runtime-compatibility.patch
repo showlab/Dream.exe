@@ -1,0 +1,249 @@
+diff --git a/robocasa/__init__.py b/robocasa/__init__.py
+index 3780cc59..dd8336a0 100644
+--- a/robocasa/__init__.py
++++ b/robocasa/__init__.py
+@@ -1001,6 +1001,7 @@ from robosuite.models.grippers import ALL_GRIPPERS
+ from robosuite.robots import ALL_ROBOTS
+ 
+ import mujoco
++import warnings
+ 
+ assert (
+     mujoco.__version__ == "3.3.1"
+@@ -1008,9 +1009,14 @@ assert (
+ 
+ import numpy
+ 
+-assert numpy.__version__ in [
++if numpy.__version__ not in [
+     "2.2.5",
+-], "numpy version must be 2.2.5. Please install this version."
++]:
++    warnings.warn(
++        f"RoboCasa expects numpy==2.2.5, but found {numpy.__version__}. "
++        "Proceeding with the pinned Dream.exe environment stack.",
++        RuntimeWarning,
++    )
+ 
+ import robosuite
+ 
+diff --git a/robocasa/environments/kitchen/kitchen.py b/robocasa/environments/kitchen/kitchen.py
+index f7f50935..8f8056f3 100644
+--- a/robocasa/environments/kitchen/kitchen.py
++++ b/robocasa/environments/kitchen/kitchen.py
+@@ -1,9 +1,11 @@
+ import os
++import inspect
+ import xml.etree.ElementTree as ET
+ from copy import deepcopy
+ 
+ import numpy as np
+ import robosuite.utils.transform_utils as T
++from robosuite.controllers.parts import mobile_base as mobile_base_controllers
+ from robosuite.environments.manipulation.manipulation_env import ManipulationEnv
+ from robosuite.models.tasks import ManipulationTask
+ from robosuite.utils.mjcf_utils import (
+@@ -410,6 +412,11 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+         use_cotraining_cameras=False,
+         use_novel_instructions=False,
+     ):
++        # Compatibility guard:
++        # some robosuite paths call _destroy_sim() during _load_model() before
++        # a sim instance is fully initialized on env objects.
++        # Predefining sim avoids AttributeError in BaseEnv._destroy_sim.
++        self.sim = None
+         self.init_robot_base_ref = init_robot_base_ref
+ 
+         self.robot_spawn_deviation_pos_x = robot_spawn_deviation_pos_x
+@@ -486,9 +493,15 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+                 controller_configs["composite_controller_specific_configs"][
+                     "body_part_ordering"
+                 ] = ["right", "right_gripper", "base", "torso"]
++                base_controller_type = "JOINT_VELOCITY"
++                if hasattr(
++                    mobile_base_controllers,
++                    "LegacyMobileBaseJointVelocityController",
++                ):
++                    base_controller_type = "JOINT_VELOCITY_LEGACY"
+                 controller_configs["body_parts"]["base"][
+                     "type"
+-                ] = "JOINT_VELOCITY_LEGACY"
++                ] = base_controller_type
+ 
+         # if not hasattr(self, "_reset_internal_end_callbacks"):
+         #     self._reset_internal_end_callbacks = []
+@@ -500,7 +513,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+         else:
+             self.novel_instructions = None
+ 
+-        super().__init__(
++        init_kwargs = dict(
+             robots=robots,
+             env_configuration=env_configuration,
+             controller_configs=controller_configs,
+@@ -519,7 +532,6 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+             horizon=horizon,
+             ignore_done=ignore_done,
+             hard_reset=True,
+-            load_model_on_init=False,
+             camera_names=camera_names,
+             camera_heights=camera_heights,
+             camera_widths=camera_widths,
+@@ -528,6 +540,9 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+             renderer_config=renderer_config,
+             seed=seed,
+         )
++        if "load_model_on_init" in inspect.signature(ManipulationEnv.__init__).parameters:
++            init_kwargs["load_model_on_init"] = False
++        super().__init__(**init_kwargs)
+ 
+     def _load_novel_instructions(self):
+         """
+@@ -632,13 +647,17 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
+         self.fixtures = {cfg["name"]: cfg["model"] for cfg in self.fixture_cfgs}
+ 
+         # setup scene, robots, objects
+-        self.model = ManipulationTask(
++        task_kwargs = dict(
+             mujoco_arena=self.mujoco_arena,
+             mujoco_robots=[robot.robot_model for robot in self.robots],
+             mujoco_objects=list(self.fixtures.values()),
+-            enable_multiccd=True,
+-            enable_sleeping_islands=False,
+         )
++        task_signature = inspect.signature(ManipulationTask.__init__).parameters
++        if "enable_multiccd" in task_signature:
++            task_kwargs["enable_multiccd"] = True
++        if "enable_sleeping_islands" in task_signature:
++            task_kwargs["enable_sleeping_islands"] = False
++        self.model = ManipulationTask(**task_kwargs)
+ 
+     def _load_model(self, attempt_num=1):
+         """
+diff --git a/robocasa/models/fixtures/cabinet_panels.py b/robocasa/models/fixtures/cabinet_panels.py
+index c1c76b0f..97ad11c2 100644
+--- a/robocasa/models/fixtures/cabinet_panels.py
++++ b/robocasa/models/fixtures/cabinet_panels.py
+@@ -3,7 +3,26 @@ import xml
+ 
+ from robosuite.utils.mjcf_utils import array_to_string as a2s
+ from robosuite.utils.mjcf_utils import string_to_array as s2a
+-from robosuite.utils.mjcf_utils import find_elements, xml_path_completion, get_elements
++from robosuite.utils.mjcf_utils import find_elements, xml_path_completion
++
++try:
++    from robosuite.utils.mjcf_utils import get_elements
++except ImportError:
++    def get_elements(root, element_tag, _parent=None):
++        """
++        Backward-compatible fallback for robosuite<1.5.2.
++
++        Returns a list of (name, element) pairs for the requested tag by
++        recursively traversing the XML tree.
++        """
++        pairs = []
++        if root.tag == element_tag:
++            name = root.get("name")
++            if name is not None:
++                pairs.append((name, root))
++        for child in root:
++            pairs.extend(get_elements(child, element_tag, root))
++        return pairs
+ 
+ import robocasa
+ from robocasa.models.objects import MujocoXMLObject
+diff --git a/robocasa/models/fixtures/oven.py b/robocasa/models/fixtures/oven.py
+index b4a62132..d79a8870 100644
+--- a/robocasa/models/fixtures/oven.py
++++ b/robocasa/models/fixtures/oven.py
+@@ -119,14 +119,46 @@ class Oven(Fixture):
+     def slide_rack(self, env, value=1.0, rack_level=0):
+         joint_prefix = self._get_joint_prefix()
+ 
++        joint_names = tuple(getattr(env.sim.model, "joint_names", []) or [])
++
+         for level in [rack_level, 0]:
+             joint = f"{joint_prefix}rack{level}_joint"
+-            if joint in env.sim.model.joint_names:
++            if joint in joint_names:
+                 name = f"rack{level}"
+                 self._rack[name] = value
++                self._joint_names["rack"] = joint
+                 self.set_joint_state(min=value, max=value, env=env, joint_names=[joint])
+                 return
+ 
++        for level in [rack_level, 0]:
++            suffix = f"rack{level}_joint"
++            candidates = [jn for jn in joint_names if str(jn).endswith(suffix)]
++            if not candidates:
++                continue
++
++            name_hint = str(getattr(self, "name", "") or "").strip()
++            filtered = [jn for jn in candidates if name_hint and (name_hint in str(jn))]
++            if not filtered:
++                filtered = [jn for jn in candidates if "oven" in str(jn).lower()]
++            if not filtered:
++                filtered = candidates
++
++            joint = str(sorted(filtered)[0])
++            name = f"rack{level}"
++            self._rack[name] = value
++            self._joint_names["rack"] = joint
++            self.set_joint_state(min=value, max=value, env=env, joint_names=[joint])
++            try:
++                self._last_slide_rack = {
++                    "requested_rack_level": int(rack_level),
++                    "used_rack_level": int(level),
++                    "used_joint": str(joint),
++                    "value": float(value),
++                }
++            except Exception:
++                pass
++            return
++
+         raise ValueError(
+             f"No rack found for level {rack_level}, and fallback to 0 also failed."
+         )
+diff --git a/robocasa/utils/lerobot_utils.py b/robocasa/utils/lerobot_utils.py
+index 587246dd..df72179e 100644
+--- a/robocasa/utils/lerobot_utils.py
++++ b/robocasa/utils/lerobot_utils.py
+@@ -20,6 +20,29 @@ import pandas as pd
+ from tqdm import tqdm
+ 
+ 
++def _normalize_ep_meta_mjcf_paths(value):
++    """
++    Rewrite serialized MJCF paths from the data collection machine to the current local repo.
++    """
++    assets_marker = "robocasa/models/assets/"
++    local_assets_root = Path(__file__).resolve().parents[1] / "models" / "assets"
++
++    if isinstance(value, dict):
++        normalized = {}
++        for k, v in value.items():
++            if k == "mjcf_path" and isinstance(v, str) and assets_marker in v:
++                rel_path = v.split(assets_marker, 1)[1]
++                normalized[k] = str(local_assets_root / rel_path)
++            else:
++                normalized[k] = _normalize_ep_meta_mjcf_paths(v)
++        return normalized
++
++    if isinstance(value, list):
++        return [_normalize_ep_meta_mjcf_paths(v) for v in value]
++
++    return value
++
++
+ class LerobotDatasetWrapper(LeRobotDataset):
+     """
+     Wrapper class for creating LeRobotDataset. Class is needed so that we can override
+@@ -308,7 +331,7 @@ def get_episode_meta(dataset_dir: Path, ep_num) -> dict:
+     ep_meta_path = episode_dir / "ep_meta.json"
+     with open(ep_meta_path, "r") as f:
+         ep_meta = json.load(f)
+-    return ep_meta
++    return _normalize_ep_meta_mjcf_paths(ep_meta)
+ 
+ 
+ def reorder_lerobot_action(action_lerobot: np.ndarray, dataset) -> np.ndarray:

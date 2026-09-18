@@ -1,0 +1,52 @@
+{
+  "format": "dream-exe.run",
+  "selection": {
+    "collection": null,
+    "cases": [
+      "rc_cheesybread_ep000001"
+    ]
+  },
+  "inputs": [
+    {
+      "kind": "reference",
+      "model_id": null,
+      "prompt_variant": null,
+      "reference_id": "w_gt_depth"
+    },
+    {
+      "kind": "reference",
+      "model_id": null,
+      "prompt_variant": null,
+      "reference_id": "wo_gt_depth"
+    },
+    {
+      "kind": "generated",
+      "model_id": "Kling3.0",
+      "prompt_variant": "standard",
+      "reference_id": null
+    }
+  ],
+  "stages": [
+    "video2traj",
+    "action",
+    "execution",
+    "evaluation"
+  ],
+  "seed": 42,
+  "initialization": {
+    "mode": "frozen",
+    "receipt": null
+  },
+  "resume": {
+    "enabled": true,
+    "exact": true
+  },
+  "retry": {
+    "max_attempts": 1,
+    "failure_policy": "stop"
+  },
+  "artifact_level": "core",
+  "destination": {
+    "run_id": "quickstart-full-rc_cheesybread"
+  }
+}

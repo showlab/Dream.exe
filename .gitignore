@@ -1,0 +1,39 @@
+__pycache__/
+*.py[cod]
+
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+build/
+dist/
+*.egg-info/
+
+.venv/
+.venv-wan/
+venv/
+
+# Local benchmark work, outputs, and model weights are never published.
+.dream-exe/
+checkpoints/
+data/
+
+# This is source code, despite the generic data/ directory rule above.
+!dream_exe/bench/data/
+!dream_exe/bench/data/**/*.py
+
+# The one-case quickstart is an intentional, Git-LFS-backed release fixture.
+!examples/quickstart/data/
+!examples/quickstart/data/**
+
+# Private credentials are never published.
+configs/credentials.local.json
+configs/credentials.*.local.json
+
+# Pinned provider checkouts are created explicitly and never committed.
+external/
+
+# Caller-owned run/workspace variants are local; the portable default is public.
+configs/run-*.json
+configs/workspace-*.json

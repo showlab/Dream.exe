@@ -1,0 +1,16 @@
+The provided image shows two sequential frames from an AI-generated video about robot doing a task.
+The left frame is the correct reference image, while the right frame is the AI-generated video frame.
+Focus on how '{manipulated_object}' appears in both frames, and evaluate the consistency of '{manipulated_object}' between the reference and the generated frame.
+
+Note:
+1) Changes in orientation or position are acceptable and should not affect the consistency rating.
+2) Important: Do NOT assign option A or B lightly.
+
+Question:
+A: '{manipulated_object}' in the right frame is clear and consistent with the left image.
+B: '{manipulated_object}' in the right frame is mostly consistent with the left image, with minor visual issues.
+C: '{manipulated_object}' in the right frame shows noticeable inconsistencies compared with the left image.
+D: '{manipulated_object}' in the right frame undergoes a major transformation, appears as an AI-generated artifact or is duplicated compared with the left image.
+E: '{manipulated_object}' is missing in the right frame while it exists in the left image.
+The options A to E represent increasing levels of inconsistency. Select the most suitable option.
+Return exactly: {json_example}

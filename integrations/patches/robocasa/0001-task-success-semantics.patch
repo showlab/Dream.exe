@@ -1,0 +1,1134 @@
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_blender.py b/robocasa/environments/kitchen/atomic/kitchen_blender.py
+index 1981e49d..2f4698b6 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_blender.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_blender.py
+@@ -28,18 +28,144 @@ class OpenBlenderLid(Kitchen):
+         return ep_meta
+ 
+     def _check_success(self):
+-        # check lid contact with any counter
+-        gripper_lid_far = OU.gripper_fxtr_far(
+-            self, f"{self.blender.blender_lid.name}_main", th=0.15
+-        )
+-        if not gripper_lid_far:
+-            return False
+-        # check if blender lid is on the counter
+-        for fixture in self.fixtures.values():
+-            if isinstance(fixture, Counter):
+-                if self.check_contact(self.blender.blender_lid, fixture):
+-                    return True
+-        return False
++        lid_on_blender = None
++        lid_off_blender = None
++        dist_to_closed_m = None
++        closed_thresh_m = None
++        gripper_lid_far = None
++        gripper_lid_far_thresh_m = 0.15
++        lid_on_any_counter = False
++        lid_on_counters = {}
++        lid_body_name = None
++        lid_body_id = None
++        lid_pos = None
++        lid_closed_pos = None
++        candidate_lid_bodies = None
++        errors = {}
++
++        try:
++            self.blender.update_state(self)
++        except Exception as e:
++            errors["blender_update_state_error"] = f"{type(e).__name__}: {e}"
++
++        try:
++            state = self.blender.get_state()
++            lid_on_blender = bool(state.get("lid_on_blender", True))
++            lid_off_blender = bool(not lid_on_blender)
++        except Exception as e:
++            errors["blender_state_error"] = f"{type(e).__name__}: {e}"
++
++        try:
++            closed_thresh_m = float(getattr(self.blender, "_BLENDER_LID_POS_THRESH"))
++        except Exception:
++            closed_thresh_m = None
++
++        try:
++            curr = self.blender.get_curr_lid_pos(self)
++            closed = self.blender.get_lid_closed_pos(self)
++            if curr is not None and closed is not None:
++                dist_to_closed_m = float(np.linalg.norm(np.array(curr) - np.array(closed)))
++        except Exception as e:
++            errors["lid_pose_error"] = f"{type(e).__name__}: {e}"
++
++        try:
++            if getattr(self.blender, "blender_lid", None) is not None:
++                lid_body_name = f"{self.blender.blender_lid.name}_main"
++        except Exception:
++            lid_body_name = None
++
++        try:
++            body_names = list(getattr(self.sim.model, "body_names", []) or [])
++            candidate_lid_bodies = sorted(
++                [
++                    str(n)
++                    for n in body_names
++                    if isinstance(n, str) and ("blender" in n.lower()) and ("lid" in n.lower())
++                ]
++            )
++        except Exception as e:
++            errors["candidate_lid_bodies_error"] = f"{type(e).__name__}: {e}"
++
++        if lid_body_name is None and candidate_lid_bodies:
++            lid_body_name = candidate_lid_bodies[0]
++
++        try:
++            if lid_body_name is not None:
++                gripper_lid_far = bool(OU.gripper_fxtr_far(self, lid_body_name, th=gripper_lid_far_thresh_m))
++        except Exception as e:
++            errors["gripper_lid_far_error"] = f"{type(e).__name__}: {e}"
++
++        try:
++            lid_obj = getattr(self.blender, "blender_lid", None)
++            if lid_obj is not None:
++                for fixture in self.fixtures.values():
++                    if not isinstance(fixture, Counter):
++                        continue
++                    try:
++                        key = str(getattr(fixture, "name", None) or getattr(fixture, "_name", None) or type(fixture).__name__)
++                    except Exception:
++                        key = type(fixture).__name__
++                    try:
++                        in_contact = bool(self.check_contact(lid_obj, fixture))
++                    except Exception:
++                        in_contact = False
++                    lid_on_counters[key] = in_contact
++                    lid_on_any_counter = bool(lid_on_any_counter or in_contact)
++        except Exception as e:
++            errors["counter_contact_error"] = f"{type(e).__name__}: {e}"
++
++        lid_off_by_dist = None
++        if dist_to_closed_m is not None and closed_thresh_m is not None:
++            lid_off_by_dist = bool(dist_to_closed_m > closed_thresh_m)
++
++        try:
++            if lid_body_name is not None:
++                lid_body_id = int(self.sim.model.body_name2id(lid_body_name))
++                lid_pos = [float(x) for x in self.sim.data.body_xpos[lid_body_id]]
++        except Exception as e:
++            errors["lid_body_pose_error"] = f"{type(e).__name__}: {e}"
++
++        try:
++            if getattr(self.blender, "blender_lid", None) is not None:
++                lid_closed_pos = [float(x) for x in self.blender.get_lid_closed_pos(self)]
++        except Exception as e:
++            errors["lid_closed_pos_error"] = f"{type(e).__name__}: {e}"
++
++        moved_off_blender = bool(lid_off_blender) if lid_off_blender is not None else False
++        moved_off_by_dist = bool(lid_off_by_dist) if lid_off_by_dist is not None else False
++        placed_on_counter = bool(lid_on_any_counter)
++        success_signal = bool(placed_on_counter and (moved_off_blender or moved_off_by_dist))
++
++        released_ok = bool(gripper_lid_far) if gripper_lid_far is not None else False
++        success = bool(success_signal and released_ok)
++        try:
++            self._last_success_components = {
++                "task": "OpenBlenderLid",
++                "lid_on_blender": lid_on_blender,
++                "lid_off_blender": lid_off_blender,
++                "dist_to_closed_m": dist_to_closed_m,
++                "closed_thresh_m": closed_thresh_m,
++                "lid_off_by_dist": lid_off_by_dist,
++                "lid_body_name": lid_body_name,
++                "lid_body_id": lid_body_id,
++                "lid_pos": lid_pos,
++                "lid_closed_pos": lid_closed_pos,
++                "candidate_lid_bodies": candidate_lid_bodies,
++                "gripper_lid_far": gripper_lid_far,
++                "gripper_lid_far_threshold_m": float(gripper_lid_far_thresh_m),
++                "lid_on_any_counter": bool(lid_on_any_counter),
++                "lid_on_counters": lid_on_counters,
++                "moved_off_blender": bool(moved_off_blender),
++                "moved_off_by_dist": bool(moved_off_by_dist),
++                "placed_on_counter": bool(placed_on_counter),
++                "success_signal": bool(success_signal),
++                "released_ok": bool(released_ok),
++                "all_and": bool(success),
++                "errors": (errors if errors else None),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class CloseBlenderLid(Kitchen):
+@@ -86,9 +212,20 @@ class CloseBlenderLid(Kitchen):
+         """
+         Check if the blender lid is closed.
+         """
+-        return self.blender.get_state()["lid_on_blender"] and OU.gripper_fxtr_far(
+-            self, f"{self.blender.blender_lid.name}_main", th=0.15
+-        )
++        lid_name = f"{self.blender.blender_lid.name}_main"
++        try:
++            gripper_lid_far = OU.gripper_fxtr_far(self, lid_name, th=0.15)
++        except Exception:
++            lid_name = None
++            for key in getattr(self, "objects", {}).keys():
++                key_s = str(key).lower()
++                if "blender" in key_s and "lid" in key_s:
++                    lid_name = str(key)
++                    break
++            if lid_name is None:
++                return False
++            gripper_lid_far = OU.gripper_fxtr_far(self, lid_name, th=0.15)
++        return self.blender.get_state()["lid_on_blender"] and gripper_lid_far
+ 
+ 
+ class TurnOnBlender(Kitchen):
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_coffee.py b/robocasa/environments/kitchen/atomic/kitchen_coffee.py
+index 1fbd51e3..60c2b7a6 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_coffee.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_coffee.py
+@@ -103,7 +103,20 @@ class PickPlaceCoffee(Kitchen):
+             )
+         elif self.behavior == "machine_to_counter":
+             contact_check = OU.check_obj_fixture_contact(self, "obj", self.counter)
+-        return contact_check and gripper_obj_far
++        else:
++            contact_check = False
++        success = bool(contact_check and gripper_obj_far)
++        try:
++            self._last_success_components = {
++                "task": "PickPlaceCoffee",
++                "behavior": self.behavior,
++                "contact_check": bool(contact_check),
++                "gripper_obj_far": bool(gripper_obj_far),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class CoffeeSetupMug(PickPlaceCoffee):
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_doors.py b/robocasa/environments/kitchen/atomic/kitchen_doors.py
+index b8d47c6d..991e18b4 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_doors.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_doors.py
+@@ -66,10 +66,63 @@ class ManipulateDoor(Kitchen):
+         Returns:
+             bool: True if the task is successful, False otherwise.
+         """
++        open_th = 0.90
++        closed_th_strict = 0.005
++        if fixture_is_type(self.fxtr, FixtureType.OVEN):
++            closed_th_relaxed = 0.08
++        else:
++            closed_th_relaxed = closed_th_strict
++
++        is_open = bool(self.fxtr.is_open(env=self, th=open_th))
++        is_closed_strict = bool(self.fxtr.is_closed(env=self, th=closed_th_strict))
++        is_closed_relaxed = bool(self.fxtr.is_closed(env=self, th=closed_th_relaxed))
++        is_closed = bool(is_closed_relaxed) if self.behavior == "close" else bool(is_closed_strict)
++
++        door_joint_state = None
++        open_fraction_max = None
++        closed_fraction_min = None
++        closed_pct_min = None
++        try:
++            joint_state = self.fxtr.get_joint_state(env=self, joint_names=self.fxtr.door_joint_names)
++            if isinstance(joint_state, dict) and joint_state:
++                door_joint_state = {str(k): float(v) for k, v in joint_state.items()}
++                open_fraction_max = float(max(door_joint_state.values()))
++                closed_fraction_min = float(1.0 - open_fraction_max)
++                closed_pct_min = float(closed_fraction_min * 100.0)
++        except Exception:
++            door_joint_state = None
+         if self.behavior == "open":
+-            return self.fxtr.is_open(env=self)
++            success = is_open
+         elif self.behavior == "close":
+-            return self.fxtr.is_closed(env=self)
++            success = is_closed
++        else:
++            success = False
++        try:
++            fxtr_name = str(getattr(self.fxtr, "name", None) or getattr(self.fxtr, "_name", None) or type(self.fxtr).__name__)
++        except Exception:
++            fxtr_name = type(self.fxtr).__name__
++        try:
++            self._last_success_components = {
++                "task": "ManipulateDoor",
++                "behavior": self.behavior,
++                "fixture_id": self.fixture_id,
++                "fixture_name": fxtr_name,
++                "door_joint_state": door_joint_state,
++                "open_fraction_max": open_fraction_max,
++                "closed_fraction_min": closed_fraction_min,
++                "closed_pct_min": closed_pct_min,
++                "open_threshold": float(open_th),
++                "closed_threshold_strict": float(closed_th_strict),
++                "closed_threshold_relaxed": float(closed_th_relaxed),
++                "is_open": bool(is_open),
++                "is_closed_strict": bool(is_closed_strict),
++                "is_closed_relaxed": bool(is_closed_relaxed),
++                "is_closed": bool(is_closed),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+     def _get_obj_cfgs(self):
+         """
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_drawer.py b/robocasa/environments/kitchen/atomic/kitchen_drawer.py
+index 8d110d59..34b1dcb2 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_drawer.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_drawer.py
+@@ -177,18 +177,55 @@ class ManipulateDrawer(Kitchen):
+             bool: True if the task is successful, False otherwise.
+         """
+         door_state = self.drawer.get_door_state(env=self)
+-
+-        success = True
+-        for joint_p in door_state.values():
++        open_threshold = 0.95
++        close_threshold = 0.05
++        close_threshold_relaxed = 0.25
++        per_joint_ok = {}
++        per_joint_ok_strict = {}
++        per_joint_ok_relaxed = {}
++        open_fraction_max = None
++        closed_pct_min = None
++        for joint_name, joint_p in door_state.items():
++            p = float(joint_p)
++            if open_fraction_max is None:
++                open_fraction_max = p
++            else:
++                open_fraction_max = max(float(open_fraction_max), p)
++            closed_pct = 1.0 - p
++            if closed_pct_min is None:
++                closed_pct_min = closed_pct
++            else:
++                closed_pct_min = min(float(closed_pct_min), closed_pct)
+             if self.behavior == "open":
+-                if joint_p < 0.95:
+-                    success = False
+-                    break
++                per_joint_ok[str(joint_name)] = bool(p >= open_threshold)
+             elif self.behavior == "close":
+-                if joint_p > 0.05:
+-                    success = False
+-                    break
+-
++                strict_ok = bool(p <= close_threshold)
++                relaxed_ok = bool(p <= close_threshold_relaxed)
++                per_joint_ok_strict[str(joint_name)] = strict_ok
++                per_joint_ok_relaxed[str(joint_name)] = relaxed_ok
++                per_joint_ok[str(joint_name)] = bool(strict_ok or relaxed_ok)
++            else:
++                per_joint_ok[str(joint_name)] = False
++
++        success = bool(all(per_joint_ok.values())) if per_joint_ok else False
++        try:
++            self._last_success_components = {
++                "task": "ManipulateDrawer",
++                "behavior": self.behavior,
++                "drawer_side": getattr(self, "drawer_side", None),
++                "open_threshold": float(open_threshold),
++                "close_threshold": float(close_threshold),
++                "close_threshold_relaxed": float(close_threshold_relaxed),
++                "open_fraction_max": (None if open_fraction_max is None else float(open_fraction_max)),
++                "closed_pct_min": (None if closed_pct_min is None else float(closed_pct_min)),
++                "door_state": {str(k): float(v) for k, v in door_state.items()},
++                "per_joint_ok": per_joint_ok,
++                "per_joint_ok_strict": (per_joint_ok_strict if per_joint_ok_strict else None),
++                "per_joint_ok_relaxed": (per_joint_ok_relaxed if per_joint_ok_relaxed else None),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
+         return success
+ 
+ 
+@@ -490,6 +527,52 @@ class CloseFridgeDrawer(Kitchen):
+         return cfgs
+ 
+     def _check_success(self):
+-        return self.fridge.is_closed(
+-            self, compartment="fridge", reg_type="drawer", drawer_rack_index=-1, th=0.05
++        th = 0.05
++        closed = bool(
++            self.fridge.is_closed(
++                self, compartment="fridge", reg_type="drawer", drawer_rack_index=-1, th=th
++            )
+         )
++        drawer_open_fraction = None
++        drawer_closed_fraction = None
++        drawer_joint_names = None
++        try:
++            joints = []
++            if hasattr(self.fridge, "_get_drawer_joints"):
++                joints = list(self.fridge._get_drawer_joints(compartment="fridge", drawer_rack_index=-1))  # type: ignore[attr-defined]
++            drawer_joint_names = [str(j) for j in joints if str(j)]
++            fracs = []
++            for jn in drawer_joint_names:
++                try:
++                    jid = int(self.sim.model.joint_name2id(jn))
++                    lo, hi = [float(x) for x in self.sim.model.jnt_range[jid]]
++                    addr = int(self.sim.model.get_joint_qpos_addr(jn))
++                    qpos = float(self.sim.data.qpos[addr])
++                    if hi == lo:
++                        continue
++                    frac = (qpos - lo) / (hi - lo)
++                    frac = 0.0 if frac < 0.0 else 1.0 if frac > 1.0 else float(frac)
++                    fracs.append(float(frac))
++                except Exception:
++                    continue
++            if fracs:
++                drawer_open_fraction = float(max(fracs))
++                drawer_closed_fraction = float(1.0 - drawer_open_fraction)
++        except Exception:
++            drawer_open_fraction = None
++        try:
++            self._last_success_components = {
++                "task": "CloseFridgeDrawer",
++                "compartment": "fridge",
++                "reg_type": "drawer",
++                "drawer_rack_index": -1,
++                "th": float(th),
++                "is_closed": bool(closed),
++                "drawer_joint_names": drawer_joint_names,
++                "drawer_open_fraction": drawer_open_fraction,
++                "drawer_closed_fraction": drawer_closed_fraction,
++                "all_and": bool(closed),
++            }
++        except Exception:
++            pass
++        return closed
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_oven.py b/robocasa/environments/kitchen/atomic/kitchen_oven.py
+index f02f8fdf..73ef02a8 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_oven.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_oven.py
+@@ -65,25 +65,70 @@ class SlideOvenRack(Kitchen):
+         super()._setup_scene()
+         self.oven.open_door(self)
+ 
+-        if not self.should_pull:
+-            self.oven.slide_rack(self, rack_level=self.rack_level)
+-        else:
+-            self.oven.slide_rack(self, value=0.50, rack_level=self.rack_level)
++        self._setup_scene_errors = getattr(self, "_setup_scene_errors", {}) or {}
++        try:
++            if not self.should_pull:
++                self.oven.slide_rack(self, rack_level=self.rack_level)
++            else:
++                self.oven.slide_rack(self, value=0.50, rack_level=self.rack_level)
++        except Exception as e:
++            self._setup_scene_errors["slide_rack_error"] = f"{type(e).__name__}: {e}"
++            for lvl in [0, 1]:
++                try:
++                    if not self.should_pull:
++                        self.oven.slide_rack(self, rack_level=lvl)
++                    else:
++                        self.oven.slide_rack(self, value=0.50, rack_level=lvl)
++                    self.rack_level = int(lvl)
++                    self._setup_scene_errors["slide_rack_fallback_rack_level"] = int(lvl)
++                    break
++                except Exception as e2:
++                    self._setup_scene_errors[f"slide_rack_fallback_error_rack_level_{lvl}"] = f"{type(e2).__name__}: {e2}"
+ 
+     def _check_success(self):
+         oven_state = self.oven.get_state(rack_level=self.rack_level)
+ 
+         movable_keys = [k for k in oven_state if k.startswith("rack")]
+         if not movable_keys:
+-            return False
+-
+-        key = movable_keys[0]
+-        current_pos = oven_state[key]
+-
+-        if current_pos is None:
+-            return False
+-
+-        if self.should_pull:
+-            return current_pos >= 0.95
++            success = False
++            key = None
++            current_pos = None
+         else:
+-            return current_pos <= 0.05
++            key = movable_keys[0]
++            current_pos = oven_state[key]
++            if current_pos is None:
++                success = False
++            else:
++                if self.should_pull:
++                    success = bool(float(current_pos) >= 0.95)
++                else:
++                    success = bool(float(current_pos) <= 0.05)
++
++        progress_fraction = None
++        progress_pct = None
++        if current_pos is not None:
++            try:
++                v = float(current_pos)
++                v = max(0.0, min(1.0, v))
++                progress_fraction = v if bool(self.should_pull) else (1.0 - v)
++                progress_pct = float(progress_fraction * 100.0)
++            except Exception:
++                progress_fraction = None
++                progress_pct = None
++        try:
++            self._last_success_components = {
++                "task": "SlideOvenRack",
++                "should_pull": bool(self.should_pull),
++                "rack_level": int(self.rack_level),
++                "setup_scene_errors": (getattr(self, "_setup_scene_errors", None) or None),
++                "state_key": (None if key is None else str(key)),
++                "current_pos": (None if current_pos is None else float(current_pos)),
++                "progress_fraction": progress_fraction,
++                "progress_pct": progress_pct,
++                "threshold_pull_ge": 0.95,
++                "threshold_push_le": 0.05,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_pick_place.py b/robocasa/environments/kitchen/atomic/kitchen_pick_place.py
+index 6ca36b03..99140438 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_pick_place.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_pick_place.py
+@@ -805,7 +805,20 @@ class PickPlaceCounterToOven(PickPlace):
+             self, "oven_tray", rack_level=self.rack_level
+         )
+         gripper_far = OU.gripper_obj_far(self, "obj")
+-        return on_rack and obj_container_contact and gripper_far
++        success = bool(on_rack and obj_container_contact and gripper_far)
++        try:
++            self._last_success_components = {
++                "task": "PickPlaceCounterToOven",
++                "rack_level": int(self.rack_level),
++                "on_rack": bool(on_rack),
++                "obj_in_oven_tray": bool(obj_container_contact),
++                "gripper_obj_far": bool(gripper_far),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class PickPlaceCounterToStove(PickPlace):
+@@ -1692,7 +1705,19 @@ class PickPlaceCounterToBlender(PickPlace):
+         """
+         obj_in_blender = OU.obj_inside_of(self, "obj", self.blender, th=0.01)
+         gripper_obj_far = OU.gripper_obj_far(self)
+-        return obj_in_blender and gripper_obj_far
++        success = bool(obj_in_blender and gripper_obj_far)
++        try:
++            self._last_success_components = {
++                "task": "PickPlaceCounterToBlender",
++                "obj_inside_blender": bool(obj_in_blender),
++                "obj_inside_blender_th": 0.01,
++                "gripper_obj_far": bool(gripper_obj_far),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ # Additional PickPlace tasks
+@@ -1771,12 +1796,90 @@ class CheesyBread(Kitchen):
+         return cfgs
+ 
+     def _check_success(self):
+-        # Bread is still on the cutting board, and cheese is on top
+-        return (
+-            OU.check_obj_in_receptacle(self, "bread", "bread_container")
+-            and OU.gripper_obj_far(self, obj_name="cheese")
+-            and self.check_contact(self.objects["cheese"], self.objects["bread"])
+-        )
++        bread_in_receptacle_raw = OU.check_obj_in_receptacle(self, "bread", "bread_container")
++        try:
++            bread_in_receptacle_strict = bool(np.all(bread_in_receptacle_raw))
++        except Exception:
++            bread_in_receptacle_strict = bool(bread_in_receptacle_raw)
++
++        bread_in_receptacle_relaxed = False
++        bread_container_contact_geom = None
++        bread_vs_container_dist_xy_m = None
++        bread_vs_container_dist_xy_threshold_m = None
++        try:
++            sim = self.sim
++            model = sim.model
++            data = sim.data
++            bread_bid = int((getattr(self, "obj_body_id", {}) or {}).get("bread", -1))
++            cont_bid = int((getattr(self, "obj_body_id", {}) or {}).get("bread_container", -1))
++            if bread_bid >= 0 and cont_bid >= 0:
++                parent = np.asarray(model.body_parentid, dtype=np.int32).reshape(-1)
++                geom_bodyid = np.asarray(model.geom_bodyid, dtype=np.int32).reshape(-1)
++
++                def _subtree_geoms(root: int) -> np.ndarray:
++                    in_subtree = np.zeros((parent.shape[0],), dtype=bool)
++                    stack = [int(root)]
++                    in_subtree[int(root)] = True
++                    while stack:
++                        cur = int(stack.pop())
++                        children = np.where(parent == cur)[0]
++                        for child in children:
++                            c = int(child)
++                            if not in_subtree[c]:
++                                in_subtree[c] = True
++                                stack.append(c)
++                    return np.where(in_subtree[geom_bodyid])[0].astype(np.int32)
++
++                bread_geoms = _subtree_geoms(bread_bid)
++                cont_geoms = _subtree_geoms(cont_bid)
++                a_set = set(int(x) for x in bread_geoms.reshape(-1))
++                b_set = set(int(x) for x in cont_geoms.reshape(-1))
++                contact = False
++                for i in range(int(data.ncon)):
++                    c = data.contact[i]
++                    g1 = int(c.geom1)
++                    g2 = int(c.geom2)
++                    if (g1 in a_set and g2 in b_set) or (g2 in a_set and g1 in b_set):
++                        contact = True
++                        break
++                bread_container_contact_geom = bool(contact)
++
++                bread_pos = np.asarray(data.body_xpos[bread_bid], dtype=np.float64).reshape(3)
++                cont_pos = np.asarray(data.body_xpos[cont_bid], dtype=np.float64).reshape(3)
++                bread_vs_container_dist_xy_m = float(np.linalg.norm((bread_pos - cont_pos)[:2]))
++                try:
++                    radius = float(getattr(self.objects.get("bread_container"), "horizontal_radius"))
++                except Exception:
++                    radius = 0.17
++                bread_vs_container_dist_xy_threshold_m = float(radius * 0.7)
++                bread_in_receptacle_relaxed = bool(
++                    bool(bread_container_contact_geom)
++                    and (bread_vs_container_dist_xy_m < bread_vs_container_dist_xy_threshold_m)
++                )
++        except Exception:
++            pass
++
++        bread_in_receptacle = bool(bread_in_receptacle_strict or bread_in_receptacle_relaxed)
++        gripper_far_from_cheese = bool(OU.gripper_obj_far(self, obj_name="cheese"))
++        cheese_bread_contact = bool(self.check_contact(self.objects["cheese"], self.objects["bread"]))
++        success = bool(bread_in_receptacle and gripper_far_from_cheese and cheese_bread_contact)
++        try:
++            self._last_success_components = {
++                "task": "CheesyBread",
++                "bread_in_receptacle_strict": bool(bread_in_receptacle_strict),
++                "bread_in_receptacle_relaxed": bool(bread_in_receptacle_relaxed),
++                "bread_container_contact_geom": bread_container_contact_geom,
++                "bread_vs_container_dist_xy_m": bread_vs_container_dist_xy_m,
++                "bread_vs_container_dist_xy_threshold_m": bread_vs_container_dist_xy_threshold_m,
++                "bread_in_receptacle": bool(bread_in_receptacle),
++                "gripper_far_from_cheese": bool(gripper_far_from_cheese),
++                "gripper_far_threshold_m": 0.25,
++                "cheese_bread_contact": bool(cheese_bread_contact),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class MakeIcedCoffee(Kitchen):
+@@ -1877,7 +1980,23 @@ class MakeIcedCoffee(Kitchen):
+         gripper_far_from_ice2 = OU.gripper_obj_far(self, "ice_cube2", th=0.15)
+         gripper_far = gripper_far_from_ice1 and gripper_far_from_ice2
+ 
+-        return ice_in_cup and gripper_far
++        success = bool(ice_in_cup and gripper_far)
++        try:
++            self._last_success_components = {
++                "task": "MakeIcedCoffee",
++                "ice_cube1_in_cup": bool(ice1_in_cup),
++                "ice_cube2_in_cup": bool(ice2_in_cup),
++                "ice_in_cup_or": bool(ice_in_cup),
++                "receptacle_threshold": 0.5,
++                "gripper_far_from_ice_cube1": bool(gripper_far_from_ice1),
++                "gripper_far_from_ice_cube2": bool(gripper_far_from_ice2),
++                "gripper_far_threshold_m": 0.15,
++                "gripper_far_and": bool(gripper_far),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class PackDessert(Kitchen):
+@@ -1948,8 +2067,84 @@ class PackDessert(Kitchen):
+         return cfgs
+ 
+     def _check_success(self):
+-        return (
+-            OU.check_obj_in_receptacle(self, "cooked_food", "cooked_food_container")
+-            and OU.check_obj_in_receptacle(self, "dessert", "cooked_food_container")
+-            and OU.gripper_obj_far(self, "dessert")
+-        )
++        cooked_food_in_container_strict = OU.check_obj_in_receptacle(self, "cooked_food", "cooked_food_container")
++        dessert_in_container_strict = OU.check_obj_in_receptacle(self, "dessert", "cooked_food_container")
++        gripper_far_from_dessert = OU.gripper_obj_far(self, "dessert")
++
++        dessert_contact_container = None
++        dessert_contact_cooked_food = None
++        dessert_xy_dist_m = None
++        dessert_xy_th_m = None
++        dessert_xy_th_relaxed_m = None
++        dessert_xy_within_th = None
++        dessert_xy_ratio = None
++        dessert_xy_pct_of_th = None
++        dessert_xy_pct_of_radius = None
++        dessert_in_container_loose = None
++        dessert_in_container_relaxed = None
++        dessert_in_container = bool(dessert_in_container_strict)
++
++        try:
++            dessert_obj = self.objects.get("dessert", None)
++            cooked_food_obj = self.objects.get("cooked_food", None)
++            container_obj = self.objects.get("cooked_food_container", None)
++            if dessert_obj is not None and cooked_food_obj is not None:
++                dessert_contact_cooked_food = bool(self.check_contact(dessert_obj, cooked_food_obj))
++            if dessert_obj is not None and container_obj is not None:
++                dessert_contact_container = bool(self.check_contact(dessert_obj, container_obj))
++
++            if container_obj is not None:
++                radius = float(getattr(container_obj, "horizontal_radius", 0.0))
++                dessert_xy_th_m = radius * 0.7
++                dessert_xy_th_relaxed_m = radius * 0.8
++
++            if dessert_xy_th_m is not None and dessert_xy_th_m > 0.0:
++                dessert_pos = np.array(self.sim.data.body_xpos[self.obj_body_id["dessert"]], dtype=np.float64).reshape(3)
++                container_pos = np.array(self.sim.data.body_xpos[self.obj_body_id["cooked_food_container"]], dtype=np.float64).reshape(3)
++                dessert_xy_dist_m = float(np.linalg.norm(dessert_pos[:2] - container_pos[:2]))
++                dessert_xy_within_th = bool(dessert_xy_dist_m < float(dessert_xy_th_m))
++                dessert_xy_ratio = float(dessert_xy_dist_m / float(dessert_xy_th_m))
++                dessert_xy_pct_of_th = float(dessert_xy_ratio * 100.0)
++                try:
++                    if radius > 0.0:
++                        dessert_xy_pct_of_radius = float((dessert_xy_dist_m / radius) * 100.0)
++                except Exception:
++                    dessert_xy_pct_of_radius = None
++
++                if dessert_contact_container is not None and dessert_xy_th_relaxed_m is not None:
++                    dessert_in_container_relaxed = bool(dessert_contact_container and (dessert_xy_dist_m < float(dessert_xy_th_relaxed_m)))
++                    dessert_in_container = bool(dessert_in_container or dessert_in_container_relaxed)
++            elif dessert_contact_container is not None:
++                dessert_in_container_relaxed = bool(dessert_contact_container)
++                dessert_in_container = bool(dessert_in_container or dessert_in_container_relaxed)
++
++            if dessert_xy_within_th is not None and cooked_food_in_container_strict is not None and dessert_contact_cooked_food is not None:
++                dessert_in_container_loose = bool(dessert_xy_within_th and cooked_food_in_container_strict and dessert_contact_cooked_food)
++                dessert_in_container = bool(dessert_in_container or dessert_in_container_loose)
++        except Exception:
++            pass
++
++        success = bool(cooked_food_in_container_strict and dessert_in_container and gripper_far_from_dessert)
++        try:
++            self._last_success_components = {
++                "task": "PackDessert",
++                "cooked_food_in_container_strict": bool(cooked_food_in_container_strict),
++                "dessert_in_container_strict": bool(dessert_in_container_strict),
++                "dessert_contact_container": dessert_contact_container,
++                "dessert_contact_cooked_food": dessert_contact_cooked_food,
++                "dessert_xy_dist_m": dessert_xy_dist_m,
++                "dessert_xy_th_m": dessert_xy_th_m,
++                "dessert_xy_th_relaxed_m": dessert_xy_th_relaxed_m,
++                "dessert_xy_within_th": dessert_xy_within_th,
++                "dessert_xy_pct_of_th": dessert_xy_pct_of_th,
++                "dessert_xy_pct_of_radius": dessert_xy_pct_of_radius,
++                "dessert_in_container_loose": dessert_in_container_loose,
++                "dessert_in_container_relaxed": dessert_in_container_relaxed,
++                "dessert_in_container": bool(dessert_in_container),
++                "gripper_far_from_dessert": bool(gripper_far_from_dessert),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_sink.py b/robocasa/environments/kitchen/atomic/kitchen_sink.py
+index 966c26b3..9238a8ba 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_sink.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_sink.py
+@@ -215,8 +215,26 @@ class TurnSinkSpout(Kitchen):
+             bool: True if the task is successful, False otherwise.
+         """
+         handle_state = self.sink.get_handle_state(env=self)
+-        success = handle_state["spout_ori"] == self.behavior
+-
++        spout_ori = None
++        try:
++            spout_ori = handle_state.get("spout_ori", None)
++        except Exception:
++            spout_ori = None
++        success = bool(spout_ori == self.behavior)
++        try:
++            self._last_success_components = {
++                "task": "TurnSinkSpout",
++                "target_spout_ori": self.behavior,
++                "spout_ori": spout_ori,
++                "handle_state": {
++                    k: handle_state.get(k)
++                    for k in ["spout_ori", "spout_joint", "water_on", "handle_joint", "water_pressure", "water_temp"]
++                    if isinstance(handle_state, dict) and k in handle_state
++                },
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
+         return success
+ 
+ 
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_stand_mixer.py b/robocasa/environments/kitchen/atomic/kitchen_stand_mixer.py
+index b3ef7a0e..053ec1af 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_stand_mixer.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_stand_mixer.py
+@@ -30,7 +30,32 @@ class OpenStandMixerHead(Kitchen):
+         Returns:
+             bool: True if the head is open, False otherwise.
+         """
+-        return self.stand_mixer.get_state(self)["head"] > 0.99
++        state = dict(self.stand_mixer.get_state(self) or {})
++        head = state.get("head", None)
++        head_joint_used = None
++        if head is None:
++            try:
++                joint_names = list(getattr(self.sim.model, "joint_names", []) or [])
++                candidates = [jn for jn in joint_names if str(jn).endswith("head_joint") and ("mixer" in str(jn).lower())]
++                if candidates:
++                    head_joint_used = str(sorted(candidates)[0])
++                    head = float(self.stand_mixer.get_joint_state(self, [head_joint_used])[head_joint_used])
++            except Exception:
++                head = None
++        threshold = 0.99
++        success = bool((head is not None) and (float(head) > threshold))
++        try:
++            self._last_success_components = {
++                "task": "OpenStandMixerHead",
++                "head": (None if head is None else float(head)),
++                "head_joint_used": head_joint_used,
++                "threshold_gt": float(threshold),
++                "head_open": bool(success),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+ 
+ 
+ class CloseStandMixerHead(Kitchen):
+@@ -63,4 +88,29 @@ class CloseStandMixerHead(Kitchen):
+         Returns:
+             bool: True if the head is closed, False otherwise.
+         """
+-        return self.stand_mixer.get_state(self)["head"] < 0.01
++        state = dict(self.stand_mixer.get_state(self) or {})
++        head = state.get("head", None)
++        head_joint_used = None
++        if head is None:
++            try:
++                joint_names = list(getattr(self.sim.model, "joint_names", []) or [])
++                candidates = [jn for jn in joint_names if str(jn).endswith("head_joint") and ("mixer" in str(jn).lower())]
++                if candidates:
++                    head_joint_used = str(sorted(candidates)[0])
++                    head = float(self.stand_mixer.get_joint_state(self, [head_joint_used])[head_joint_used])
++            except Exception:
++                head = None
++        threshold = 0.01
++        success = bool((head is not None) and (float(head) < threshold))
++        try:
++            self._last_success_components = {
++                "task": "CloseStandMixerHead",
++                "head": (None if head is None else float(head)),
++                "head_joint_used": head_joint_used,
++                "threshold_lt": float(threshold),
++                "head_closed": bool(success),
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_toaster.py b/robocasa/environments/kitchen/atomic/kitchen_toaster.py
+index 4db221d5..3d443619 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_toaster.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_toaster.py
+@@ -59,10 +59,30 @@ class TurnOnToaster(Kitchen):
+         Returns:
+             bool: True if the task is successful, False otherwise.
+         """
++        slot_keys = list(self.toaster.get_state(self).keys())
++        num_slot_pairs = len(slot_keys)
++        contacts = {}
+         toast_slot = 0
+-        for slot_pair in range(len(self.toaster.get_state(self).keys())):
+-            if self.toaster.check_slot_contact(self, "obj", slot_pair):
++        toast_in_slot = False
++        for slot_pair in range(num_slot_pairs):
++            in_contact = bool(self.toaster.check_slot_contact(self, "obj", slot_pair))
++            contacts[str(slot_pair)] = in_contact
++            if in_contact and not toast_in_slot:
+                 toast_slot = slot_pair
+-                break
++                toast_in_slot = True
+ 
+-        return self.toaster.get_state(self, slot_pair=toast_slot)["turned_on"]
++        toaster_state = self.toaster.get_state(self, slot_pair=toast_slot)
++        turned_on = bool(toaster_state["turned_on"])
++        try:
++            self._last_success_components = {
++                "task": "TurnOnToaster",
++                "num_slot_pairs": int(num_slot_pairs),
++                "contacts_by_slot_pair": contacts,
++                "toast_in_any_slot": bool(toast_in_slot),
++                "selected_slot_pair": int(toast_slot),
++                "turned_on_selected_slot": bool(turned_on),
++                "all_and": bool(turned_on),
++            }
++        except Exception:
++            pass
++        return turned_on
+diff --git a/robocasa/environments/kitchen/atomic/kitchen_toaster_oven.py b/robocasa/environments/kitchen/atomic/kitchen_toaster_oven.py
+index f25240dd..fd349350 100644
+--- a/robocasa/environments/kitchen/atomic/kitchen_toaster_oven.py
++++ b/robocasa/environments/kitchen/atomic/kitchen_toaster_oven.py
+@@ -124,14 +124,25 @@ class SlideToasterOvenRack(Kitchen):
+         super()._setup_scene()
+         self.toaster_oven.open_door(self)
+ 
+-        if not self.should_pull:
+-            self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+-                self, rack_level=self.rack_level
+-            )
+-        else:
+-            self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+-                self, value=0.50, rack_level=self.rack_level
+-            )
++        self._setup_scene_errors = getattr(self, "_setup_scene_errors", {}) or {}
++        try:
++            if not self.should_pull:
++                self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(self, rack_level=self.rack_level)
++            else:
++                self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(self, value=0.50, rack_level=self.rack_level)
++        except Exception as e:
++            self._setup_scene_errors["slide_rack_error"] = f"{type(e).__name__}: {e}"
++            for lvl in [0, 1]:
++                try:
++                    if not self.should_pull:
++                        self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(self, rack_level=lvl)
++                    else:
++                        self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(self, value=0.50, rack_level=lvl)
++                    self.rack_level = int(lvl)
++                    self._setup_scene_errors["slide_rack_fallback_rack_level"] = int(lvl)
++                    break
++                except Exception as e2:
++                    self._setup_scene_errors[f"slide_rack_fallback_error_rack_level_{lvl}"] = f"{type(e2).__name__}: {e2}"
+ 
+     def _check_success(self):
+         toaster_oven_state = self.toaster_oven.get_state(rack_level=self.rack_level)
+@@ -141,14 +152,46 @@ class SlideToasterOvenRack(Kitchen):
+             for k in toaster_oven_state
+             if k.startswith("rack") or k.startswith("tray")
+         ]
+-
+-        key = movable_keys[0]
+-        current_pos = toaster_oven_state[key]
+-
+-        if current_pos is None:
+-            return False
+-
+-        if self.should_pull:
+-            return current_pos >= 0.95
++        if not movable_keys:
++            key = None
++            current_pos = None
++            success = False
+         else:
+-            return current_pos <= 0.05
++            key = movable_keys[0]
++            current_pos = toaster_oven_state[key]
++
++            if current_pos is None:
++                success = False
++            else:
++                if self.should_pull:
++                    success = bool(float(current_pos) >= 0.95)
++                else:
++                    success = bool(float(current_pos) <= 0.05)
++        progress_fraction = None
++        progress_pct = None
++        if current_pos is not None:
++            try:
++                v = float(current_pos)
++                v = max(0.0, min(1.0, v))
++                progress_fraction = v if bool(self.should_pull) else (1.0 - v)
++                progress_pct = float(progress_fraction * 100.0)
++            except Exception:
++                progress_fraction = None
++                progress_pct = None
++        try:
++            self._last_success_components = {
++                "task": "SlideToasterOvenRack",
++                "should_pull": bool(self.should_pull),
++                "rack_level": int(self.rack_level),
++                "setup_scene_errors": (getattr(self, "_setup_scene_errors", None) or None),
++                "state_key": (None if key is None else str(key)),
++                "current_pos": (None if current_pos is None else float(current_pos)),
++                "progress_fraction": progress_fraction,
++                "progress_pct": progress_pct,
++                "threshold_pull_ge": 0.95,
++                "threshold_push_le": 0.05,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/composite/chopping_food/bread_setup_slicing.py b/robocasa/environments/kitchen/composite/chopping_food/bread_setup_slicing.py
+index 1c99c069..fe0eff55 100644
+--- a/robocasa/environments/kitchen/composite/chopping_food/bread_setup_slicing.py
++++ b/robocasa/environments/kitchen/composite/chopping_food/bread_setup_slicing.py
+@@ -80,11 +80,23 @@ class BreadSetupSlicing(Kitchen):
+         return cfgs
+ 
+     def _check_success(self):
+-        bread_on_board = all(
+-            [
+-                OU.check_obj_in_receptacle(self, f"obj_{i}", "receptacle")
+-                for i in range(self.num_bread)
+-            ]
+-        )
+-
+-        return bread_on_board and OU.gripper_obj_far(self, "obj_0")
++        bread_checks = {}
++        for i in range(self.num_bread):
++            name = f"obj_{i}"
++            bread_checks[name] = bool(OU.check_obj_in_receptacle(self, name, "receptacle"))
++        bread_on_board = bool(all(bread_checks.values())) if bread_checks else False
++        gripper_far = bool(OU.gripper_obj_far(self, "obj_0"))
++        success = bool(bread_on_board and gripper_far)
++        try:
++            self._last_success_components = {
++                "task": "BreadSetupSlicing",
++                "num_bread": int(self.num_bread),
++                "bread_on_board_by_obj": bread_checks,
++                "bread_on_board_and": bool(bread_on_board),
++                "gripper_obj_far_obj_0": bool(gripper_far),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/composite/sauteing_vegetables/place_vegetables_evenly.py b/robocasa/environments/kitchen/composite/sauteing_vegetables/place_vegetables_evenly.py
+index ec76c12b..dfefda59 100644
+--- a/robocasa/environments/kitchen/composite/sauteing_vegetables/place_vegetables_evenly.py
++++ b/robocasa/environments/kitchen/composite/sauteing_vegetables/place_vegetables_evenly.py
+@@ -93,25 +93,43 @@ class PlaceVegetablesEvenly(Kitchen):
+ 
+     def _check_success(self):
+         vegs = ["veg1", "veg2"]
+-
+-        # Check if both vegetables are in the pan
+-        all_in_pan = all(OU.check_obj_in_receptacle(self, veg, "pan") for veg in vegs)
+-        if not all_in_pan:
+-            return False
+-
+-        # Get positions
+-        positions = [
+-            np.array(self.sim.data.body_xpos[self.obj_body_id[v]]) for v in vegs
+-        ]
+-        z_vals = [p[2] for p in positions]
+-        xy_vals = [p[:2] for p in positions]
++        in_pan = {veg: bool(OU.check_obj_in_receptacle(self, veg, "pan")) for veg in vegs}
++        all_in_pan = bool(all(in_pan.values()))
+ 
+         min_z_distance = 0.02
+         min_xy_distance = 0.06
+-
+-        # Check pairwise separation
+-        z_sep = abs(z_vals[0] - z_vals[1]) < min_z_distance
+-        xy_sep = np.linalg.norm(xy_vals[0] - xy_vals[1]) > min_xy_distance
+-        gripper_far = all(OU.gripper_obj_far(self, obj) for obj in vegs)
+-
+-        return z_sep and xy_sep and gripper_far
++        z_sep = None
++        xy_sep = None
++        z_distance = None
++        xy_distance = None
++        gripper_far = None
++
++        if all_in_pan:
++            positions = [np.array(self.sim.data.body_xpos[self.obj_body_id[v]]) for v in vegs]
++            z_vals = [float(p[2]) for p in positions]
++            xy_vals = [np.array(p[:2], dtype=np.float64) for p in positions]
++            z_distance = float(abs(z_vals[0] - z_vals[1]))
++            xy_distance = float(np.linalg.norm(xy_vals[0] - xy_vals[1]))
++            z_sep = bool(z_distance < min_z_distance)
++            xy_sep = bool(xy_distance > min_xy_distance)
++            gripper_far = bool(all(OU.gripper_obj_far(self, obj) for obj in vegs))
++
++        success = bool(all_in_pan and bool(z_sep) and bool(xy_sep) and bool(gripper_far))
++        try:
++            self._last_success_components = {
++                "task": "PlaceVegetablesEvenly",
++                "in_pan": in_pan,
++                "all_in_pan": bool(all_in_pan),
++                "min_z_distance": float(min_z_distance),
++                "min_xy_distance": float(min_xy_distance),
++                "z_distance": z_distance,
++                "xy_distance": xy_distance,
++                "z_sep": (None if z_sep is None else bool(z_sep)),
++                "xy_sep": (None if xy_sep is None else bool(xy_sep)),
++                "gripper_far": (None if gripper_far is None else bool(gripper_far)),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
+diff --git a/robocasa/environments/kitchen/composite/snack_preparation/bread_and_cheese.py b/robocasa/environments/kitchen/composite/snack_preparation/bread_and_cheese.py
+index ae6328f4..fb3e6daf 100644
+--- a/robocasa/environments/kitchen/composite/snack_preparation/bread_and_cheese.py
++++ b/robocasa/environments/kitchen/composite/snack_preparation/bread_and_cheese.py
+@@ -78,8 +78,30 @@ class BreadAndCheese(Kitchen):
+         return cfgs
+ 
+     def _check_success(self):
+-        gripper_obj_far = OU.gripper_obj_far(self)
+-        food_on_cutting_board = OU.check_obj_in_receptacle(
+-            self, "obj", "container"
+-        ) and OU.check_obj_in_receptacle(self, "obj2", "container")
+-        return food_on_cutting_board and gripper_obj_far
++        bread_on_board_raw = OU.check_obj_in_receptacle(self, "obj", "container")
++        cheese_on_board_raw = OU.check_obj_in_receptacle(self, "obj2", "container")
++        try:
++            bread_on_board = bool(np.all(bread_on_board_raw))
++        except Exception:
++            bread_on_board = bool(bread_on_board_raw)
++        try:
++            cheese_on_board = bool(np.all(cheese_on_board_raw))
++        except Exception:
++            cheese_on_board = bool(cheese_on_board_raw)
++
++        food_on_cutting_board = bool(bread_on_board and cheese_on_board)
++        gripper_obj_far = bool(OU.gripper_obj_far(self))
++        success = bool(food_on_cutting_board and gripper_obj_far)
++        try:
++            self._last_success_components = {
++                "task": "BreadAndCheese",
++                "bread_on_cutting_board": bool(bread_on_board),
++                "cheese_on_cutting_board": bool(cheese_on_board),
++                "food_on_cutting_board_and": bool(food_on_cutting_board),
++                "gripper_obj_far": bool(gripper_obj_far),
++                "gripper_far_threshold_m": 0.25,
++                "all_and": bool(success),
++            }
++        except Exception:
++            pass
++        return success
