@@ -42,7 +42,7 @@
 ## 🗞️ News
 
 - **2026-09 · Code release** — Explore the [Dream.exe codebase](https://github.com/showlab/Dream.exe), with an end-to-end pipeline for video-to-trajectory extraction, robot execution, and evaluation. Start with the bundled quickstart example, then follow the installation and benchmark guides to reproduce the full workflow.
-- **2026-09 · Benchmark & depth model** — Find our [101-task RoboCasa benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned DVD depth models](https://huggingface.co/kaimingyang/DVD_for_Dream.exe) on Hugging Face. The benchmark provides fixed initialization states and ground-truth references for reproducible evaluation; the depth models are LoRA-fine-tuned on our benchmark data for use in the Dream.exe pipeline.
+- **2026-09 · Benchmark & depth model** — Find our [101-task Dream.exe benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned DVD depth models](https://huggingface.co/kaimingyang/DVD_for_Dream.exe) on Hugging Face. The benchmark provides fixed initialization states and ground-truth references for reproducible evaluation; the depth models are LoRA-fine-tuned on our benchmark data for use in the Dream.exe pipeline.
 - **2026-06** — Accepted as a **Spotlight** at the ICML 2026 FoGen Workshop. 🎉
 
 ## 🧪 Benchmark task suite
@@ -56,6 +56,19 @@ long-horizon multi-stage tasks. Generated videos are evaluation subjects;
 execution videos, extracted trajectories, actions, and metrics are stored only
 as experiment outputs. Ground-truth video/action/depth remain immutable
 references in the benchmark.
+
+## 🦾 Video-to-Trajectory Pipeline
+
+<div align="center">
+  <img src="assets/video2traj_pipeline.png" width="100%" alt="Dream.exe pipeline: video generation, depth estimation, 2D tracking, 3D trajectory recovery, and robot execution">
+</div>
+
+- 🎬 **Generate & track.** Start from a scene image and task prompt, then track the end-effector and manipulated object throughout the generated video.
+- 📐 **Lift into 3D.** Our LoRA-adapted DVD estimates depth, calibrated with the initial scene depth; camera parameters lift tracked pixels into world coordinates.
+- 🦾 **Recover actions.** Calibrate the end-effector trajectory to the robot's control point, estimate rotation, and infer grasp/release timing from end-effector–object motion.
+- ✅ **Execute & evaluate.** Combine position, rotation, and gripper state into a 7D trajectory, then execute it with closed-loop control in simulation to measure task success.
+
+See [Section 3.3 and Appendix C of our paper](https://arxiv.org/html/2606.04811v1#S3.SS3) for details.
 
 ## 🚀 Get started
 
@@ -128,19 +141,6 @@ Each file answers one question. Detailed keys and ownership rules live in the
 The bundled case uses its shipped workspace and run spec unchanged. Downloaded
 benchmark protocol files are immutable reproduction inputs, not user
 configuration.
-
-## 🦾 Video-to-Trajectory Pipeline
-
-<div align="center">
-  <img src="assets/video2traj_pipeline.png" width="100%" alt="Dream.exe pipeline: video generation, depth estimation, 2D tracking, 3D trajectory recovery, and robot execution">
-</div>
-
-- 🎬 **Generate & track.** Start from a scene image and task prompt, then track the end-effector and manipulated object throughout the generated video.
-- 📐 **Lift into 3D.** Our LoRA-adapted DVD estimates depth, calibrated with the initial scene depth; camera parameters lift tracked pixels into world coordinates.
-- 🦾 **Recover actions.** Calibrate the end-effector trajectory to the robot's control point, estimate rotation, and infer grasp/release timing from end-effector–object motion.
-- ✅ **Execute & evaluate.** Combine position, rotation, and gripper state into a 7D trajectory, then execute it with closed-loop control in simulation to measure task success.
-
-See [Section 3.3 and Appendix C of our paper](https://arxiv.org/html/2606.04811v1#S3.SS3) for details.
 
 ## 📌 Citation
 
