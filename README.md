@@ -158,3 +158,9 @@ See [Section 3.3 and Appendix C of our paper](https://arxiv.org/html/2606.04811v
 Dream.exe is released under the [Apache 2.0 License](LICENSE). Benchmark assets,
 external providers, and model checkpoints may have separate terms; review
 [THIRD_PARTY.md](THIRD_PARTY.md) before redistribution.
+
+## 🙏 Acknowledgements
+
+We thank the [RoboCasa / RoboCasa365](https://robocasa.ai/) team for releasing
+robot demonstration datasets, kitchen environments, and simulation assets
+that form the foundation of the Dream.exe benchmark.
