@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="assets/teaser/dream-exe-teaser.png">
+    <img src="assets/teaser/dream-exe-teaser.gif" width="100%" alt="Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation? — 18 synchronized ground-truth benchmark demonstrations">
+  </a>
+</p>
+
 <div align="center">
 
 # Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?
