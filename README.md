@@ -35,8 +35,8 @@
 
 ## 🗞️ News
 
-- **2026-09** — Code release: publication in progress.
-- **2026-09** — Benchmark and fine-tuned depth model release: upload in progress.
+- **2026-09** — [Code release](https://github.com/showlab/Dream.exe).
+- **2026-09** — [Benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned depth model](https://huggingface.co/kaimingyang/DVD_for_Dream.exe).
 - **2026-06** — Accepted as a **Spotlight** at the ICML 2026 FoGen Workshop. 🎉
 
 ## 🧪 Benchmark task suite
