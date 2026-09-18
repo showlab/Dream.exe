@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="assets/teaser/dream-exe-teaser.png">
-    <img src="assets/teaser/dream-exe-teaser.gif" width="100%" alt="Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation? — 18 synchronized ground-truth benchmark demonstrations">
+  <a href="assets/dream-exe-teaser.png">
+    <img src="assets/dream-exe-teaser.gif" width="100%" alt="Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation? — 18 synchronized ground-truth benchmark demonstrations">
   </a>
 </p>
 
@@ -55,6 +55,19 @@ The tasks are stratified into three levels of increasing physical complexity:
 - **Level 1, Single-object manipulation.** Geometrically consistent end-effector motion with correct grasp/release timing.
 - **Level 2, Multi-object interaction.** Reasoning about object-to-object relationships and placement.
 - **Level 3, Multi-stage composite tasks.** Maintaining physical coherence across a long task horizon with correctly sequenced sub-goals.
+
+## 🦾 Video-to-Trajectory Pipeline
+
+<div align="center">
+  <img src="assets/video2traj_pipeline.png" width="100%" alt="Dream.exe pipeline: video generation, depth estimation, 2D tracking, 3D trajectory recovery, and robot execution">
+</div>
+
+- 🎬 **Generate & track.** Start from a scene image and task prompt, then track the end-effector and manipulated object throughout the generated video.
+- 📐 **Lift into 3D.** Our LoRA-adapted DVD estimates depth, calibrated with the initial scene depth; camera parameters lift tracked pixels into world coordinates.
+- 🦾 **Recover actions.** Calibrate the end-effector trajectory to the robot's control point, estimate rotation, and infer grasp/release timing from end-effector–object motion.
+- ✅ **Execute & evaluate.** Combine position, rotation, and gripper state into a 7D trajectory, then execute it with closed-loop control in simulation to measure task success.
+
+See [Section 3.3 and Appendix C of our paper](https://arxiv.org/html/2606.04811v1#S3.SS3) for details.
 
 ## 📌 Citation
 
