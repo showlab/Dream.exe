@@ -35,8 +35,8 @@
 
 ## 🗞️ News
 
-- **2026-09** — [Code release](https://github.com/showlab/Dream.exe).
-- **2026-09** — [Benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned depth model](https://huggingface.co/kaimingyang/DVD_for_Dream.exe).
+- **2026-09 · Code release** — Explore the [Dream.exe codebase](https://github.com/showlab/Dream.exe), with an end-to-end pipeline for video-to-trajectory extraction, robot execution, and evaluation. Start with the bundled quickstart example, then follow the installation and benchmark guides to reproduce the full workflow.
+- **2026-09 · Benchmark & depth model** — Find our [101-task RoboCasa benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned DVD depth models](https://huggingface.co/kaimingyang/DVD_for_Dream.exe) on Hugging Face. The benchmark provides fixed initialization states and ground-truth references for reproducible evaluation; the depth models are LoRA-fine-tuned on our benchmark data for use in the Dream.exe pipeline.
 - **2026-06** — Accepted as a **Spotlight** at the ICML 2026 FoGen Workshop. 🎉
 
 ## 🧪 Benchmark task suite
