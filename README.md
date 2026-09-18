@@ -123,7 +123,7 @@ single sequence that every user must complete.
 | Goal | Additional requirement | Continue with |
 |---|---|---|
 | Run one or all 101 benchmark cases | Download the full benchmark data; add released result inputs only for exact reproduction | **[Benchmark and reproduction](docs/BENCHMARK.md)** |
-| Evaluate videos from my generator or WAM | Use the included Wan2.2 adapter, import MP4s, or connect a hosted/local generator; preprocessing is automatic | **[Video models and WAMs](docs/VIDEO_MODELS.md)** |
+| Evaluate videos from your Video Generation Model | Use the included Wan2.2 adapter, import MP4s, or connect a hosted/local generator; preprocessing is automatic | **[Video generation models](docs/VIDEO_MODELS.md)** |
 | Evaluate saved outputs | A completed run; VLM scoring additionally needs local credentials | **[Evaluation](docs/EVALUATION.md)** and **[VLM example](examples/quickstart/VLM.md)** |
 | Select official DVD, a Dream.exe LoRA, or another model | Install only assets not already required, then select the model explicitly | **[Model choices](docs/MODEL_ASSETS.md)** and **[custom backends](docs/CUSTOM_MODELS.md)** |
 | Understand or modify the implementation | No additional data | **[Code structure and reading paths](docs/CODE_STRUCTURE.md)** |
