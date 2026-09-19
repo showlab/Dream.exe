@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a0d">
+  <meta name="description" content="Dream.exe evaluates whether generated robot manipulation videos can become trajectories that actually execute.">
+  <title>Dream.exe — Executable Robot Manipulation from Video</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080a0d'/%3E%3Cpath d='M16 17h15c12 0 19 6 19 15S43 47 31 47H16V17Zm10 8v14h5c6 0 9-2 9-7s-3-7-9-7h-5Z' fill='%23f4efe5'/%3E%3Ccircle cx='49' cy='47' r='4' fill='%23f6b84a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hero" id="top">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Dream.exe home"><span>Dream</span><b>.exe</b></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#benchmark">Benchmark</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#results">Results</a>
+        <a href="#resources">Resources</a>
+      </div>
+    </nav>
+
+    <div class="teaser-frame">
+      <img id="hero-teaser" src="assets/dream-exe-teaser.gif" data-static-src="assets/dream-exe-teaser.png" alt="A synchronized grid of eighteen Dream.exe benchmark demonstrations">
+      <div class="teaser-shade" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-copy">
+      <p class="kicker"><span></span> Physical executability benchmark</p>
+      <h1>Can video generation models dream <em>executable</em> robot manipulation?</h1>
+      <p class="lede">Dream.exe turns generated manipulation videos into 3D robot trajectories, executes them in simulation, and asks the question visual scores cannot answer: <strong>does the imagined motion actually work?</strong></p>
+
+      <div class="authors" aria-label="Authors">
+        <p><span>Rui Zhao<sup>*</sup></span><span>Kaiming Yang<sup>*</sup></span><span>Jifeng Zhu<sup>†</sup></span><span>Siyang Chen<sup>†</sup></span><span>Ziqi Wang</span></p>
+        <p><span>Weijia Wu</span><span>Kevin Qinghong Lin</span><span>Heng Wang</span><span>Mike Zheng Shou<sup>‡</sup></span></p>
+        <small><sup>1</sup> Show Lab, NUS &nbsp; <sup>2</sup> University of Oxford &nbsp; <sup>3</sup> Tencent</small>
+      </div>
+
+      <div class="hero-actions" aria-label="Project links">
+        <a class="button button-primary" href="https://arxiv.org/abs/2606.04811">Paper <span>↗</span></a>
+        <a class="button" href="https://github.com/showlab/Dream.exe">Code <span>↗</span></a>
+        <a class="button" href="https://huggingface.co/datasets/kaimingyang/Dream.exe">Benchmark <span>↗</span></a>
+        <a class="button" href="https://huggingface.co/kaimingyang/DVD_for_Dream.exe">DVD LoRA <span>↗</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="manifesto">
+      <p class="section-label">01 / The question</p>
+      <div class="manifesto-grid">
+        <h2>A beautiful video can still describe an impossible action.</h2>
+        <div>
+          <p>Standard video benchmarks reward visual fidelity, temporal consistency, and prompt alignment. Dream.exe adds a grounded test: extract the motion, give it to a robot controller, and measure task success in physics.</p>
+          <p>Every model starts from the same scene image and natural-language instruction. Every generated video passes through the same evaluation stack.</p>
+        </div>
+      </div>
+      <div class="stat-grid" aria-label="Benchmark summary">
+        <article><strong>101</strong><span>curated tasks</span></article>
+        <article><strong>3</strong><span>difficulty levels</span></article>
+        <article><strong>8</strong><span>models evaluated</span></article>
+        <article><strong>3</strong><span>evaluation tracks</span></article>
+      </div>
+    </section>
+
+    <section class="section benchmark" id="benchmark">
+      <div class="section-heading">
+        <p class="section-label">02 / Benchmark suite</p>
+        <h2>From atomic motions to long-horizon plans.</h2>
+        <p>Built on manually curated RoboCasa365 episodes, the suite fixes the scene state, camera, input image, prompt, and reference rollout for comparable evaluation.</p>
+      </div>
+
+      <figure class="image-card wide">
+        <img src="assets/task_suite.png" alt="Representative Dream.exe tasks across three physical complexity levels" loading="lazy">
+        <figcaption>Representative scenes and instructions from the 101-task suite.</figcaption>
+      </figure>
+
+      <div class="level-grid">
+        <article>
+          <span class="level-number">L1</span>
+          <h3>Atomic manipulation</h3>
+          <p>A single object and one continuous primitive: pick, place, press, open, or rotate.</p>
+        </article>
+        <article>
+          <span class="level-number">L2</span>
+          <h3>Multi-object interaction</h3>
+          <p>Coupled object states test spatial relationships and ordered manipulation events.</p>
+        </article>
+        <article>
+          <span class="level-number">L3</span>
+          <h3>Multi-stage tasks</h3>
+          <p>Longer sequences test physical coherence across distinct sub-goals and transitions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section pipeline" id="pipeline">
+      <div class="section-heading split">
+        <div>
+          <p class="section-label">03 / Video-to-trajectory</p>
+          <h2>Pixels in.<br>Robot actions out.</h2>
+        </div>
+        <p>The pipeline recovers the motion implicit in a generated video, lifts it into a world-frame trajectory, assembles a 7D action stream, and closes the loop in simulation.</p>
+      </div>
+
+      <figure class="image-card pipeline-figure">
+        <img src="assets/video2traj_pipeline.png" alt="Dream.exe video-to-trajectory extraction and robot execution pipeline" loading="lazy">
+      </figure>
+
+      <ol class="steps">
+        <li><span>01</span><div><h3>Locate & track</h3><p>Initialize end-effector and object regions, then track their pixels through the video with CoTracker.</p></div></li>
+        <li><span>02</span><div><h3>Lift into 3D</h3><p>Estimate depth with the adapted DVD model, calibrate metric scale, and lift tracked points using known cameras.</p></div></li>
+        <li><span>03</span><div><h3>Recover actions</h3><p>Calibrate the tool center, estimate orientation, and infer grasp or release timing from relative motion.</p></div></li>
+        <li><span>04</span><div><h3>Execute & score</h3><p>Run the 7D action stream with closed-loop control in MuJoCo and measure physical task completion.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="section results" id="results">
+      <div class="section-heading">
+        <p class="section-label">04 / Selected results</p>
+        <h2>Dream.exe execution leaderboard.</h2>
+        <p>Task progress and sub-goal completion after the generated motion is converted to a trajectory and executed in simulation. Switch between the paper's overall, standard-instruction, and enhanced-instruction results.</p>
+      </div>
+
+      <div class="leaderboard-shell">
+        <div class="leaderboard-top">
+          <div>
+            <p class="eyebrow">Task-level execution · selected models</p>
+            <h3>Progress across the full benchmark</h3>
+          </div>
+          <div class="result-tabs" role="tablist" aria-label="Instruction setting">
+            <button class="active" role="tab" aria-selected="true" data-result-view="overall">Overall</button>
+            <button role="tab" aria-selected="false" data-result-view="standard">Standard</button>
+            <button role="tab" aria-selected="false" data-result-view="enhanced">Enhanced</button>
+          </div>
+        </div>
+
+        <div class="metric-legend" aria-label="Metric definitions">
+          <span><i class="progress-key"></i><b>SR-P</b> task progress</span>
+          <span><i class="release-key"></i><b>Rel</b> release</span>
+          <span><i class="place-key"></i><b>Place</b> placement</span>
+          <span><i class="core-key"></i><b>Core</b> core sub-goals</span>
+        </div>
+
+        <div class="leaderboard-head" aria-hidden="true">
+          <span>Rank / model</span><span>Task progress</span><span>Sub-goal profile</span>
+        </div>
+        <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
+
+        <div class="leaderboard-note">
+          <p><b id="view-label">Overall</b> averages the standard and enhanced instruction settings reported in the main paper. Bars share a 0–1 scale; higher is better.</p>
+          <a class="text-link" href="https://arxiv.org/html/2606.04811v1#S4.SS3">Full execution tables and metric definitions ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resources" id="resources">
+      <div class="section-heading">
+        <p class="section-label">05 / Use Dream.exe</p>
+        <h2>Reproduce the benchmark—or test your own video generator.</h2>
+      </div>
+      <div class="resource-grid">
+        <a href="https://github.com/showlab/Dream.exe"><span>01</span><h3>Code & docs</h3><p>Installation, quickstart, benchmark runs, custom models, and evaluation.</p><b>GitHub ↗</b></a>
+        <a href="https://huggingface.co/datasets/kaimingyang/Dream.exe"><span>02</span><h3>101-task benchmark</h3><p>Fixed initial states, prompts, cameras, ground-truth videos, and references.</p><b>Hugging Face ↗</b></a>
+        <a href="https://huggingface.co/kaimingyang/DVD_for_Dream.exe"><span>03</span><h3>DVD depth models</h3><p>LoRA-adapted video depth checkpoints for the Dream.exe extraction pipeline.</p><b>Hugging Face ↗</b></a>
+        <a href="https://huggingface.co/papers/2606.04811"><span>04</span><h3>Paper discussion</h3><p>Read the paper, browse community notes, and follow updates.</p><b>Daily Paper ↗</b></a>
+      </div>
+    </section>
+
+    <section class="citation-section">
+      <div>
+        <p class="section-label">Citation</p>
+        <h2>Build on Dream.exe.</h2>
+      </div>
+      <div class="citation-box">
+        <button id="copy-citation" aria-label="Copy BibTeX citation">Copy</button>
+        <pre id="citation">@article{zhao2026dreamexe,
+  title   = {Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?},
+  author  = {Zhao, Rui and Yang, Kaiming and Zhu, Jifeng and Chen, Siyang and Wang, Ziqi and Wu, Weijia and Lin, Kevin Qinghong and Wang, Heng and Shou, Mike Zheng},
+  journal = {arXiv preprint arXiv:2606.04811},
+  year    = {2026}
+}</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-mark"><span>Dream</span><b>.exe</b></div>
+    <p>We thank the <a href="https://robocasa.ai/">RoboCasa / RoboCasa365</a> team for the robot demonstration datasets, kitchen environments, and simulation assets that form the foundation of the benchmark.</p>
+    <div class="footer-meta"><span>Show Lab · National University of Singapore</span><a href="#top">Back to top ↑</a></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

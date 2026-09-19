@@ -8,6 +8,8 @@ htmlcov/
 
 build/
 dist/
+!website/dist/
+!website/dist/**
 *.egg-info/
 
 .venv/
