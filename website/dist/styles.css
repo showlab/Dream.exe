@@ -41,6 +41,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-toggle { display: none; color: #fff; background: none; border: 1px solid rgba(255,255,255,.4); padding: .4rem .7rem; }
 
 .teaser-frame { height: min(61vw, 780px); min-height: 500px; position: relative; background: #17191d; }
+.teaser-frame picture { display: block; width: 100%; height: 100%; }
 .teaser-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.92) contrast(1.04); }
 .teaser-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(4,5,7,.28), transparent 58%, #080a0d 100%); pointer-events: none; }
 

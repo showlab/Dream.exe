@@ -23,7 +23,10 @@ copyButton?.addEventListener('click', async () => {
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const teaser = document.querySelector('#hero-teaser');
-  if (teaser?.dataset.staticSrc) teaser.src = teaser.dataset.staticSrc;
+  if (teaser?.dataset.staticSrc) {
+    teaser.closest('picture')?.querySelector('source')?.remove();
+    teaser.src = teaser.dataset.staticSrc;
+  }
 }
 
 const resultData = {
