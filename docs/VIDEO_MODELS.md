@@ -14,6 +14,7 @@ pipeline components are documented separately in
 | What you already have | Route | Code required? |
 |---|---|---|
 | Nothing beyond the installed repo | Use the included Wan2.2 adapter on the bundled case | No |
+| The released Dream.exe Wan2.2 I2V LoRA and its upstream base model | Select the 2K or 7K catalog entry | No |
 | One MP4 or a directory of MP4s | Import the finished video | No |
 | A hosted asynchronous generation API | Implement `PollingImageToVideoBackend` | Three transport methods |
 | A local model or synchronous service | Implement `BaseImageToVideoBackend` | One generation method |
@@ -89,6 +90,64 @@ Together the two commands cover the complete case flow:
 `frozen initialization/first frame → Wan2.2 video generation → preprocessing →
 video2traj → action → simulation execution → evaluation`. The environment
 switch is the only split; no manifest or configuration file needs editing.
+
+## Dream.exe Wan2.2 image-to-video LoRA: 2K and 7K
+
+Our [paper-release model repository](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe)
+contains two Wan2.2 I2V A14B LoRA checkpoints. Each checkpoint needs its
+matching **high-noise and low-noise** adapter files plus the separate
+[Wan2.2 I2V A14B base model](https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B).
+The 2K and 7K entries in
+[`configs/models.wan22_lora.example.json`](../configs/models.wan22_lora.example.json)
+run those pairs through DiffSynth-Studio. This is a different base model and
+loader from the built-in Wan2.2 TI2V-5B adapter above.
+
+Use a Python 3.10 generation environment with Dream.exe's `video` extra and
+the [pinned DiffSynth-Studio source](https://github.com/modelscope/DiffSynth-Studio/tree/7686e54d41d25c0e8ed5f1318acc23b6bb832654):
+
+```bash
+conda create -n dream-exe-diffsynth python=3.10 -y
+conda activate dream-exe-diffsynth
+python -m pip install -e '.[video,assets]'
+git clone https://github.com/modelscope/DiffSynth-Studio.git external/DiffSynth-Studio
+git -C external/DiffSynth-Studio checkout 7686e54d41d25c0e8ed5f1318acc23b6bb832654
+python -m pip install -e external/DiffSynth-Studio
+```
+
+From the Dream.exe repository root, download the base and either LoRA pair.
+The commands below download both pairs so either catalog entry can be used:
+
+```bash
+hf download Wan-AI/Wan2.2-I2V-A14B \
+  --revision 206a9ee1b7bfaaf8f7e4d81335650533490646a3 \
+  --local-dir checkpoints/Wan-AI/Wan2.2-I2V-A14B
+hf download kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe \
+  --revision f90d07b69c6c434902617b6305ad83731fe926ff \
+  --include 'Wan2.2_I2V_A14B_lora_2k/*' 'Wan2.2_I2V_A14B_lora_7k/*' 'inference_config.json' 'weights_manifest.json' \
+  --local-dir checkpoints/Dream.exe/Wan2.2-I2V-A14B-LoRA
+```
+
+Then generate the bundled case with one released checkpoint:
+
+```bash
+dream-exe models check \
+  --models-config configs/models.wan22_lora.example.json \
+  --model Wan2.2-LoRA-7K --category video_gen --kind video_generation
+dream-exe generate \
+  --workspace examples/quickstart/workspace.json \
+  --case rc_cheesybread_ep000001 \
+  --models-config configs/models.wan22_lora.example.json \
+  --model Wan2.2-LoRA-7K --variant standard \
+  --run-id wan22-lora-7k-one-case
+```
+
+Select `Wan2.2-LoRA-2K` to use the 2K pair. The adapter reads the released
+`inference_config.json` for 480 × 480, 81 frames, 16 FPS, 40 steps, CFG 3.5,
+the negative prompt, and other defaults. `--size`, `--frame-num`,
+`--sample-steps`, and `--guidance-scale` can override the corresponding values.
+The command preprocesses the result and records the model and base revisions.
+Run `dream-exe run` in the main environment using the printed `run_spec` path
+to continue through execution and evaluation.
 
 ## Route A: import finished videos
 

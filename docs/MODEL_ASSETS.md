@@ -237,6 +237,14 @@ The source checkout is independently pinned to
 Continue with the
 [Wan2.2 one-case path](VIDEO_MODELS.md#start-from-zero-with-the-included-wan22).
 
+### video-gen: Dream.exe Wan2.2 I2V A14B LoRA
+
+The [paper-release 2K and 7K LoRAs](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe)
+require the separate Wan2.2 I2V A14B base checkpoint and pinned
+DiffSynth-Studio loader. The complete download, environment, model selection,
+and generation commands are in the
+[video model guide](VIDEO_MODELS.md#dream-exe-wan22-image-to-video-lora-2k-and-7k).
+
 ### eval: hosted VLMs
 
 Hosted VLM evaluation consumes saved outputs after execution. It does not need

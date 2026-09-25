@@ -1,0 +1,41 @@
+{
+  "format": "dream-exe.models",
+  "categories": {
+    "video_gen": {
+      "Wan2.2-LoRA-2K": {
+        "kind": "video_generation",
+        "backend": "factory",
+        "factory": "dream_exe.generation.providers.wan22_lora:Wan22DreamLoRABackend",
+        "kwargs": {
+          "base_model_root": "../checkpoints/Wan-AI/Wan2.2-I2V-A14B",
+          "adapter_root": "../checkpoints/Dream.exe/Wan2.2-I2V-A14B-LoRA",
+          "source_root": "../external/DiffSynth-Studio",
+          "checkpoint_step": 2000
+        },
+        "options": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "dream_exe_wan22_i2v_a14b_lora_diffsynth",
+          "contract_version": "image_to_video_backend"
+        }
+      },
+      "Wan2.2-LoRA-7K": {
+        "kind": "video_generation",
+        "backend": "factory",
+        "factory": "dream_exe.generation.providers.wan22_lora:Wan22DreamLoRABackend",
+        "kwargs": {
+          "base_model_root": "../checkpoints/Wan-AI/Wan2.2-I2V-A14B",
+          "adapter_root": "../checkpoints/Dream.exe/Wan2.2-I2V-A14B-LoRA",
+          "source_root": "../external/DiffSynth-Studio",
+          "checkpoint_step": 7000
+        },
+        "options": {},
+        "identity": {
+          "provider_kind": "external",
+          "backend_id": "dream_exe_wan22_i2v_a14b_lora_diffsynth",
+          "contract_version": "image_to_video_backend"
+        }
+      }
+    }
+  }
+}

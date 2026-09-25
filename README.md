@@ -20,6 +20,7 @@
 [![Paper](https://img.shields.io/badge/arXiv-2606.04811-b31b1b.svg)](https://arxiv.org/abs/2606.04811)
 [![Benchmark](https://img.shields.io/badge/🤗-Benchmark-yellow.svg)](https://huggingface.co/datasets/kaimingyang/Dream.exe)
 [![DVD LoRA](https://img.shields.io/badge/🤗-DVD_LoRA-yellow.svg)](https://huggingface.co/kaimingyang/DVD_for_Dream.exe)
+[![Wan2.2 Video LoRA](https://img.shields.io/badge/🤗-Wan2.2_Video_LoRA-yellow.svg)](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB.svg)](pyproject.toml)
 
@@ -45,7 +46,7 @@
 ## 🗞️ News
 
 - **2026-09** - **Code release:** Explore the [Dream.exe codebase](https://github.com/showlab/Dream.exe), with an end-to-end pipeline for video-to-trajectory extraction, robot execution, and evaluation. Start with the bundled quickstart example, then follow the installation and benchmark guides to reproduce the full workflow.
-- **2026-09** - **Benchmark & depth model:** Find our [101-task Dream.exe benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe) and [fine-tuned DVD depth models](https://huggingface.co/kaimingyang/DVD_for_Dream.exe) on Hugging Face. The benchmark provides fixed initialization states and ground-truth references for reproducible evaluation; the depth models are LoRA-fine-tuned on our benchmark data for use in the Dream.exe pipeline.
+- **2026-09** - **Benchmark & released models:** Find our [101-task Dream.exe benchmark](https://huggingface.co/datasets/kaimingyang/Dream.exe), [fine-tuned DVD depth models](https://huggingface.co/kaimingyang/DVD_for_Dream.exe), and [Wan2.2 image-to-video LoRA checkpoints](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe) on Hugging Face. The video release includes paired 2K and 7K high/low noise adapters; [download and run them](docs/VIDEO_MODELS.md#dream-exe-wan22-image-to-video-lora-2k-and-7k) with the upstream Wan2.2 I2V A14B base model.
 - **2026-06** - Accepted as a **Spotlight** at the ICML 2026 FoGen Workshop. 🎉
 
 ## 🧪 Benchmark task suite
@@ -123,7 +124,7 @@ single sequence that every user must complete.
 | Goal | Additional requirement | Continue with |
 |---|---|---|
 | Run one or all 101 benchmark cases | Download the full benchmark data; add released result inputs only for exact reproduction | **[Benchmark and reproduction](docs/BENCHMARK.md)** |
-| Evaluate videos from your Video Generation Model | Use the included Wan2.2 adapter, import MP4s, or connect a hosted/local generator; preprocessing is automatic | **[Video generation models](docs/VIDEO_MODELS.md)** |
+| Evaluate videos from your Video Generation Model | Use the included Wan2.2 adapter, our released Wan2.2 LoRAs, import MP4s, or connect a hosted/local generator; preprocessing is automatic | **[Video generation models](docs/VIDEO_MODELS.md)** |
 | Evaluate saved outputs | A completed run; VLM scoring additionally needs local credentials | **[Evaluation](docs/EVALUATION.md)** and **[VLM example](examples/quickstart/VLM.md)** |
 | Select official DVD, a Dream.exe LoRA, or another model | Install only assets not already required, then select the model explicitly | **[Model choices](docs/MODEL_ASSETS.md)** and **[custom backends](docs/CUSTOM_MODELS.md)** |
 | Understand or modify the implementation | No additional data | **[Code structure and reading paths](docs/CODE_STRUCTURE.md)** |
