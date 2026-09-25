@@ -5,6 +5,8 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any
 
+import numpy as np
+
 SUPPORTED_ROBOCASA_COMPONENT_TASKS = frozenset(
     {
         "SlideOvenRack",
@@ -432,24 +434,131 @@ def _extract_pick_place_counter_to_oven_components(env: Any) -> dict[str, Any]:
     }
 
 
+def _blender_containment_diagnostics(
+    env: Any,
+    *,
+    threshold: float,
+    quat_converter: Any = None,
+) -> dict[str, Any]:
+    """Return compact signed-margin evidence for RoboCasa ``obj_inside_of``.
+
+    The predicate compares dot products against each fixture interior axis and
+    adds ``threshold`` in that native dot-product space.  Dividing each signed
+    inequality by the corresponding axis norm preserves its sign and produces
+    an easier-to-read length-like margin.  Positive means every checked object
+    bounding-box point satisfies that constraint; the best region is the one
+    whose worst constraint is largest.
+    """
+
+    if quat_converter is None:
+        from robosuite.utils import transform_utils
+
+        quat_converter = lambda value: transform_utils.convert_quat(  # noqa: E731
+            value,
+            to="xyzw",
+        )
+
+    obj = env.objects["obj"]
+    fixture = getattr(env, "blender")
+    body_id = int(env.obj_body_id[obj.name])
+    obj_pos = np.asarray(env.sim.data.body_xpos[body_id], dtype=np.float64).reshape(3)
+    obj_quat = quat_converter(
+        np.asarray(env.sim.data.body_xquat[body_id], dtype=np.float64).reshape(4)
+    )
+    points = np.asarray(
+        obj.get_bbox_points(trans=obj_pos, rot=obj_quat),
+        dtype=np.float64,
+    ).reshape(-1, 3)
+    regions = fixture.get_int_sites(relative=False)
+    best: dict[str, Any] | None = None
+    for region_name, region in regions.items():
+        p0, px, py, pz = (
+            np.asarray(point, dtype=np.float64).reshape(3) for point in region
+        )
+        axes = (("u", px - p0, px), ("v", py - p0, py), ("w", pz - p0, pz))
+        worst: dict[str, Any] | None = None
+        axis_lengths: dict[str, float] = {}
+        for axis_name, axis, upper_point in axes:
+            norm = float(np.linalg.norm(axis))
+            if not np.isfinite(norm) or norm <= 0.0:
+                continue
+            axis_lengths[axis_name] = norm
+            lower_raw = points @ axis - float(np.dot(axis, p0)) + float(threshold)
+            upper_raw = (
+                float(np.dot(axis, upper_point))
+                + float(threshold)
+                - points @ axis
+            )
+            for direction, values in (("lower", lower_raw), ("upper", upper_raw)):
+                index = int(np.argmin(values))
+                candidate = {
+                    "axis": axis_name,
+                    "direction": direction,
+                    "bbox_point_index": index,
+                    "signed_margin_raw": float(values[index]),
+                    "signed_margin_normalized_m": float(values[index] / norm),
+                }
+                if worst is None or candidate["signed_margin_normalized_m"] < worst[
+                    "signed_margin_normalized_m"
+                ]:
+                    worst = candidate
+        if worst is None:
+            continue
+        center = p0 + 0.5 * ((px - p0) + (py - p0) + (pz - p0))
+        candidate_region = {
+            "region": str(region_name),
+            "predicate_signed_margin_normalized_m": worst[
+                "signed_margin_normalized_m"
+            ],
+            "predicate_signed_margin_raw": worst["signed_margin_raw"],
+            "worst_axis": worst["axis"],
+            "worst_direction": worst["direction"],
+            "worst_bbox_point_index": worst["bbox_point_index"],
+            "interior_center_world": center.tolist(),
+            "object_center_minus_interior_center_world": (obj_pos - center).tolist(),
+            "axis_lengths_m": axis_lengths,
+        }
+        if best is None or candidate_region[
+            "predicate_signed_margin_normalized_m"
+        ] > best["predicate_signed_margin_normalized_m"]:
+            best = candidate_region
+    return {
+        "obj_center_world": obj_pos.tolist(),
+        "obj_bbox_min_world": np.min(points, axis=0).tolist(),
+        "obj_bbox_max_world": np.max(points, axis=0).tolist(),
+        "blender_interior_region_count": int(len(regions)),
+        "blender_best_region": best,
+    }
+
+
 def _extract_pick_place_counter_to_blender_components(env: Any) -> dict[str, Any]:
     object_utils = _robocasa_object_utils()
+    threshold = 0.01
     obj_in_blender = object_utils.obj_inside_of(
         env,
         "obj",
         getattr(env, "blender"),
-        th=0.01,
+        th=threshold,
     )
     gripper_obj_far = object_utils.gripper_obj_far(env)
     success = bool(obj_in_blender and gripper_obj_far)
-    return {
+    output = {
         "task": "PickPlaceCounterToBlender",
         "obj_inside_blender": bool(obj_in_blender),
-        "obj_inside_blender_th": 0.01,
+        "obj_inside_blender_th": threshold,
         "gripper_obj_far": bool(gripper_obj_far),
         "gripper_far_threshold_m": 0.25,
         "all_and": bool(success),
     }
+    try:
+        output.update(
+            _blender_containment_diagnostics(env, threshold=threshold)
+        )
+    except Exception as error:
+        output["blender_containment_diagnostic_error"] = (
+            f"{type(error).__name__}: {error}"
+        )
+    return output
 
 
 def _extract_make_iced_coffee_components(env: Any) -> dict[str, Any]:

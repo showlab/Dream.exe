@@ -20,7 +20,7 @@
 [![Paper](https://img.shields.io/badge/arXiv-2606.04811-b31b1b.svg)](https://arxiv.org/abs/2606.04811)
 [![Benchmark](https://img.shields.io/badge/🤗-Benchmark-yellow.svg)](https://huggingface.co/datasets/kaimingyang/Dream.exe)
 [![DVD LoRA](https://img.shields.io/badge/🤗-DVD_LoRA-yellow.svg)](https://huggingface.co/kaimingyang/DVD_for_Dream.exe)
-[![Wan2.2 Video LoRA](https://img.shields.io/badge/🤗-Wan2.2_Video_LoRA-yellow.svg)](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe)
+[![Wan2.2 LoRA](https://img.shields.io/badge/🤗-Wan2.2_LoRA-yellow.svg)](https://huggingface.co/kaimingyang/VideoModel_as_RoboPolicy_for_Dream.exe)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB.svg)](pyproject.toml)
 

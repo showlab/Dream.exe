@@ -930,13 +930,12 @@ def _validate_action(
         raise ValueError(f"action.max_motion_steps_per_segment must be > 0 in {source}")
     if action.get("grasped_motion_stride", 0) <= 0:
         raise ValueError(f"action.grasped_motion_stride must be > 0 in {source}")
-    if pose.get("enabled") and action.get("controller") == "OSC_POSITION":
-        raise ValueError(
-            "pose.enabled=true auto-selects "
-            "action.controller=OSC_POSE by default "
-            f"in {source}; explicit action.controller=OSC_POSITION is "
-            "unsupported for orientation-aware action."
-        )
+    # Keep an explicitly selected position-only controller compatible with
+    # paper-era inputs. Pose extraction and orientation control are separate
+    # choices: several archived runs intentionally extracted 6-DoF pose while
+    # executing translation-only OSC_POSITION actions. The normalizer still
+    # selects OSC_POSE by default when pose is enabled; only the explicit
+    # legacy combination is preserved here.
 
 
 def validate_pipeline_config(

@@ -794,7 +794,7 @@ def _validate_protocol(doc: Mapping[str, Any]) -> None:
 def _validate_case_protocol(doc: Mapping[str, Any]) -> None:
     root = _exact(
         doc,
-        {"format", "uid", "routes"},
+        {"format", "uid", "routes"} | ({"input_configs"} if "input_configs" in doc else set()),
         "case protocol",
     )
     _safe_id(root["uid"], "case protocol.uid")
@@ -812,6 +812,20 @@ def _validate_case_protocol(doc: Mapping[str, Any]) -> None:
             )
         for stage, values in stages.items():
             _object(values, f"case protocol.routes.{route}.{stage}")
+    if "input_configs" in root:
+        entries = _list(root["input_configs"], "case protocol.input_configs", nonempty=True)
+        seen: set[tuple[str, str, str]] = set()
+        for index, raw in enumerate(entries):
+            label = f"case protocol.input_configs[{index}]"
+            entry = _exact(raw, {"input", "values"}, label)
+            _validate_input_identity(entry["input"], f"{label}.input", require_digest=False)
+            key = input_identity_key(entry["input"])
+            if key in seen:
+                raise ValueError(f"duplicate case input config: {key}")
+            seen.add(key)
+            stages = _exact(entry["values"], {"video2traj", "action", "execution"}, f"{label}.values")
+            for stage, values in stages.items():
+                _object(values, f"{label}.values.{stage}")
 
 
 def _validate_reference(doc: Mapping[str, Any]) -> None:

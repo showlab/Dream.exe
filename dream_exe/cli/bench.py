@@ -25,6 +25,7 @@ from ..bench.runtime import (
     build_default_runtime_config,
     initialize_case,
     run_benchmark,
+    verify_historical_compatibility_manifest,
 )
 from ..bench.setup import configure_workspace, inspect_workspace
 from ..bench.videos.generation import generate_video_output
@@ -584,6 +585,25 @@ def _aggregate_results(args: argparse.Namespace) -> int:
     return 0
 
 
+def _verify_compatibility_input(args: argparse.Namespace) -> int:
+    workspace = load_workspace(args.workspace)
+    repository = BenchRepository(workspace.bench_root)
+    collection = repository.load_collection(args.collection)
+    receipt = verify_historical_compatibility_manifest(
+        manifest_path=args.manifest,
+        artifact_root=args.artifact_root,
+        repository=repository,
+        expected_uids=[str(item["uid"]) for item in collection["cases"]],
+    )
+    if receipt["collection_id"] != collection["collection_id"]:
+        raise ValueError(
+            "compatibility manifest collection differs from the selected "
+            "benchmark collection"
+        )
+    _print_json(receipt)
+    return 0
+
+
 def register_bench(parser: argparse.ArgumentParser) -> None:
     commands = parser.add_subparsers(dest="bench_command", required=True)
     promote = commands.add_parser(
@@ -716,6 +736,23 @@ def register_bench(parser: argparse.ArgumentParser) -> None:
     aggregate.add_argument("--require-vlm", action="store_true")
     aggregate.add_argument("--skip-artifact-hashes", action="store_true")
     aggregate.set_defaults(_handler=_aggregate_results)
+
+    compatibility = commands.add_parser(
+        "verify-compatibility-input",
+        help=(
+            "Verify an explicit historical trajectory/action population "
+            "against immutable benchmark and artifact digests."
+        ),
+    )
+    compatibility.add_argument("--workspace", required=True)
+    compatibility.add_argument("--manifest", required=True)
+    compatibility.add_argument("--artifact-root", required=True)
+    compatibility.add_argument(
+        "--collection",
+        default="",
+        help="Benchmark collection ID (default: the workspace's only collection).",
+    )
+    compatibility.set_defaults(_handler=_verify_compatibility_input)
 
 
 __all__ = [

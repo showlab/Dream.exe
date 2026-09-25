@@ -20,6 +20,31 @@ from .config import normalize_depth_base_config
 _MIN_DEPTH = 1.0e-6
 
 
+def bilateral_smooth_in_roi(
+    depth: np.ndarray, roi_mask: np.ndarray, *, sigma_r: float = 0.02,
+) -> np.ndarray:
+    """Preserve the pre-refactor ROI filter, including invalid-pixel filling."""
+    import cv2
+
+    out = np.asarray(depth, dtype=np.float32).copy()
+    roi_mask = np.asarray(roi_mask, dtype=bool)
+    bad = ~np.isfinite(out) | (out <= 0)
+    bad_in_roi = bad & roi_mask
+    if np.any(bad_in_roi):
+        valid = roi_mask & ~bad
+        out[bad_in_roi] = float(np.median(out[valid])) if np.any(valid) else 1.0
+    out = np.ascontiguousarray(out, dtype=np.float32)
+    denom = float(max(1e-6, sigma_r))
+    scaled = np.ascontiguousarray((out / denom).clip(0, 65535), dtype=np.float32)
+    try:
+        filtered = cv2.bilateralFilter(scaled, d=5, sigmaColor=10.0, sigmaSpace=5.0)
+        out[roi_mask] = (filtered * denom)[roi_mask]
+    except Exception:
+        # The historical filter returned the filled input on OpenCV failure.
+        pass
+    return out.astype(np.float32)
+
+
 def _ellipse_footprint(radius: int) -> np.ndarray:
     """Return the integer ellipse used for pixel-radius expansion."""
 
@@ -1239,6 +1264,8 @@ def run_depth_calibration(
     require_calibration_for_nonmetric: bool = False,
     run_sanitize: bool = True,
     run_init_calibration: bool = True,
+    run_final_smooth: bool = False,
+    sigma_r: float = 0.02,
     init_calibration_mode: str = "standard",
     distribution_cfg: Mapping[str, Any] | None = None,
     eef_tracks_uv: np.ndarray | None = None,
@@ -1383,7 +1410,12 @@ def run_depth_calibration(
     stats["multi_roi"] = multi_roi
     stats["scheme_b"] = scheme_b
     stats["invalidated"] = invalidated
-    stats["applied"] = bool(calibrated or invalidated)
+    smooth_applied = bool(run_final_smooth and (depth_space == "metric" or calibrated))
+    if smooth_applied:
+        roi = union_roi if union_roi is not None else np.ones((height, width), dtype=bool)
+        output = [bilateral_smooth_in_roi(frame, roi, sigma_r=sigma_r) for frame in output]
+    stats["final_smooth"] = {"enabled": bool(run_final_smooth), "applied": smooth_applied}
+    stats["applied"] = bool(calibrated or invalidated or smooth_applied)
     return output, stats
 
 
@@ -1407,20 +1439,22 @@ def run_depth_calibration_runtime(
 ) -> tuple[np.ndarray, dict[str, Any], dict[str, Any]]:
     """Adapt the built-in numeric calibration to the depth-source runtime.
 
-    ``depth_source`` and ``depth_model`` are accepted as explicit runtime
-    context but do not select calibration behavior.  The normalized
-    ``depth_base_cfg`` is the sole policy authority.
+    GT input skips the entire base postprocess, including final smoothing,
+    as in the pre-refactor source pipeline.
+    ``depth_model`` does not select policy; ``depth_base_cfg`` owns settings.
     """
 
-    del depth_source, depth_model
+    del depth_model
     if not isinstance(depth_info, Mapping):
         raise TypeError("depth_info must be a mapping")
     base = normalize_depth_base_config(dict(depth_base_cfg))
     sanitize = dict(base["sanitize"])
     init = dict(base["init_calibration"])
     base_enabled = bool(base["enabled"])
+    is_gt = depth_source == "rollout_gt_depth"
+    smooth = dict(base["final_smooth"])
     if_calibrate = init.get("if_calibrate_depth")
-    run_init = base_enabled and bool(init["enabled"]) and if_calibrate is not False
+    run_init = base_enabled and not is_gt and bool(init["enabled"]) and if_calibrate is not False
     calibrated, stats = run_depth_calibration(
         depths,
         depth_space=str(depth_info.get("depth_space", "unknown")),
@@ -1445,8 +1479,15 @@ def run_depth_calibration_runtime(
         require_calibration_for_nonmetric=bool(
             init.get("require_calibration_for_nonmetric") or False
         ),
-        run_sanitize=(base_enabled and bool(sanitize["enabled"])),
+        run_sanitize=(base_enabled and not is_gt and bool(sanitize["enabled"])),
         run_init_calibration=run_init,
+        run_final_smooth=(
+            base_enabled
+            and not is_gt
+            and bool(smooth["enabled"])
+            and smooth["bilateral_mode"] == "on"
+        ),
+        sigma_r=float(smooth["sigma_r"]),
         init_calibration_mode=str(init.get("mode") or "standard"),
         distribution_cfg=dict(init.get("distribution_v1", {}) or {}),
         eef_tracks_uv=eef_tracks_uv,
@@ -1455,6 +1496,29 @@ def run_depth_calibration_runtime(
         obj_visibility=obj_visibility,
         obj_track_groups=obj_track_groups,
     )
+    if is_gt:
+        reason = "skipped because depth source is rollout_gt_depth"
+        stats["applied"] = False
+        stats["reason"] = reason
+        stats["sanitize"] = {
+            "enabled": base_enabled and bool(sanitize["enabled"]),
+            "applied": False,
+            "reason": reason,
+        }
+        stats["init_calibration"] = {
+            "enabled": base_enabled and bool(init["enabled"]),
+            "applied": False,
+            "reason": reason,
+        }
+        stats["final_smooth"] = {
+            "enabled": (
+                base_enabled
+                and bool(smooth["enabled"])
+                and smooth["bilateral_mode"] == "on"
+            ),
+            "applied": False,
+            "reason": reason,
+        }
     info = copy.deepcopy(dict(depth_info))
     previous_calibration = info.get("calibration")
     if previous_calibration is None:

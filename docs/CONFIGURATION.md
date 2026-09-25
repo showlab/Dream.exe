@@ -163,6 +163,9 @@ data/bench/collections.json
 Users do not edit these files for reproduction. A changed protocol must be
 stored and reported as a new experiment.
 
+For a new experiment that needs different settings for each generated or
+reference input, see [input-specific configuration](INPUT_CONFIGURATION.md).
+
 ## Packaged implementation defaults
 
 Stable implementation defaults live beside their consumer:

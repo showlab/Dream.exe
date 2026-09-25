@@ -52,6 +52,7 @@ _BASE_CALIBRATION_FIELDS = frozenset(
         "depth_space",
         "enabled",
         "init_calibration",
+        "final_smooth",
         "init_calibration_mode",
         "invalidate_mode",
         "invalidated",
@@ -374,6 +375,11 @@ def normalize_depth_calibration_metadata(
         allowed=_BASE_CALIBRATION_FIELDS,
         label=f"{label}.base",
     )
+    if "final_smooth" in base:
+        smooth = _schema_mapping(base["final_smooth"], label=f"{label}.base.final_smooth")
+        _reject_unknown_schema_fields(
+            smooth, allowed=_SANITIZE_STATUS_FIELDS, label=f"{label}.base.final_smooth",
+        )
     if "sanitize" in base:
         sanitize = _schema_mapping(
             base["sanitize"],

@@ -20,6 +20,7 @@ from .schemas import (
     PROTOCOL_SCHEMA,
     RESOLVED_CONFIG_SCHEMA,
     canonical_sha256,
+    input_identity_key,
     validate_document,
 )
 
@@ -310,6 +311,24 @@ def compile_config(
     if case_document["uid"] != uid:
         raise ValueError(f"case protocol identity mismatch for {uid!r}")
     route_values = case_document["routes"][route]
+    # An exact-input snapshot is an alternative owner, not another override
+    # layer. In particular GT must never inherit the estimated-depth route.
+    input_values = None
+    input_owner = ""
+    if "input_configs" in case_document:
+        expected_kind = "generated" if route == "candidate" else "reference"
+        if input_identity.get("kind") != expected_kind:
+            raise ValueError(f"input kind does not match config route {route!r}")
+        if route == "evaluation_oracle" and input_identity.get("reference_id") != "w_gt_depth":
+            raise ValueError("evaluation_oracle requires the GT-depth reference input")
+        key = input_identity_key(input_identity)
+        for entry in case_document["input_configs"]:
+            if input_identity_key(entry["input"]) == key:
+                input_values = entry["values"]
+                input_owner = f"case-input:{uid}:{':'.join(key)}"
+                break
+        if input_values is None:
+            raise ValueError(f"no exact input config for {uid!r}: {key}")
     values: dict[str, Any] = {}
     sources: dict[str, str] = {}
     runtime_values = {} if run_values is None else dict(run_values)
@@ -327,7 +346,8 @@ def compile_config(
         )
         if protocol["stage"] != stage:
             raise ValueError(f"protocol identity mismatch for {stage!r}")
-        common = protocol["values"]
+        exact_stage = input_values is not None and stage in input_values
+        common = {} if exact_stage else protocol["values"]
         if _contains_machine_path(common):
             raise ValueError(f"bench protocol contains a machine path: {stage}")
         stage_defaults = packaged[stage]["values"]
@@ -346,7 +366,8 @@ def compile_config(
             owner=f"protocol:{stage}",
         )
 
-        case_values = route_values.get(stage, {})
+        case_values = input_values[stage] if exact_stage else route_values.get(stage, {})
+        case_owner = f"{input_owner}:{stage}" if exact_stage else f"case-protocol:{uid}:{route}:{stage}"
         if case_values:
             if _contains_machine_path(case_values):
                 raise ValueError(
@@ -356,7 +377,7 @@ def compile_config(
             _validate_owned_stage_values(
                 case_values,
                 stage=stage,
-                owner=f"case-protocol:{uid}:{route}:{stage}",
+                owner=case_owner,
                 defaults=stage_defaults,
                 run_owned=False,
             )
@@ -365,13 +386,13 @@ def compile_config(
                 case_values,
                 pointer=f"/{_escape_pointer(stage)}",
                 current_owner=f"protocol:{stage}",
-                incoming_owner=f"case-protocol:{uid}:{route}:{stage}",
+                incoming_owner=case_owner,
             )
             _record_sources(
                 sources,
                 case_values,
                 stage=stage,
-                owner=f"case-protocol:{uid}:{route}:{stage}",
+                owner=case_owner,
             )
 
         stage_runtime = runtime_values.get(stage, {})

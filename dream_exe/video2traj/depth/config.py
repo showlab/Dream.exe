@@ -44,7 +44,7 @@ EEF_TRAJECTORY_DEPTH_MODES = {
 OBJECT_TRAJECTORY_DEPTH_MODES = {"object_roi"}
 GRIPPER_TRAJECTORY_DEPTH_MODES = {"pair_roi", "all_roi"}
 
-_BASE_FIELDS = frozenset({"enabled", "sanitize", "init_calibration"})
+_BASE_FIELDS = frozenset({"enabled", "sanitize", "init_calibration", "final_smooth"})
 _SANITIZE_FIELDS = frozenset({"enabled", "invalidate_mode"})
 _INIT_CALIBRATION_FIELDS = frozenset(
     {
@@ -108,6 +108,7 @@ _ALL_ROI_FIELDS = frozenset({"calib_region"})
 def _new_base_template() -> dict[str, Any]:
     return {
         "enabled": True,
+        "final_smooth": {"enabled": False, "bilateral_mode": "off", "sigma_r": 0.02},
         "sanitize": {
             "enabled": True,
             "invalidate_mode": None,
@@ -241,6 +242,14 @@ def _validate_base_schema(config: dict[str, Any]) -> None:
         allowed=_BASE_FIELDS,
         path="depth.base",
     )
+    smooth = _config_object(config.get("final_smooth"), path="depth.base.final_smooth")
+    _reject_unknown_fields(smooth, allowed=frozenset({"enabled", "bilateral_mode", "sigma_r"}), path="depth.base.final_smooth")
+    _require_exact_bool(smooth.get("enabled"), path="depth.base.final_smooth.enabled")
+    if smooth.get("bilateral_mode") not in {"on", "off"}:
+        raise ValueError("depth.base.final_smooth.bilateral_mode must be on or off")
+    sigma = _require_finite_number(smooth.get("sigma_r"), path="depth.base.final_smooth.sigma_r")
+    if sigma <= 0:
+        raise ValueError("depth.base.final_smooth.sigma_r must be > 0")
     sanitize = _config_object(
         config.get("sanitize"),
         path="depth.base.sanitize",
